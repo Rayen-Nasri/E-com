@@ -1,0 +1,32 @@
+.btn {
+
+    width: 30px;
+    position: absolute;
+    background-color: transparent;
+    background: url(../../assets/arr.svg);
+    background-repeat: no-repeat;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.checkB {
+    position: relative;
+
+    border: solid white;
+    border-width: 0 1em 1em 0;
+
+}
+
+
+@media only screen and (min-height: 780px) {
+
+    .nN {
+        bottom: 90px;
+    }
+
+    .alrH {
+        position: relative;
+        top: 53px;
+    }
+}
