@@ -1,11 +1,11 @@
-import { Homee } from "./components/landing/home/home"
+import { Newpass } from "./components/auth/setNewPass/newPass"
 
 
 function App() {
 
   return (
     <>
-      <Homee />
+      <Newpass />
     </>
   )
 }

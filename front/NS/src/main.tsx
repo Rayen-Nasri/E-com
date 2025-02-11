@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router";
 import './main.css'
-import  ReactDOM  from "react-dom/client";
+import ReactDOM from "react-dom/client";
 
 import App from './App.tsx'
 import { NotFound } from './components/notFound/notFound.tsx';
@@ -15,38 +15,43 @@ import { Forgot } from './components/auth/forgotPass/forgot.tsx';
 
 const router = createBrowserRouter([
   {
-    path : "/",
-    element : <App/>,
-    errorElement : <NotFound/>
+    path: "/",
+    element: <App />,
+    errorElement: <NotFound />
   },
   {
-    path : "/home",
-    element : <Homee/>
+    path: "/home",
+    element: <Homee />
   },
   {
-    path : "/register",
-    element : <Signup/>
+    path: "/authentication",
+    children: [
+      {
+        path: "/authentication/register",
+        element: <Signup />
+      },
+      {
+        path: "/authentication/logIn",
+        element: <Login />
+      },
+      {
+        path: "/authentication/setNew-password/:tokenID",
+        element: <Newpass />
+      },
+      {
+        path: "/authentication/validationCode/:tokenID",
+        element: <Validation />
+      },
+      {
+        path: "/authentication/forgot-password/:tokenID",
+        element: <Forgot />
+      }
+    ]
   },
-  {
-    path : "/logIn",
-    element : <Login/>
-  },
-  {
-    path : "/setNew-password/:tokenID",
-    element : <Newpass/>
-  },
-  {
-    path : "/validationCode/:tokenID",
-    element : <Validation/>
-  },
-  {
-    path : "/forgot-password",
-    element : <Forgot/>
-  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </StrictMode>,
 )

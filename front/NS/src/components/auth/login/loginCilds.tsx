@@ -1,5 +1,6 @@
 import { memo } from "react"
 import { Ns } from "../../../assets/assets"
+import login from "../../../assets/login.jpg"
 
 const LoginHeader = memo(() => {
     return (
@@ -13,7 +14,7 @@ const LoginHeader = memo(() => {
                     &#160;&#160;&#160;&#160;
                 </button>
                 <img
-                    src="src\assets\login.jpg"
+                    src={login}
                     alt="Decorative interior"
                     className=" w-full h-screen "
                 />

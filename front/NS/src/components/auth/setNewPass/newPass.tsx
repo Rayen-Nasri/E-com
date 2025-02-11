@@ -1,9 +1,29 @@
 import { useEffect } from "react"
 import { FooterChilds, HeaderChilds } from "../childs";
+import forgot from "../../../assets/Forgot.jpg"
+import { z } from "zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+const newPassSchema = z.object(
+    {
+        password: z.string().min(8),
+        confirmePassword: z.string().min(8)
+    }
+)
+
+type setNewPassForm = z.infer<typeof newPassSchema>;
 
 
 export const Newpass = () => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<setNewPassForm>({
+        resolver: zodResolver(newPassSchema)
+    })
+    const onSubmit: SubmitHandler<setNewPassForm> = (data) => {
+        console.log(data);
+        // API fetch loguique ya 7aj
+    }
     useEffect(() => {
         const originalStyle = window.getComputedStyle(document.body).backgroundColor;
         document.body.style.backgroundColor = "#FFFCF8";
@@ -21,28 +41,47 @@ export const Newpass = () => {
                         Your new password must be different to <br /> previously used passwords.
                     </>
                 }
-                imgSrc="src\assets\Forgot.jpg"
+                imgSrc={forgot}
             />
+            <form action="" onSubmit={handleSubmit(onSubmit)}>
+                <div className="p-2 space-y-3">
+                    <label htmlFor="" className="font-medium text-[17px] ">Password</label>
+                    <br />
+                    <input type="text
+                    " id="password"
+                        placeholder="Enter your email"
+                        className={`w-full px-3 py-1 border 
+                        border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
+                        opacity-[0.5]
+                        ${errors.password ? "border-red-500" : "border-gray-300"}
+                        `}
+                        {...register("password")}
+                    />
 
-            <div className="p-2 space-y-3">
-                <label htmlFor="" className="font-medium text-[17px] ">Password</label>
-                <br />
-                <input type="text" placeholder="Enter your email" className="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300 opacity-[0.5]" />
+                    <label htmlFor="" className="font-medium text-[17px] ">Confirm Password</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="confirmPassword"
+                        placeholder="Enter your email"
+                        className={`w-full px-3 py-1 border 
+                        border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
+                        opacity-[0.5]
+                        ${errors.password ? "border-red-500" : "border-gray-300"}
+                        `}
+                        {...register("confirmePassword")}
+                    />
 
-                <label htmlFor="" className="font-medium text-[17px] ">Confirm Password</label>
-                <br />
-                <input type="text" placeholder="Enter your email" className="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300 opacity-[0.5]" />
+                </div>
 
-            </div>
-
-            <div className="mt-2 p-2">
-                <button type="submit"
-                    className="text-[15px] w-full flex justify-center py-2 px-4 border border-transparent rounded-md  text-sm font-medium hover:shadow-sm "
-                    style={{ backgroundColor: "#F5F3F1" }}>
-                    Reset password
-                </button>
-            </div>
-
+                <div className="mt-2 p-2">
+                    <button type="submit"
+                        className="text-[15px] w-full flex justify-center py-2 px-4 border border-transparent rounded-md  text-sm font-medium hover:shadow-sm "
+                        style={{ backgroundColor: "#F5F3F1" }}>
+                        Reset password
+                    </button>
+                </div>
+            </form>
             <FooterChilds buttonContent="Back to login" />
 
         </section>

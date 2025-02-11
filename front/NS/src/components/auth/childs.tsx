@@ -20,7 +20,7 @@ const FooterChilds = memo(({ buttonContent }: any) => {
     return (
         <div className="mt-15 flex justify-center p-2">
             <label htmlFor="" className="relative right-[20px] top-[6px]"><ArrBack /></label>
-            <Link className="relative font-medium" to={"/login"}>{buttonContent}</Link>
+            <Link className="relative font-medium" to={"/authentication/logIn"}>{buttonContent}</Link>
         </div>
     )
 })

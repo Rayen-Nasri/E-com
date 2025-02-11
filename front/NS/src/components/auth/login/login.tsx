@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 import { Apple, Google } from "../../../assets/assets"
+
 import "./login.css"
 import { LoginFormHeader, LoginFromFooter, LoginHeader } from "./loginCilds"
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false)
+
+  const [showPassword, setShowPassword] = useState(false);
+
   useEffect(() => {
     document.body.style.backgroundColor = "#FFFCF8";
     document.body.style.overflow = "hidden"
-  }, [])
+  }, []);
+
   return (
     <>
       <div className="flex m-4 lg:border-2 rounded-[21px] h-[96vh] " style={{ borderColor: "#D9D9D9", overflow: "hidden" }}>

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { HeaderChilds, FooterChilds } from "../childs.tsx";
-
+import check from "../../../assets/emailCheck.jpg"
 
 
 export const Check = () => {
@@ -21,7 +21,7 @@ export const Check = () => {
                         We sent a password reset link to <br /> Example@untitledui.com
                     </>
                 }
-                imgSrc="src\assets\emailCheck.jpg"
+                imgSrc={check}
             />
             <div className="text-[15px] text-center mt-6">
                 <p className="font-medium">Didn’t receive the email? <button style={{ color: "#6B8696" }}>Click to resend</button></p>

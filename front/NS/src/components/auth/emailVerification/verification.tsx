@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { FooterChilds, HeaderChilds } from "../childs";
-
+import Forgot from "../../../assets/Forgot.jpg"
 export const EmailVerification = () => {
     const inputRefs = useRef<HTMLInputElement[]>([]);
 
@@ -34,7 +34,7 @@ export const EmailVerification = () => {
             <HeaderChilds
                 h3Content="Confirmation code"
                 pContent="Enter your verification code"
-                imgSrc="src/assets/Forgot.jpg"
+                imgSrc={Forgot}
             />
 
             <div className="p-2 flex justify-center space-x-2">
