@@ -1,4 +1,6 @@
 
-export default function Home() {
-    return null
+export const Homee = ()=> {
+    return (
+        <div>Welcome To home Page</div>
+    )
 }

@@ -1,10 +1,52 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from "react-router";
 import './main.css'
-import App from './App.tsx'
+import  ReactDOM  from "react-dom/client";
 
-createRoot(document.getElementById('root')!).render(
+import App from './App.tsx'
+import { NotFound } from './components/notFound/notFound.tsx';
+import { Homee } from './components/landing/home/home.tsx';
+import { Signup } from './components/auth/singup/singup.tsx';
+import Login from './components/auth/login/login.tsx';
+import { Newpass } from './components/auth/setNewPass/newPass.tsx';
+import { Validation } from './components/auth/validation/validation.tsx';
+import { Forgot } from './components/auth/forgotPass/forgot.tsx';
+
+
+const router = createBrowserRouter([
+  {
+    path : "/",
+    element : <App/>,
+    errorElement : <NotFound/>
+  },
+  {
+    path : "/home",
+    element : <Homee/>
+  },
+  {
+    path : "/register",
+    element : <Signup/>
+  },
+  {
+    path : "/logIn",
+    element : <Login/>
+  },
+  {
+    path : "/setNew-password/:tokenID",
+    element : <Newpass/>
+  },
+  {
+    path : "/validationCode/:tokenID",
+    element : <Validation/>
+  },
+  {
+    path : "/forgot-password",
+    element : <Forgot/>
+  }
+])
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App/>
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
