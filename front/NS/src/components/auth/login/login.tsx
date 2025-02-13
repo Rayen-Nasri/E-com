@@ -3,7 +3,40 @@ import { Apple, Google } from "../../../assets/assets"
 
 import "./login.css"
 import { LoginFormHeader, LoginFromFooter, LoginHeader } from "./loginCilds"
+
+import { z } from "zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Link , useNavigate } from "react-router";
+import { useAuthStore } from "../../../global/authStore";
+
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(9)
+});
+
+type loginForme = z.infer<typeof loginSchema>;
+
+
 const Login = () => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm<loginForme>({
+    resolver: zodResolver(loginSchema)
+  });
+  const { login }: any = useAuthStore();
+  const Navigate = useNavigate()
+  const onSubmit: SubmitHandler<loginForme> = async (data) => {
+    const name = `${data.email} ${data.password}`;
+    // API fetch Logique
+    try {
+      await login(data.email, data.password, name);
+      Navigate("/home");
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -15,16 +48,16 @@ const Login = () => {
   return (
     <>
       <div className="flex m-4 lg:border-2 rounded-[21px] h-[96vh] " style={{ borderColor: "#D9D9D9", overflow: "hidden" }}>
-        <LoginHeader/>
+        <LoginHeader />
 
 
         {/* Right side - Login Form */}
         <div className="w-full h-full lg:w-3/4 flex items-center justify-center  ">
           <div className="w-full max-w-md space-y-6 ">
-            <LoginFormHeader/>
+            <LoginFormHeader />
 
             {/* Login Form */}
-            <form className="space-y-6 " onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6 " onSubmit={handleSubmit(onSubmit)}>
               <div className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="email" className="block text-sm font-medium text-[21px]">
@@ -35,8 +68,11 @@ const Login = () => {
                     type="email"
                     placeholder="Your email"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
-                     focus:ring-2 focus:ring-stone-300 focus:border-stone-300"
+                    className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
+                     focus:ring-2 focus:ring-stone-300 focus:border-stone-300
+                     ${errors.email ? "border-red-500" : "border-gray-300"}
+                     `}
+                    {...register("email")}
                   />
                 </div>
 
@@ -50,8 +86,11 @@ const Login = () => {
                       type={showPassword ? "text" : "password"}
                       placeholder="Your password"
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
-                       focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300"
+                      className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
+                       focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
+                       ${errors.password ? "border-red-500" : "border-gray-300"}
+                       `}
+                      {...register("password")}
                     />
                     <button
                       type="button"
@@ -77,9 +116,9 @@ const Login = () => {
                     Remember me?
                   </label>
                 </div>
-                <a href="/forgot-password" className="text-sm font-medium text-[15px] hover:underline">
+                <Link to="/authentication/forgot-password" className="text-sm font-medium text-[15px] hover:underline">
                   Forgot your password?
-                </a>
+                </Link>
               </div>
 
               <button
@@ -122,7 +161,7 @@ const Login = () => {
               </div>
             </form>
 
-            <LoginFromFooter/>
+            <LoginFromFooter />
           </div>
         </div>
       </div>

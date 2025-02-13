@@ -9,6 +9,8 @@ import { Google, Apple, Ns } from "../../../assets/assets"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Link, useNavigate } from "react-router"
+import { useAuthStore } from "../../../global/authStore"
 
 // Zod schema for validation
 const signupSchema = z
@@ -37,13 +39,23 @@ export const Signup = () => {
   } = useForm<SignupFormInputs>({
     resolver: zodResolver(signupSchema),
   });
-
+  
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { signup  } : any = useAuthStore();
 
-  const onSubmit: SubmitHandler<SignupFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     console.log("Form Data:", data);
+    const name = `${data.firstName} ${data.lastName}`;
     // API fetch Logique
+    
+    try {
+      await signup(data.email, data.password, name);
+      navigate("/authentication/validationCode")
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -79,9 +91,8 @@ export const Signup = () => {
             <input
               id="firstName"
               placeholder="Your first name"
-              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${
-                errors.firstName ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${errors.firstName ? "border-red-500" : "border-gray-300"
+                }`}
               {...register("firstName")}
             />
           </div>
@@ -94,9 +105,8 @@ export const Signup = () => {
             <input
               id="lastName"
               placeholder="Your last name"
-              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${
-                errors.lastName ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${errors.lastName ? "border-red-500" : "border-gray-300"
+                }`}
               {...register("lastName")}
             />
           </div>
@@ -110,9 +120,8 @@ export const Signup = () => {
               id="email"
               type="email"
               placeholder="Your email"
-              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${errors.email ? "border-red-500" : "border-gray-300"
+                }`}
               {...register("email")}
             />
           </div>
@@ -127,9 +136,8 @@ export const Signup = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Your password"
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${
-                  errors.password ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${errors.password ? "border-red-500" : "border-gray-300"
+                  }`}
                 {...register("password")}
               />
               <button
@@ -152,9 +160,8 @@ export const Signup = () => {
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm password"
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${
-                  errors.confirmPassword ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm ${errors.confirmPassword ? "border-red-500" : "border-gray-300"
+                  }`}
                 {...register("confirmPassword")}
               />
               <button
@@ -215,9 +222,9 @@ export const Signup = () => {
           {/* Login Link */}
           <p className="text-center text-sm text-gray-600 alrH">
             Already have an account?{" "}
-            <a href="/login" className="text-[#6B8696] hover:underline">
+            <Link to="/authentication/logIn" className="text-[#6B8696] hover:underline">
               Login here
-            </a>
+            </Link>
           </p>
         </form>
       </div>

@@ -150,7 +150,7 @@ const forgotPassword = async (req, res) => {
         user.save();
 
         //*send RestPassEmail to user
-        await sendResetPassword(user.email, `${process.env.RESTL_LINK}/rest_Password/${resetToken}`);
+        await sendResetPassword(user.email, `${process.env.RESTL_LINK}/authentication/setNew-password/${resetToken}`);
         res.status(201).json({ success: true, message: `email send successfully` });
 
 
@@ -170,11 +170,11 @@ const resetPassword = async (req, res) => {
         const user = await User.findOne({
             resetPasswordToken: token,
         });
-        if(!user){
-            return res.status(400).json({ success : false , message : "Invalide User" });
+        if (!user) {
+            return res.status(400).json({ success: false, message: "Invalide User" });
         };
 
-        user.password = await bcrypt.hash(newPassword , 10);
+        user.password = await bcrypt.hash(newPassword, 10);
         user.resetPasswordToken = undefined;
         user.resetPasswordExpiresAt = undefined;
 
@@ -184,13 +184,30 @@ const resetPassword = async (req, res) => {
         await sendResetPaswordEmail(user.email);
 
 
-        res.status(201).json({ success : true , message : "password reset successfully" });
+        res.status(201).json({ success: true, message: "password reset successfully" });
 
     } catch (error) {
         console.log(error);
-        throw new Error(`resetPassword Error : ${error}`);  
+        throw new Error(`resetPassword Error : ${error}`);
     };
 
 }
+const checkAuth = async (req, res) => {
+    try {
+        const userId = req.userId || req.body.userId || req.query.userId;
+        if (!userId) {
+            return res.status(400).json({ success: false, message: "User ID is required" });
+        }
 
-export { signup, login, logout, verifyEmail, forgotPassword, resetPassword }
+        const user = await User.findById(userId).select("-password");
+        if (!user) {
+            return res.status(400).json({ success: false, message: "User Not Found" });
+        };
+        res.status(201).json({ success: true, user });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error.message });
+    }
+};
+
+export { signup, login, logout, verifyEmail, forgotPassword, resetPassword, checkAuth }

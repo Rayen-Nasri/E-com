@@ -4,6 +4,8 @@ import forgot from "../../../assets/Forgot.jpg"
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router";
+import { useAuthStore } from "../../../global/authStore";
 
 // Zod schema for validation
 const forgotSchema = z.object({
@@ -15,11 +17,20 @@ type ForgotForme = z.infer<typeof forgotSchema>
 
 
 export const Forgot = () => {
+    const navigate = useNavigate();
+    const  {forgotPassword}:any = useAuthStore();
     const { register, handleSubmit, formState: { errors } } = useForm<ForgotForme>({ resolver: zodResolver(forgotSchema) });
 
     const onSubmit: SubmitHandler<ForgotForme> = (data) => {
-        console.log("you data is", data);
-        // API fetch Logique
+         // API fetch Logique
+        try {
+            forgotPassword(data.email);
+            navigate('/authentication/check')
+        } catch (error) {
+            console.log(error);
+            
+        }
+       
     }
     useEffect(() => {
         const originalStyle = window.getComputedStyle(document.body).backgroundColor;
@@ -44,7 +55,7 @@ export const Forgot = () => {
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <label htmlFor="" className="font-medium text-[17px] ">Email</label>
                     <br />
-                    <input type="text" placeholder="`Enter your email" className={`w-full px-3 py-1 border border-gray-300 rounded-md
+                    <input type="text" placeholder="Enter your email" className={`w-full px-3 py-1 border border-gray-300 rounded-md
                     focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300 opacity-[0.7] 
                     ${errors.email ? "border-red-500" : "border-gray-300"}`}
                         {...register("email")}

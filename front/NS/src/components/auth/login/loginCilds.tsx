@@ -1,6 +1,7 @@
 import { memo } from "react"
 import { Ns } from "../../../assets/assets"
 import login from "../../../assets/login.jpg"
+import { Link } from "react-router"
 
 const LoginHeader = memo(() => {
     return (
@@ -27,9 +28,9 @@ const LoginFromFooter = memo(() => {
     return (
         <p className="text-center text-[17px] text-gray-600 alrH">
             Don't have an account?{" "}
-            <a href="/register" className="font-medium underline text-[#6B8696]">
+            <Link to="/authentication/register" className="font-medium underline text-[#6B8696]">
                 Register here
-            </a>
+            </Link>
         </p>
     )
 })

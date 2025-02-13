@@ -7,7 +7,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
             from: sender,
             to: recipient,
             subject: "Verify Your Email",
-            html: `weldone XD`,
+            html: `weldone XD ${verificationToken}`,
             category: "Email Verfication"
         })
 

@@ -10,7 +10,7 @@ export const NotFound = () => {
             <p className="text-center mt-5">The page you’re looking for doesn’t exist or an other error occurred.</p>
             <div className="mt-15 flex justify-center p-2">
                 <label htmlFor="" className="relative right-[20px] top-[6px]"><ArrBack /></label>
-                <Link to={"/login"} className="relative font-medium">Back to Login</Link>
+                <Link to={"/authentication/logIn"} className="relative font-medium">Back to Login</Link>
             </div>
         </div>
     )
