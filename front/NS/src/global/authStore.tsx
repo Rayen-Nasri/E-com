@@ -65,16 +65,29 @@ export const useAuthStore = create((set) => ({
         set({ isAuthenticated: false, isCheckingAuth: true });
 
         try {
-
-            await axios.post(`${API_URL}/forgot_password` , {email});
-            console.log("send Succ");
-            
-
-        } catch (error : any) {
-            console.log("Verification error:", error.response.data);
-            set({ error: error.response.data.message || "Error sign up", isLoading: false });
+            await axios.post(`${API_URL}/forgot_password`, { email });
+        } catch (error: any) {
+            console.log("forgotPassword error:", error.response.data);
+            set({ error: error.response.data.message || "Error forgotPassword", isLoading: false });
             throw error;
 
+        }
+    },
+
+    setNewPassword: async (newPassword: string, token: string) => {
+        console.log(newPassword, token);
+
+        set({ isLoading: true, error: null });
+        try {
+
+            const response = await axios.post(`${API_URL}/reset_password/${token}`, { newPassword });
+            console.log("Password reset successfully");
+            set({ message: response.data.message, isLoading: false });
+
+        } catch (error: any) {
+            console.log("setNewPassword error:", error.response.data);
+            set({ error: error.response.data.message || "Error setting new password", isLoading: false });
+            throw error;
         }
     }
 

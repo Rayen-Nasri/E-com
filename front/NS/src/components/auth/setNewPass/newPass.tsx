@@ -1,9 +1,11 @@
-import { useEffect } from "react"
+import { useEffect, useTransition } from "react"
 import { FooterChilds, HeaderChilds } from "../childs";
 import forgot from "../../../assets/Forgot.jpg"
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate, useParams } from "react-router";
+import { useAuthStore } from "../../../global/authStore";
 
 const newPassSchema = z.object(
     {
@@ -20,9 +22,26 @@ export const Newpass = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<setNewPassForm>({
         resolver: zodResolver(newPassSchema)
     })
-    const onSubmit: SubmitHandler<setNewPassForm> = (data) => {
-        console.log(data);
-        // API fetch loguique ya 7aj
+    const Navigate = useNavigate();
+    const { setNewPassword }: any = useAuthStore();
+const { tokenID } = useParams<{ tokenID: string }>();
+
+const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
+    if (!tokenID) {
+        console.error("Token ID is missing");
+        return;
+    }
+    
+    try {
+         await setNewPassword(data.password , tokenID);
+        Navigate("/home");
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
     }
     useEffect(() => {
         const originalStyle = window.getComputedStyle(document.body).backgroundColor;
@@ -49,7 +68,7 @@ export const Newpass = () => {
                     <br />
                     <input type="text
                     " id="password"
-                        placeholder="Enter your email"
+                        placeholder="Enter your Password"
                         className={`w-full px-3 py-1 border 
                         border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
                         opacity-[0.5]
@@ -63,7 +82,7 @@ export const Newpass = () => {
                     <input
                         type="text"
                         id="confirmPassword"
-                        placeholder="Enter your email"
+                        placeholder="Enter your Password"
                         className={`w-full px-3 py-1 border 
                         border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
                         opacity-[0.5]

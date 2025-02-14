@@ -176,7 +176,7 @@ const resetPassword = async (req, res) => {
 
         user.password = await bcrypt.hash(newPassword, 10);
         user.resetPasswordToken = undefined;
-        user.resetPasswordExpiresAt = undefined;
+        user.verificationTokenExpiredAt = undefined;
 
 
         await user.save();
