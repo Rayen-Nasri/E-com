@@ -1,7 +1,7 @@
 import { memo } from "react"
-import { Ns } from "../../../assets/assets"
-import login from "../../../assets/login.jpg"
+import login from "../../../assets/img/login.jpg"
 import { Link } from "react-router"
+import { Ns } from "../../../assets/assets"
 
 const LoginHeader = memo(() => {
     return (

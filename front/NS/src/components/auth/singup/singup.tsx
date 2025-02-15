@@ -1,6 +1,6 @@
 import "../login/login.css"
 import "./signup.css"
-import singUp from "../../../assets/signup.jpg"
+import singUp from "../../../assets/img/signup.jpg"
 
 import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link, useNavigate } from "react-router"
 import { useAuthStore } from "../../../global/authStore"
+import toast from "react-hot-toast"
 
 // Zod schema for validation
 const signupSchema = z
@@ -48,13 +49,13 @@ export const Signup = () => {
   const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     console.log("Form Data:", data);
     const name = `${data.firstName} ${data.lastName}`;
-    // API fetch Logique
+    //* API fetch Logique
     
     try {
       await signup(data.email, data.password, name);
       navigate("/authentication/validationCode")
     } catch (error) {
-      console.log(error);
+      toast.error("User already exist")
     }
   };
 

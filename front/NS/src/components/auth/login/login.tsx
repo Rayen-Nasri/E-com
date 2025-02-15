@@ -9,6 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link , useNavigate } from "react-router";
 import { useAuthStore } from "../../../global/authStore";
+import toast from "react-hot-toast";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -33,7 +34,7 @@ const Login = () => {
       Navigate("/home");
 
     } catch (error) {
-      console.log(error);
+      toast.error("Invalid User ")
     }
 
   }

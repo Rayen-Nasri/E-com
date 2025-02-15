@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
-import { FooterChilds, HeaderChilds } from "../childs";
-import Forgot from "../../../assets/Forgot.jpg"
+import { FooterChilds, HeaderChilds } from "./childs";
+import Forgot from "../../assets/img/Forgot.jpg"
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuthStore } from "../../../global/authStore";
+import { useAuthStore } from "../../global/authStore";
+import toast from "react-hot-toast";
 export const EmailVerification = () => {
     const inputRefs = useRef<HTMLInputElement[]>([]);
 
@@ -50,8 +51,8 @@ export const EmailVerification = () => {
         try {
             await verifyEamil(data);
             navigate("/authentication/valid")
-        } catch (error) {
-            console.log(error);
+        } catch (error : any) {
+            toast.error("Invalid Code")
         }
     };
 

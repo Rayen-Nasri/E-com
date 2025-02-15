@@ -1,11 +1,12 @@
-import { useEffect, useTransition } from "react"
-import { FooterChilds, HeaderChilds } from "../childs";
-import forgot from "../../../assets/Forgot.jpg"
+import { useEffect } from "react"
+import { FooterChilds, HeaderChilds } from "./childs";
+import forgot from "../../assets/img/Forgot.jpg"
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useParams } from "react-router";
-import { useAuthStore } from "../../../global/authStore";
+import { useAuthStore } from "../../global/authStore";
+import toast from "react-hot-toast";
 
 const newPassSchema = z.object(
     {
@@ -33,12 +34,13 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
     }
     
     try {
-         await setNewPassword(data.password , tokenID);
-        Navigate("/home");
+        await setNewPassword(data.password , tokenID);
+        await toast.success("Pasword rest")
+        Navigate("/authentication/logIn");
         
 
     } catch (error) {
-        console.log(error);
+        toast.error("Expired link ")
         
     }
     

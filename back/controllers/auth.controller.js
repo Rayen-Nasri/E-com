@@ -85,6 +85,8 @@ const verifyEmail = async (req, res) => {
 
 }
 
+
+
 const login = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -139,7 +141,7 @@ const forgotPassword = async (req, res) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            throw new Error("user Not found");
+            return res.status(505).json({ success : false , message : "userEmail notFound" })
         };
 
         //!creating new tokne to find out the user 
@@ -192,6 +194,7 @@ const resetPassword = async (req, res) => {
     };
 
 }
+
 const checkAuth = async (req, res) => {
     try {
         const userId = req.userId || req.body.userId || req.query.userId;
@@ -210,4 +213,4 @@ const checkAuth = async (req, res) => {
     }
 };
 
-export { signup, login, logout, verifyEmail, forgotPassword, resetPassword, checkAuth }
+export { signup, login, logout, verifyEmail, forgotPassword, resetPassword, checkAuth  }

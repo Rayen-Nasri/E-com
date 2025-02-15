@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import valid from "../../../assets/Valid.jpg"
+import valid from "../../assets/img/Valid.jpg"
 import { Link } from "react-router";
 export const Validation = () => {
     useEffect(() => {

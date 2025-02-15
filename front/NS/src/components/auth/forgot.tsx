@@ -1,11 +1,12 @@
 import { useEffect } from "react"
-import { FooterChilds, HeaderChilds } from "../childs";
-import forgot from "../../../assets/Forgot.jpg"
+import { FooterChilds, HeaderChilds } from "./childs";
+import forgot from "../../assets/img/Forgot.jpg"
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
-import { useAuthStore } from "../../../global/authStore";
+import { useAuthStore } from "../../global/authStore";
+import { toast } from "react-hot-toast"
 
 // Zod schema for validation
 const forgotSchema = z.object({
@@ -18,19 +19,23 @@ type ForgotForme = z.infer<typeof forgotSchema>
 
 export const Forgot = () => {
     const navigate = useNavigate();
-    const  {forgotPassword}:any = useAuthStore();
+    const { forgotPassword } = useAuthStore() as { forgotPassword: (email: string) => Promise<void> };
     const { register, handleSubmit, formState: { errors } } = useForm<ForgotForme>({ resolver: zodResolver(forgotSchema) });
 
-    const onSubmit: SubmitHandler<ForgotForme> = (data) => {
-         // API fetch Logique
+    const onSubmit: SubmitHandler<ForgotForme> = async (data) => {
+        // API fetch Logique
         try {
-            forgotPassword(data.email);
-            navigate('/authentication/check')
-        } catch (error) {
-            console.log(error);
+            await forgotPassword(data.email);
+
+            navigate(`/authentication/check/${data.email}`);
+            toast.success("Email valid");
+
+        } catch (error: any) {
             
+            toast.error("Email Not valid");
+
         }
-       
+
     }
     useEffect(() => {
         const originalStyle = window.getComputedStyle(document.body).backgroundColor;
