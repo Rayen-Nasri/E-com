@@ -1,6 +1,5 @@
 import Login from "./components/auth/login/login"
 import { NotFound } from './components/notFound/notFound.tsx';
-import { Homee } from './components/landing/home/home.tsx';
 import { Signup } from './components/auth/singup/singup.tsx';
 import { Newpass } from './components/auth/newPass.tsx';
 import { Forgot } from './components/auth/forgot.tsx';
@@ -10,7 +9,9 @@ import { useAuthStore } from "./global/authStore.tsx";
 import { useEffect } from "react";
 import { Check } from "./components/auth/check.tsx";
 import { Toaster } from "react-hot-toast";
-import { Validation } from "./components/auth/validation.tsx";
+import { Validation } from "./components/auth/passValidation.tsx";
+import { LandingPage } from "./components/landing/landingPage/landingPage.tsx";
+import { EamilValidation } from "./components/auth/emailValidation.tsx";
 
 
 //! if i need to make the home page in the seconde place
@@ -53,7 +54,7 @@ function App() {
           path='/home'
           element={
             // <ProtectedRoute>
-            <Homee />
+            <LandingPage />
             // </ProtectedRoute>
           }
         />
@@ -61,7 +62,7 @@ function App() {
           path='/'
           element={
             // <ProtectedRoute>
-            <Homee />
+            <LandingPage />
             // </ProtectedRoute>
           }
         />
@@ -111,9 +112,15 @@ function App() {
           }
         />
         <Route
-          path="/authentication/valid"
+          path="/authentication/Password"
           element={
               <Validation />
+          }
+        />
+        <Route
+          path="/authentication/validEamil"
+          element={
+            <EamilValidation/>
           }
         />
         {/* catch all routes */}

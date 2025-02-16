@@ -35,8 +35,8 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
     
     try {
         await setNewPassword(data.password , tokenID);
-        await toast.success("Pasword rest")
-        Navigate("/authentication/logIn");
+        toast.success("Pasword rest")
+        Navigate("/authentication/validPassword");
         
 
     } catch (error) {

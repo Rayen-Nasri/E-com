@@ -26,9 +26,9 @@ export const Forgot = () => {
         // API fetch Logique
         try {
             await forgotPassword(data.email);
-
+            toast.success("Valid email ");
             navigate(`/authentication/check/${data.email}`);
-            toast.success("Email valid");
+            
 
         } catch (error: any) {
             

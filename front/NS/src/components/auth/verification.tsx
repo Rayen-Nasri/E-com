@@ -50,7 +50,7 @@ export const EmailVerification = () => {
 
         try {
             await verifyEamil(data);
-            navigate("/authentication/valid")
+            navigate("/authentication/validEamil")
         } catch (error : any) {
             toast.error("Invalid Code")
         }
