@@ -13,7 +13,6 @@ import { Validation } from "./components/auth/passValidation.tsx";
 import { LandingPage } from "./components/landing/landingPage/landingPage.tsx";
 import { EamilValidation } from "./components/auth/emailValidation.tsx";
 
-
 //! if i need to make the home page in the seconde place
 // const ProtectedRoute = ({ children }: any) => {
 //   const { isAuthenticated, user }: any = useAuthStore();
@@ -44,6 +43,7 @@ function App() {
   const { checkAuth }: any = useAuthStore();
 
   useEffect(() => {
+    document.body.style.backgroundColor = "#FFF8E9"
     checkAuth()
   }, [checkAuth])
 

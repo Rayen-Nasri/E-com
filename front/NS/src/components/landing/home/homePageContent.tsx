@@ -1,46 +1,58 @@
 import { memo } from "react";
 import { Link } from "react-router"
-import { MoveRight } from "lucide-react"
+import { ArrowRightt } from "../../../assets/assets";
+import homeTL from "../../../assets/img/homeTL.png"
+import "./homeStyle.css"
 
 
 export const HomePageContent = memo(() => {
+
     return (
         <>
-            <div className="contentAnimation">
-                <div className="ml-4 mr-4 content_1 text-center text-white">
-                    <h1 className=" mt-[125px] lg:mt-[80px] sm:text-[60px]
-                    text-[40px] lg:text-[85px] parent">
-                        Innovative Design
+            <section className="contentAnimation ">
+                <article className="mt-30 ml-[33px] lg:mt-[120px] xl:mt-[120px] 2xl:mt-[167px]
+                                    lg:ml-[66px] lg:grid lg:gap-6 mb-23 2xl:mr-[85px] 2xl:ml-[85px]">
+                    <h1 className="
+                            text-[#000000] 2xl:text-[66px] 2xl:w-[650px] font-['Poppins-Bold',_sans-serif]
+                            text-[36px] md:text-[55px] xl:text-[55px] leading-[128.18%] 
+                            font-bold left-px  xl:w-[515px] ">
+                        Classic Design for Your Home
                     </h1>
-                    <h1 className="sm:text-[60px] text-[40px] lg:text-[85px] child">
-                        for Your Home
-                    </h1>
-                    <p className="text-[#858282] lg:text-[20px] ">
-                        Experience modern elegance with innovative, sustainable designs. Elevate your
-                        <span className="hidden md:block lg:block"></span>
-                        <span>space with our curated furniture collections.</span>
+                    <p className="
+                                mt-7  lg:mt-0 text-[rgba(0,0,0,0.67)]  2xl:text-[24px] 2xl:w-[555px] md:w-[700px] xl:w-[455px]
+                                text-left font-['Poppins-Regular',_sans-serif] sm:text-[20px]  md:text-[20px] font-normal ">
+                        Embrace timeless sophistication with our classic furniture designs.
+                        Enhance your space with our carefully curated collections.{" "}
                     </p>
+                    <div className="mt-10 lg:mt-5 2xl:mt-9">
+                        <Link to={""} className="
+                            inline-block p-[9px] bg-[#000000] font-semibold rounded-[90px] text-black border-solid 
+                            border-[#030303] text-white border w-[160.73px] h-[46.11px]">
+                            <span className="relative left-3">Shop Now &#160; &#160; &#160; &#160;</span>
+                            <span className="absolute mt-2 "><ArrowRightt /></span>
+                        </Link>
+                        <Link to={""} className="inline-block ml-8 font-['Poppins-SemiBold',_sans-serif] 
+                        text-[17px] font-semibold ">
+                            Learn More
+                        </Link>
+                    </div>
 
-                </div>
-                <div className="flex space-x-4 justify-center mt-13  content_2">
-                    <Link
-                        className="inline-block w-[173px] h-[39px] p-[7px] pl-5 pr-4
-                            top-[14px] rounded-[6px] text-start bg-white "
-                        to={"/"}>
-                        <span className="">Shop Now &#160; &#160; &#160; </span>
-                        <span className="absolute"><MoveRight /></span>
-                    </Link>
-                    <Link
-                        className="inline-block w-[173px] h-[39px] border-white text-white p-[7px]
-                             border-1 top-[14px] rounded-[6px] text-center bg-transparent "
-                        to={"/"}>
-                        Explore Services
-                    </Link>
-
-                </div>
-            </div>
+                </article>
+                <img
+                    src={homeTL}
+                    alt=""
+                    loading="lazy"
+                    className=" absolute hidden md:hidden 2xl:block xl:block
+                                w-auto h-auto max-w-full 
+                                lg:max-w-none bottom-2 2xl:top-[-60px] top-0 xl:top-[-100px] left-1/2 
+                                transform md:-translate-x-3/10
+                                xl:-translate-x-1/5 md:w-[780px] 2xl:-translate-x-2/7
+                                xl:left-[50%] 2xl:left-[58%] xl:w-[850px] 2xl:w-[1010px] 
+                                "
+                />
+            </section>
+            
 
         </>
     )
 })
-

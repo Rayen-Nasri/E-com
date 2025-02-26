@@ -43,7 +43,6 @@ const Login = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#FFFCF8";
-    document.body.style.overflow = "hidden"
   }, []);
 
   return (

@@ -1,58 +1,112 @@
-import { CircleDollarSign, ShieldCheck, Truck } from "lucide-react";
-import "./benefitStyle.css";
-import { memo } from "react";
-import table from "../../../assets/img/table.jpg"
+import { Link } from "react-router";
+import { ArrowRightCard } from "../../../assets/assets";
+import chair1 from "../../../assets/img/Frame 237.jpg";
+import chair2 from "../../../assets/img/Frame 238.jpg";
+import chair3 from "../../../assets/img/Frame 239.jpg";
+import chair4 from "../../../assets/img/Frame 240.jpg";
+// import chair5 from "../../../assets/img/Frame 241.jpg";
+// import chair6 from "../../../assets/img/Frame 242.jpg";
+// import chair7 from "../../../assets/img/Frame 243.jpg";
+// import chair8 from "../../../assets/img/Frame 244.jpg";
 
-const cardContent = [
-    { icon: <Truck />, title: "Free shipping", content: "We really understand our customers, so we will free shipping costs to any location quickly and safely." },
-    { icon: <CircleDollarSign />, title: "Best price", content: "We provide the best price for you compared to other places with the same quality as other stores." },
-    { icon: <ShieldCheck />, title: "7 years warranty", content: "We really believe in our products, so we provide a guarantee time of 7 years for you our customers." }
+const cardsItems = [
+    { img: chair1, ProcutName: "Classic brown chair", ProductPrice: "$69.99" },
+    { img: chair2, ProcutName: "Classic white chair", ProductPrice: "$69.99" },
+    { img: chair3, ProcutName: "Classic brown chair", ProductPrice: "$69.99" },
+    { img: chair4, ProcutName: "Wooden sturdy chair", ProductPrice: "$69.99" },
+    // { img: chair5, ProcutName: "Netting Dining Chair", ProductPrice: "$69.99" },
+    // { img: chair6, ProcutName: "Campbell wooden chair", ProductPrice: "$69.99" },
+    // { img: chair7, ProcutName: "Wood Rocking Chair", ProductPrice: "$69.99" },
+    // { img: chair8, ProcutName: "Brown burma chair", ProductPrice: "$69.99" },
 ];
+const categories = ["Chair", "Desk", "Bed", "Table"];
 
-export const BenefitsCards = memo(() => {
+export const CardSection = () => {
     return (
-        <>
-            <section >
-                <div className="grid lg:grid-flow-col md:grid-flow-col grid-rows-1 gap-5 lg:gap-11 mr-[35px] ml-[35px] mt-[100px] parent">
-                    {
-                        cardContent.map((content, index) => (
-                            <div key={index} className="p-[16px] bg-[#F5F3F1] rounded-[8px] ">
-                                <div className="flex mb-[6px] font-medium">{content.icon}&#160; {content.title}</div>
-                                <div>{content.content}</div>
-                            </div>
-                        ))
-                    }
+        <section className="mt-10">
+            <article>
+                <h2 className="font-bold text-center text-[33px] md:text-[43px] xl:text-[47px] 2xl:text-[55px]">
+                    Our Products
+                </h2>
+                <p className="text-center mr-[30px] ml-[30px] text-[15px] lg:text-[19px]">
+                    Explore our high-quality, stylish items designed to elevate
+                    <span className="hidden lg:block md:block"></span>
+                    your daily life.
+                </p>
+            </article>
+            <figure>
+
+
+                <div className="flex justify-center ml-[30px] mr-[30px] space-x-3 lg:space-x-4 mb-10 2xl:mb-0 xl:mb-0 mt-9">
+                    {categories.map((category, index) => (
+                        <div key={index} className="relative">
+                            <button
+                                className="
+                                    text-[#030303] hover:text-[#b4936d] text-left
+                                    font-['Poppins-Regular',_sans-serif] text-[25px]
+                                    hover:text-[27px] font-normal transition-all duration-300
+                                    lg:static mx-2 md:mx-4 lg:mx-4
+                                "
+                            >
+                                {category}
+                            </button>
+                            {index !== categories.length - 1 && (
+                                <div
+                                    className="
+                                        absolute top-1/2 right-[-4px] transform -translate-y-1/2
+                                        h-[40px] w-[2px] bg-black rounded-[20px] 
+                                    "
+                                />
+                            )}
+                        </div>
+                    ))}
                 </div>
 
-                <div className="mx-5 mt-[80px] ml-9 mr-9 border border-[#D9D9D9] rounded-lg flex lg:flex-row items-center gap-6 lg:gap-12">
-                    {/* Image Section */}
-                    <div className="lg:flex-1 hidden  lg:block max-[1100px]:absolute">
-                        <img
-                            src={table}
-                            className="w-full h-auto object-cover maxlg:rounded-t-lg lg:rounded-l-lg max-[1100px]:hidden"
-                            alt="Modern furniture design"
-                            loading="lazy"
-                        />
-                    </div>
 
-                    {/* Content Section */}
-                    <div className="lg:flex-1 max-[1100px]:p-6 ">
-                        <div className="max-w-xl max-[1100px]:space-y-6 lg:space-y-5">
-                            <h2 className="text-3xl md:text-4xl font-semibold leading-tight ">
-                                Quality Keeps Us Moving Forward
-                            </h2>
-                            <p className="md:text-lg text-gray-600">
-                                With over 30 years of experience in manufacturing and exporting furniture for global markets, we've delivered more than ten million pieces to homes and businesses worldwide.
-                            </p>
-                            <button
-                                className="border-2 border-black rounded-lg px-8 py-2.5 hover:bg-black hover:text-white transition-all duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-                                aria-label="Learn more about our quality furniture"
-                            >
-                                Learn More
-                            </button>
+                {/* //!CardSection */}
+
+                <div className="  xl:p-10 lg:mr-[64px] lg:ml-[64px]
+                    grid grid-cols-2 grid-rows-2 lg:grid-cols-4
+                    lg:grid-rows-1 gap-7 lg:gap-9 xl:mt-12 xl:mb-12 mt-[18px] mr-[33px]
+                    ml-[33px] 2xl:mr-[86px] 2xl:ml-[86px]
+                    xl:mr-[64px] xl:ml-[64px] md:p-16 sm:p-7
+                ">
+                    {cardsItems.map((item, index) => (
+                        <div key={index} className="bg-[#F5EDDD] rounded-[10px]">
+                            <div className="">
+                                <img
+                                    src={item.img}
+                                    alt={item.ProcutName}
+                                    className=" w-full h-full object-cover p-6"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div className="bg-black h-[0.5px] ml-[12px] mr-[12px]" />
+                            <div className="m-[12px]">
+                                <div className="flex justify-between ">
+                                    <h4 className="text-[14px] md:text-[20px] xl:text-[20px] 2xl:text-[22px] font-semibold">{item.ProcutName}</h4>
+                                    <Link to={""} className="lg:h-8 lg:w-6 ">
+                                        <span className="relative top-3 lg:top-5"><ArrowRightCard /></span>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <p className="text-[14px] md:text-[19px]  xl:text-[19px] 2xl:text-[19px] font-semibold">{item.ProductPrice}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>            </section>
-        </>
+                    ))}
+                </div>
+
+
+                {/* //! Button Section */}
+                <div className="text-center">
+                    <Link to={""} className=" 
+                    inline-block p-[9px] 2xl:w-[210px] mt-10 lg:mt-10 xl:mt-1 mb-15 bg-[#000000] font-semibold rounded-[90px]
+                    text-black border-solid text-white border w-[190.73px] h-[46.11px] text-center ">
+                        <span className="">View all products</span>
+                    </Link>
+                </div>
+            </figure>
+        </section>
     );
-})
+};

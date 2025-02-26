@@ -60,8 +60,10 @@ export const Forgot = () => {
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <label htmlFor="" className="font-medium text-[17px] ">Email</label>
                     <br />
-                    <input type="text" placeholder="Enter your email" className={`w-full px-3 py-1 border border-gray-300 rounded-md
-                    focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300 opacity-[0.7] 
+                    <input type="text" placeholder="Enter your email" 
+                    className={`w-full px-3 py-1 border border-gray-300 rounded-md
+                    focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm
+                     focus:border-stone-300 opacity-[0.7] 
                     ${errors.email ? "border-red-500" : "border-gray-300"}`}
                         {...register("email")}
                     />
