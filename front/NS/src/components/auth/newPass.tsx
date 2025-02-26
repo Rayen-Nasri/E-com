@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import { FooterChilds, HeaderChilds } from "./childs";
-import forgot from "../../assets/img/Forgot.jpg"
+import forgot from "../../assets/img/KEY.png"
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,13 +44,9 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
     }
     
     }
-    useEffect(() => {
-        const originalStyle = window.getComputedStyle(document.body).backgroundColor;
-        document.body.style.backgroundColor = "#FFFCF8";
-        return () => {
-            document.body.style.backgroundColor = originalStyle;
-        };
-    }, [])
+    {
+        document.body.style.backgroundColor = "FFFCF8";
+    }
 
     return (
         <section className="space-y-3 p-6 grid place-content-center mt-[90px]">
@@ -72,9 +67,9 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
                     " id="password"
                         placeholder="Enter your Password"
                         className={`w-full px-3 py-1 border 
-                        border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
-                        opacity-[0.5]
-                        ${errors.password ? "border-red-500" : "border-gray-300"}
+                         rounded-md border-[#B2916C]
+                        
+                        ${errors.password ? "border-red-500" : "border-[#B2916C]"}
                         `}
                         {...register("password")}
                     />
@@ -86,9 +81,9 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
                         id="confirmPassword"
                         placeholder="Enter your Password"
                         className={`w-full px-3 py-1 border 
-                        border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm focus:border-stone-300
-                        opacity-[0.5]
-                        ${errors.password ? "border-red-500" : "border-gray-300"}
+                         rounded-md border-[#B2916C]
+                        
+                        ${errors.password ? "border-red-500" : "border-[#B2916C]"}
                         `}
                         {...register("confirmePassword")}
                     />
@@ -97,8 +92,8 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
 
                 <div className="mt-2 p-2">
                     <button type="submit"
-                        className="text-[15px] w-full flex justify-center py-2 px-4 border border-transparent rounded-md  text-sm font-medium hover:shadow-sm "
-                        style={{ backgroundColor: "#F5F3F1" }}>
+                        className="text-[15px] w-full flex justify-center py-2 px-4 border-[#B2916C] border bg-transparent rounded-md  text-sm font-medium hover:shadow-sm "
+                    >
                         Reset password
                     </button>
                 </div>

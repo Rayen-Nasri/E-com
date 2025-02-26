@@ -37,7 +37,7 @@ export const FAQAccordion = memo(() => {
     return (
         <div className=" lg:px-4">
             <article>
-                <h2 className="font-bold text-center py-10 text-[31px] md:text-[38px] xl:text-[47px] 2xl:text-[55px]">
+                <h2 className="font-bold text-center py-10 text-[31px] md:text-[38px] xl:text-[40px] 2xl:text-[55px]">
                     Explore the Wonders:Unveiling Stellar <br className="hidden sm:block" />
                      Features of Decoration
                 </h2>
@@ -50,8 +50,8 @@ export const FAQAccordion = memo(() => {
                     >
                         <button
                             className="
-                                    w-full flex justify-between items-center p-4 
-                                    text-left  lg:text-2xl bg-transparent hover:bg-transparent"
+                                    w-full flex justify-between items-center p-4
+                                    text-left  lg:text-[20px] bg-transparent hover:bg-transparent"
                             onClick={() => toggleFAQ(index)}
                         >
                             {faq.question}

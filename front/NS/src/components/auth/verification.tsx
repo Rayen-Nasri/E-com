@@ -1,23 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { FooterChilds, HeaderChilds } from "./childs";
-import Forgot from "../../assets/img/Forgot.jpg"
+import Forgot from "../../assets/img/KEY.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuthStore } from "../../global/authStore";
 import toast from "react-hot-toast";
+
 export const EmailVerification = () => {
     const inputRefs = useRef<HTMLInputElement[]>([]);
 
-    useEffect(() => {
-        const originalStyle = window.getComputedStyle(document.body).backgroundColor;
-        document.body.style.backgroundColor = "#FFFCF8";
-        return () => {
-            document.body.style.backgroundColor = originalStyle;
-        };
-    }, []);
+    {
+        document.body.style.backgroundColor = "FFFCF8";
+    }
 
     const [code, setCode] = useState<string[]>(Array(6).fill(""));
-
 
     const handleInput = (index: number, e: React.FormEvent<HTMLInputElement>) => {
         const value = e.currentTarget.value;
@@ -28,10 +24,7 @@ export const EmailVerification = () => {
         newCode[index] = value;
         setCode(newCode);
         console.log(newCode);
-
     };
-
-
 
     const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Backspace" && index > 0 && !e.currentTarget.value) {
@@ -39,23 +32,39 @@ export const EmailVerification = () => {
         }
     };
 
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const pasteData = e.clipboardData.getData("text").trim();
+        if (pasteData.length === 6 && /^\d+$/.test(pasteData)) {
+            const newCode = pasteData.split("");
+            setCode(newCode);
+            newCode.forEach((char, index) => {
+                if (inputRefs.current[index]) {
+                    inputRefs.current[index].value = char;
+                }
+            });
+            inputRefs.current[5].focus(); // Focus on the last input field
+        } else {
+            toast.error("Invalid paste. Please paste a 6-digit code.");
+        }
+    };
+
     const navigate = useNavigate();
-    const {verifyEamil  } : any = useAuthStore();
+    const { verifyEamil } : any = useAuthStore();
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const data = code.join("");
         console.log("Form Data:", data);
-        // API fetch Logique
+        // API fetch Logic
 
         try {
             await verifyEamil(data);
-            navigate("/authentication/validEamil")
+            navigate("/authentication/validEamil");
         } catch (error : any) {
-            toast.error("Invalid Code")
+            toast.error("Invalid Code");
         }
     };
-
 
     return (
         <section className="space-y-3 p-6 grid place-content-center mt-[120px]">
@@ -72,27 +81,26 @@ export const EmailVerification = () => {
                             key={index}
                             type="text"
                             maxLength={1}
-                            className="text-center h-12 w-12 m-1 rounded-[7px] border-1 border-gray-400 focus:border-gray-100"
+                            className="text-center h-12 w-12 m-1 rounded-[7px] border-1 border-[#B2916C]"
                             ref={(el) => {
                                 if (el) inputRefs.current[index] = el;
                             }}
                             onInput={(e) => handleInput(index, e)}
                             onKeyDown={(e) => handleKeyDown(index, e)}
+                            onPaste={index === 0 ? handlePaste : undefined} // Only allow paste on the first input
                         />
                     ))}
                     <div className="mt-2 p-1">
                         <button
                             type="submit"
-                            className="text-[15px] w-full flex justify-center py-2 px-4 border 
-                            border-transparent rounded-md text-sm font-medium hover:shadow-sm"
-                            style={{ backgroundColor: "#F5F3F1" }}
+                            className="text-[15px] w-full flex justify-center py-2 px-4 border border-[#B2916C]
+                            bg-transparent  rounded-md text-sm font-medium hover:shadow-sm"
                         >
                             Confirm the code
                         </button>
                     </div>
                 </form>
             </div>
-
 
             <FooterChilds buttonContent="Back to login" />
         </section>

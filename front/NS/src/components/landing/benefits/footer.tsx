@@ -46,7 +46,8 @@ export const Footer = memo(() => {
                         aria-label="Enter your email address"
                         src={FooterTabme}
                         alt="Footer Illustration"
-                        className="hidden lg:flex lg:relative lg:bottom-[50px] xl:bottom-[90px] lg:w-[450px] xl:w-[640px] 2xl:w-[880px] 2xl:bottom-[60px] "
+                        className="hidden lg:flex lg:relative lg:bottom-[50px] xl:bottom-[90px] right-[30px] 2xl:right-0
+                                    2xl:bottom-[60px]"
                     />
                 </div>
             </div>

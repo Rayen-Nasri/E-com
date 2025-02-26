@@ -10,11 +10,11 @@ export const HomePageContent = memo(() => {
     return (
         <>
             <section className="contentAnimation ">
-                <article className="mt-30 ml-[33px] lg:mt-[120px] xl:mt-[120px] 2xl:mt-[167px]
-                                    lg:ml-[66px] lg:grid lg:gap-6 mb-23 2xl:mr-[85px] 2xl:ml-[85px]">
+                <article className="mt-30 ml-[33px] lg:mt-[120px] xl:mt-[100px] 2xl:mt-[140px]
+                                    lg:ml-[66px] lg:grid lg:gap-6 mb-15 2xl:mr-[85px] 2xl:ml-[85px]">
                     <h1 className="
-                            text-[#000000] 2xl:text-[66px] 2xl:w-[650px] font-['Poppins-Bold',_sans-serif]
-                            text-[36px] md:text-[55px] xl:text-[55px] leading-[128.18%] 
+                            text-[#000000] 2xl:text-[55px] 2xl:w-[650px] font-['Poppins-Bold',_sans-serif]
+                            text-[36px] md:text-[45px] xl:text-[50px] leading-[128.18%] 
                             font-bold left-px  xl:w-[515px] ">
                         Classic Design for Your Home
                     </h1>
@@ -47,7 +47,7 @@ export const HomePageContent = memo(() => {
                                 lg:max-w-none bottom-2 2xl:top-[-60px] top-0 xl:top-[-100px] left-1/2 
                                 transform md:-translate-x-3/10
                                 xl:-translate-x-1/5 md:w-[780px] 2xl:-translate-x-2/7
-                                xl:left-[50%] 2xl:left-[58%] xl:w-[850px] 2xl:w-[1010px] 
+                                xl:left-[50%] 2xl:left-[58%] 2xl:w-[850px] 
                                 "
                 />
             </section>

@@ -1,14 +1,9 @@
-import { useEffect } from "react"
-import valid from "../../assets/img/Valid.jpg"
+import valid from "../../assets/img/valid.png"
 import { Link } from "react-router";
 export const Validation = () => {
-    useEffect(() => {
-        const originalStyle = window.getComputedStyle(document.body).backgroundColor;
-        document.body.style.backgroundColor = "#FFFCF8";
-        return () => {
-            document.body.style.backgroundColor = originalStyle;
-        };
-    }, [])
+    {
+        document.body.style.backgroundColor = "FFFCF8";
+    }
 
     return (
         <section className="space-y-3 p-6 grid place-content-center mt-[90px]">
@@ -21,10 +16,8 @@ export const Validation = () => {
             </div>
 
             <div className="mt-2 p-2">
-                <Link to={"/home"}  style={{ backgroundColor: "#F5F3F1" }}className="text-[15px] w-full flex justify-center py-2 px-4 border border-transparent rounded-md  text-sm font-medium hover:shadow-sm ">Back to home</Link>
+                <Link to={"/home"} className="text-[15px] w-full flex justify-center py-2 px-4 border-1 border-[#B2916C]  rounded-md  text-sm font-medium hover:shadow-sm ">Back to home</Link>
             </div>
-
         </section>
     )
-
 }

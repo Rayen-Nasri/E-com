@@ -12,7 +12,7 @@ export const Benefits = memo(() => {
                     <img
                         src={storage}
                         alt="storage"
-                        className="  hidden lg:block 2xl:w-[52%] "
+                        className="hidden lg:block 2xl:w-[51%] "
                         loading="lazy"
                     />
                 </div>

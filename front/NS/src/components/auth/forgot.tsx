@@ -1,6 +1,6 @@
-import { useEffect } from "react"
+import { memo } from "react"
 import { FooterChilds, HeaderChilds } from "./childs";
-import forgot from "../../assets/img/Forgot.jpg"
+import forgot from "../../assets/img/KEY.png"
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +17,7 @@ type ForgotForme = z.infer<typeof forgotSchema>
 
 
 
-export const Forgot = () => {
+export const Forgot = memo(() => {
     const navigate = useNavigate();
     const { forgotPassword } = useAuthStore() as { forgotPassword: (email: string) => Promise<void> };
     const { register, handleSubmit, formState: { errors } } = useForm<ForgotForme>({ resolver: zodResolver(forgotSchema) });
@@ -37,16 +37,13 @@ export const Forgot = () => {
         }
 
     }
-    useEffect(() => {
-        const originalStyle = window.getComputedStyle(document.body).backgroundColor;
-        document.body.style.backgroundColor = "#FFFCF8";
-        return () => {
-            document.body.style.backgroundColor = originalStyle;
-        };
-    }, [])
+    {
+        document.body.style.backgroundColor = "FFFCF8";
+    }
+
 
     return (
-        <section className="space-y-3 p-6 grid place-content-center mt-[120px]">
+        <section className="space-y-3 p-6 grid  place-content-center mt-[120px]">
 
             <HeaderChilds
                 h3Content="Forgot password?"
@@ -61,10 +58,9 @@ export const Forgot = () => {
                     <label htmlFor="" className="font-medium text-[17px] ">Email</label>
                     <br />
                     <input type="text" placeholder="Enter your email" 
-                    className={`w-full px-3 py-1 border border-gray-300 rounded-md
-                    focus:outline-none focus:ring-2 focus:ring-stone-300 focus:shadow-sm
-                     focus:border-stone-300 opacity-[0.7] 
-                    ${errors.email ? "border-red-500" : "border-gray-300"}`}
+                    className={`w-full px-3 py-1 border-1 rounded-md
+                     border-[#B2916C]  opacity-[0.7] 
+                    ${errors.email ? "border-red-500" : "border-[#B2916C]"}`}
                         {...register("email")}
                     />
                     <div className="mt-2 p-2">
@@ -72,8 +68,8 @@ export const Forgot = () => {
                         <button
                             type="submit"
                             className="text-[15px] w-full flex justify-center py-2 px-4 border 
-                            border-transparent rounded-md  text-sm font-medium hover:shadow-sm"
-                            style={{ backgroundColor: "#F5F3F1" }}>
+                            bg-transparent border-[#B2916C] rounded-md  text-sm font-medium hover:shadow-sm"
+                            >
                             Reset password
                         </button>
 
@@ -89,4 +85,4 @@ export const Forgot = () => {
         </section>
     )
 
-}
+})

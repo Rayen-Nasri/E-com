@@ -1,6 +1,4 @@
-import Login from "./components/auth/login/login"
 import { NotFound } from './components/notFound/notFound.tsx';
-import { Signup } from './components/auth/singup/singup.tsx';
 import { Newpass } from './components/auth/newPass.tsx';
 import { Forgot } from './components/auth/forgot.tsx';
 import { EmailVerification } from './components/auth/verification.tsx';
@@ -12,31 +10,21 @@ import { Toaster } from "react-hot-toast";
 import { Validation } from "./components/auth/passValidation.tsx";
 import { LandingPage } from "./components/landing/landingPage/landingPage.tsx";
 import { EamilValidation } from "./components/auth/emailValidation.tsx";
+import { Auth } from "./components/auth/auth.tsx";
 
-//! if i need to make the home page in the seconde place
-// const ProtectedRoute = ({ children }: any) => {
-//   const { isAuthenticated, user }: any = useAuthStore();
 
-//   if (!isAuthenticated) {
-//     return <Navigate to='/authentication/logIn' replace />;
-//   }
 
-//   if (!user.isVerified) {
-//     return <Navigate to='/authentication/validationCode' replace />;
-//   }
-
-//   return children;
-// };
 
 const RedirectAuthenticatedUser = ({ children }: any) => {
-  const { isAuthenticated   }: any = useAuthStore();
+  const { isAuthenticated }: any = useAuthStore();
 
-  if (isAuthenticated ) {
+  if (isAuthenticated) {
     return <Navigate to='/home' replace />;
   }
 
   return children;
 };
+
 
 
 function App() {
@@ -53,32 +41,28 @@ function App() {
         <Route
           path='/home'
           element={
-            // <ProtectedRoute>
             <LandingPage />
-            // </ProtectedRoute>
           }
         />
         <Route
           path='/'
           element={
-            // <ProtectedRoute>
             <LandingPage />
-            // </ProtectedRoute>
           }
         />
         <Route
-          path='/authentication/register'
+          path="/authentication/register"
           element={
             <RedirectAuthenticatedUser>
-              <Signup />
+              <Auth direction="register" />
             </RedirectAuthenticatedUser>
           }
         />
         <Route
-          path='/authentication/logIn'
+          path="/authentication/logIn"
           element={
             <RedirectAuthenticatedUser>
-              <Login />
+              <Auth direction="logIn" />
             </RedirectAuthenticatedUser>
           }
         />
@@ -112,22 +96,22 @@ function App() {
           }
         />
         <Route
-          path="/authentication/Password"
+          path="/authentication/validPassword"
           element={
-              <Validation />
+            <Validation />
           }
         />
         <Route
           path="/authentication/validEamil"
           element={
-            <EamilValidation/>
+            <EamilValidation />
           }
         />
-        {/* catch all routes */}
         <Route path='/*' element={<NotFound />} />
         <Route path='/NotFound' element={<NotFound />} />
 
       </Routes>
+
       <Toaster />
 
     </>

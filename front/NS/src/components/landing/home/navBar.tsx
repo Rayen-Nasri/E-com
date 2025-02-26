@@ -13,8 +13,8 @@ const NavBar = memo(() => {
     const [showRectangle, setShowRectangle] = useState(false);
 
     const navClassName = verify
-        ? "grid mt-[18px] mr-[66px] ml-[66px] 2xl:mr-[77px] 2xl:ml-[77px]"
-        : "mr-[30px] ml-[30px] mt-[18px] lg:mr-[66px] lg:ml-[66px] flex 2xl:mr-[85px] 2xl:ml-[85px]";
+        ? "grid mt-[18px] mr-[33px] ml-[33px] 2xl:mr-[77px] 2xl:ml-[77px]"
+        : "mr-[0px] ml-[30px] mt-[18px] lg:mr-[66px] lg:ml-[66px] flex 2xl:mr-[85px] 2xl:ml-[85px]";
 
     const toggleRectangle = () => {
         setShowRectangle(!showRectangle);
@@ -33,8 +33,9 @@ const NavBar = memo(() => {
                 ))}
             </ul>
             <div className="flex justify-end space-x-7 ml-auto lg:block NavAnim">
-            <div className={verify ? "relative block lg:hidden bottom-[27px] border-white text-white border-1 rounded-[6px] text-center bg-transparent" : "relative block lg:hidden bottom-[0px] border-white text-white border-1 rounded-[6px] text-center bg-transparent"}>                    <button onClick={toggleRectangle} className="p-2">
-                        <AlignCenter/>
+                <div className={verify ? "relative block lg:hidden bottom-[27px] border-white text-white border-1 rounded-[6px] text-center bg-transparent" : "relative block lg:hidden bottom-[0px] border-white text-white border-1 rounded-[6px] text-center bg-transparent"}>
+                    <button onClick={toggleRectangle} className="p-2 ">
+                        <AlignCenter />
                     </button>
                 </div>
                 {!verify && (
@@ -59,7 +60,17 @@ const NavBar = memo(() => {
 
             {/* Rectangle Popover */}
             {showRectangle && (
-                <div className="absolute lg:hidden right-0 mt-11 mr-[58px] w-48 bg-[#FFF8E9] border border-gray-200 rounded-lg shadow-lg ">
+                <div className="absolute lg:hidden right-0 mt-14 mr-[33px] w-48 bg-[#FFF8E9] border border-gray-200 rounded-lg shadow-lg ">
+                    {!verify && (
+                        <>
+                            <div className="p-4 hover:bg-gray-100">
+                                <Link className="" to="/authentication/logIn">logIn</Link>
+                            </div>
+                            <div className="p-4 hover:bg-gray-100">
+                                <Link to="/authentication/register">register</Link>
+                            </div>
+                        </>
+                    )}
                     <div className="p-4 hover:bg-gray-100">
                         <Link to="/products">Products</Link>
                     </div>
