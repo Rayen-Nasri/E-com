@@ -109,9 +109,8 @@ function App() {
         />
         <Route path='/*' element={<NotFound />} />
         <Route path='/NotFound' element={<NotFound />} />
-
+        
       </Routes>
-
       <Toaster />
 
     </>

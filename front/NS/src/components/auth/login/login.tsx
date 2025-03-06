@@ -1,16 +1,11 @@
-import { useEffect, useState } from "react"
-import { Apple, Google } from "../../../assets/assets"
-
-import "./login.css"
-import { LoginFormHeader, LoginFromFooter, LoginHeader } from "./loginCilds"
-
+import {  useState } from "react"
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
 import { useAuthStore } from "../../../global/authStore";
 import toast from "react-hot-toast";
-import { Check, CircleCheckBigIcon, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email(),

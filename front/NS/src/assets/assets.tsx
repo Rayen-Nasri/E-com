@@ -1,3 +1,5 @@
+import { Route } from "react-router"
+
 const Arr = () => {
     return (
         <svg width="28" height="38" viewBox="0 0 28 28" fill="#FFFCF8" xmlns="http://www.w3.org/2000/svg">
@@ -129,4 +131,20 @@ const Facbook = () => {
         </svg>
     )
 }
-export { Arr, Ns, Apple, Google, ArrBack, NsH, ArrowRightt, ArrowRightCard, Twit, Insta, Facbook, Dinn }
+const ArrRight = () => {
+    return(
+        <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_400_51)">
+            <path d="M10.1865 11L23.9072 11M23.9072 11L19.987 7.03996M23.9072 11L19.987 14.96" stroke="#876D49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <defs>
+            <clipPath id="clip0_400_51">
+                <rect width="22" height="30" fill="white" transform="translate(0 22) rotate(-90)" />
+            </clipPath>
+        </defs>
+    </svg>
+    )
+
+
+}
+export {Arr, Ns, Apple, Google, ArrBack, NsH, ArrowRightt, ArrowRightCard, Twit, Insta, Facbook, Dinn ,ArrRight  }

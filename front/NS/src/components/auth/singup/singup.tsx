@@ -1,6 +1,3 @@
-import "../login/login.css";
-import "./signup.css";
-
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { useAuthStore } from "../../global/authStore";
 import { toast } from "react-hot-toast"
 
-// Zod schema for validation
+
 const forgotSchema = z.object({
     email: z.string().email("Invalid email address")
 })
@@ -23,7 +23,6 @@ export const Forgot = memo(() => {
     const { register, handleSubmit, formState: { errors } } = useForm<ForgotForme>({ resolver: zodResolver(forgotSchema) });
 
     const onSubmit: SubmitHandler<ForgotForme> = async (data) => {
-        // API fetch Logique
         try {
             await forgotPassword(data.email);
             toast.success("Valid email ");

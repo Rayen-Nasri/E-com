@@ -51,7 +51,7 @@ export const HomePageContent = memo(() => {
                                 "
                 />
             </section>
-            
+
 
         </>
     )
