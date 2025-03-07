@@ -54,7 +54,8 @@ export const CardSection = () => {
             {/* //!CardSection */}
 
             <div className="sm:p-7 md:p-13 lg:p-13 xl:p-10 
-                    ml-[33px] 2xl:mr-[86px] 2xl:ml-[86px] xl:mr-[64px] xl:ml-[64px] lg:mr-[0px] lg:ml-[0px]
+                    ml-[33px] 2xl:mr-[86px] 2xl:ml-[86px] xl:mr-[64px] xl:ml-[64px]
+                     lg:mr-[0px] lg:ml-[0px]
                     grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1
                     gap-6 lg:gap-9 xl:mt-12 xl:mb-12 mt-[18px] mr-[33px]
                     ">

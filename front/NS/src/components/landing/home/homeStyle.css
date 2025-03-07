@@ -30,7 +30,10 @@
     animation: fromDown 2.5s  ;
     position: relative;
 }
-
+.fromleft{
+    animation: fromleft 2.5s;
+    position: relative;
+}
 
 @keyframes spans {
     0%,30%{
