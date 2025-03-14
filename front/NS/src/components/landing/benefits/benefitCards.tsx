@@ -1,8 +1,8 @@
 import { Link } from "react-router";
-import chair1 from "../../../assets/img/Frame 237.jpg";
-import chair2 from "../../../assets/img/Frame 238.jpg";
-import chair3 from "../../../assets/img/Frame 239.jpg";
-import chair4 from "../../../assets/img/Frame 240.jpg";
+import chair1 from "../../../assets/img/chair11.svg";
+import chair2 from "../../../assets/img/chair22.svg";
+import chair3 from "../../../assets/img/chair33.svg";
+import chair4 from "../../../assets/img/chair44.svg";
 
 const cardsItems = [
     { img: chair1, ProcutName: "Classic brown chair", ProductPrice: "$69.99" },
@@ -53,9 +53,10 @@ export const CardSection = () => {
 
             {/* //!CardSection */}
 
-            <div className="sm:p-7 md:p-13 lg:p-13 xl:p-10 
+            <div className="
+                    sm:p-7 md:p-13 lg:p-13 xl:p-10 
                     ml-[33px] 2xl:mr-[86px] 2xl:ml-[86px] xl:mr-[64px] xl:ml-[64px]
-                     lg:mr-[0px] lg:ml-[0px]
+                    lg:mr-[0px] lg:ml-[0px]
                     grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1
                     gap-6 lg:gap-9 xl:mt-12 xl:mb-12 mt-[18px] mr-[33px]
                     ">
@@ -65,7 +66,7 @@ export const CardSection = () => {
                             <img
                                 src={item.img}
                                 alt={item.ProcutName}
-                                className=" w-full  h-full object-cover p-5 md:p-10 lg:p-3 xl:p-5"
+                                className=" w-full  h-full object-cover p-2 md:p-5 lg:p-3 xl:p-3"
                                 loading="lazy"
                             />
                         </div>
@@ -85,7 +86,7 @@ export const CardSection = () => {
 
             {/* //! Button Section */}
             <div className="text-center">
-                <Link to={""} className=" 
+                <Link to={"/ProductPage"} className=" 
                     inline-block p-[9px]  2xl:w-[210px] mt-[30px] lg:mt-10 xl:mt-[-20px] mb-15 bg-[#000000] font-semibold rounded-[90px]
                     text-black border-solid text-white border w-[190.73px] h-[46.11px] text-center ">
                     <span className="">View all products</span>

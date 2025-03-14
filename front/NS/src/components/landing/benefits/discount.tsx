@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import meror from "../../../assets/img/merrorr.png"
+import meror from "../../../assets/img/merrorr.svg"
 import { ArrowRightt } from "../../../assets/assets"
 
 export const DiscountSection = () => {
@@ -14,7 +14,7 @@ export const DiscountSection = () => {
                         Spruce up your home for the season with a fantastic 25% discount on our curated
                         collection of décor pieces. Brighten up every corner with style and savings.
                     </p>
-                    <Link to={""} className="
+                    <Link to={"/Information"} className="
                     inline-block p-[9px] mt-15 bg-[#000000] w-[180px] 
                     font-semibold  rounded-[90px]  text-white h-[44.11px]">
                         <span className="relative left-3">Explore Now </span>

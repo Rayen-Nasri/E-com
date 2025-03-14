@@ -10,6 +10,17 @@ export const useAuthStore = create((set) => ({
     error: null,
     isLoading: false,
     isCheckingAuth: true,
+    logout: async () => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await axios.post(`${API_URL}/logout`)
+            set({ user: response.data.user, isAuthenticated: false, isLoading: false })
+
+        } catch (error: any) {
+            set({ error: error.response.data.message || "Error Lougout", isLoading: false })
+            throw error;
+        }
+    },
     signup: async (email: string, password: string, name: string) => {
         set({ isLoading: true, error: null });
         try {
@@ -68,7 +79,7 @@ export const useAuthStore = create((set) => ({
         try {
             await axios.post(`${API_URL}/forgot_password`, { email });
         } catch (error: any) {
-            
+
             set({ error: error.response.data.message || "Error forgotPassword", isLoading: false });
             throw error;
 

@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Link } from "react-router"
 import { ArrowRightt } from "../../../assets/assets";
-import homeTL from "../../../assets/img/homeTL.png"
+import homeTL from "../../../assets/img/homeTL.svg"
 import "./homeStyle.css"
 
 
@@ -24,16 +24,18 @@ export const HomePageContent = memo(() => {
                         Embrace timeless sophistication with our classic furniture designs.
                         Enhance your space with our carefully curated collections.{" "}
                     </p>
-                    <div className="mt-10 lg:mt-5 2xl:mt-9">
-                        <Link to={""} className="
+                    <div className="mt-10 lg:mt-5 2xl:mt-9  ml- lg:ml-0 mr-4">
+                        <Link to={"/ProductPage"} className="
                             inline-block p-[9px] bg-[#000000] font-semibold rounded-[90px] text-black border-solid 
-                            border-[#030303] text-white border w-[160.73px] h-[46.11px]">
+                            border-[#030303] text-white border w-[158.73px] lg:w-[160.73px] h-[46.11px]">
                             <span className="relative left-3">Shop Now &#160; &#160; &#160; &#160;</span>
-                            <span className="absolute mt-2 "><ArrowRightt /></span>
-                        </Link>
-                        <Link to={""} className="inline-block ml-8 font-['Poppins-SemiBold',_sans-serif] 
-                        text-[17px] font-semibold ">
-                            Learn More
+                            <span className="absolute mt-2"><ArrowRightt /></span>
+                        </Link> 
+                        <Link to={"/Information"} className="inline-block ml-2 lg:ml-8 font-['Poppins-SemiBold',_sans-serif] 
+                        text-[17px] border p-2 h-[46.11px] w-[130px] lg:w-[160.73px] rounded-full font-semibold ">
+                            <div className="text-center">
+                                <p>Learn More</p>
+                            </div>
                         </Link>
                     </div>
 
@@ -44,10 +46,10 @@ export const HomePageContent = memo(() => {
                     loading="lazy"
                     className=" absolute hidden md:hidden 2xl:block xl:block
                                 w-auto h-auto max-w-full 
-                                lg:max-w-none bottom-2 2xl:top-[-60px] top-0 xl:top-[-100px] left-1/2 
+                                lg:max-w-none bottom-2 2xl:top-[-70px] top-0 xl:top-[-80px] left-1/2 
                                 transform md:-translate-x-3/10
-                                xl:-translate-x-1/5 md:w-[780px] 2xl:-translate-x-2/7
-                                xl:left-[50%] 2xl:left-[58%] 2xl:w-[850px] 
+                                xl:-translate-x-1/5 md:w-[790px] 2xl:-translate-x-2/7
+                                xl:left-[50%] 2xl:left-[58%] 2xl:w-[890px] 
                                 "
                 />
             </section>

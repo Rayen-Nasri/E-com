@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import { ArrowRightt } from "../../../assets/assets"
-import storage from "../../../assets/img/glas.png"
+import storage from "../../../assets/img/glas.svg"
 import { memo } from "react"
 export const Benefits = memo(() => {
     return (
@@ -26,7 +26,7 @@ export const Benefits = memo(() => {
                     <p className="sm:text-[19px] md:text-[20px] xl:text-[20px] 2xl:text-[24px]  text-[rgba(0,0,0,0.67)] ">
                         redefines interior design by harmonizing tradition and sophistication. It showcases how enduring styles seamlessly integrate craftsmanship and timeless materials
                     </p>
-                    <Link to={""} className="inline-block p-[9px] mb-4 mt-8 bg-[#000000] font-semibold rounded-[90px] text-black border-solid border-[#030303] text-white border w-[160.73px] h-[46.11px]">
+                    <Link to={"/ProductPage"} className="inline-block p-[9px] mb-4 mt-8 bg-[#000000] font-semibold rounded-[90px] text-black border-solid border-[#030303] text-white border w-[160.73px] h-[46.11px]">
                         <span className="relative left-3">Shop Now &#160; &#160; &#160; &#160;</span>
                         <span className="absolute mt-2 "><ArrowRightt /></span>
                     </Link>

@@ -1,6 +1,5 @@
 import { Suspense, useEffect } from 'react';
 import HomePage from '../home/homePage';
-import '../benefits/benefitStyle.css';
 import React from 'react';
 import { Benefits } from '../benefits/benefits';
 import { DiscountSection } from '../benefits/discount';
@@ -15,6 +14,7 @@ const CardSection = React.lazy(() =>
 
 export const LandingPage = () => {
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.body.style.backgroundColor = '#FFF8E9';
   }, []);
 

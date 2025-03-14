@@ -1,8 +1,8 @@
 import { ArrowRight, Plus } from "lucide-react"
 import { Link } from "react-router"
-import chair1 from "../../assets/img/chair1.png";
-import chair2 from "../../assets/img/chair2.png";
-import chair3 from "../../assets/img/chair3.png";
+import chair1 from "../../assets/img/chair1.svg";
+import chair2 from "../../assets/img/chair2.svg";
+import chair3 from "../../assets/img/chair3.svg";
 const images = [
     { img: chair1, desc: "Wooden Rocking Chair", price: "$69.99" },
     { img: chair2, desc: "Brown burma chair", price: "$69.99" },
@@ -15,7 +15,7 @@ export const Order = () => {
             {/* View All Link */}
             <div className="flex justify-end">
                 <Link
-                    to=""
+                    to="/ProductPage"
                     className="mr-[5%] text-lg font-medium underline cursor-pointer lg:block hidden"
                     aria-label="View all products"
                 >
@@ -31,13 +31,16 @@ export const Order = () => {
                     <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl mt-2">
                         Every Day Classy
                     </h2>
-                    <button
+                    <Link to={"/ProductPage"}
                         className="mt-6 flex items-center border border-[#876D49] text-[#876D49] hover:text-white px-6 py-2 hover:bg-[#876D49] transition-colors duration-300 group"
                         aria-label="Shop now"
                     >
-                        <span className="mr-4 text-lg font-semibold">Shop Now</span>
-                        <ArrowRight className="w-6 h-6" />
-                    </button>
+                        <div className="flex">
+                            <span className="mr-4 text-lg font-semibold">Shop Now</span>
+                            <ArrowRight className="w-6 h-6" />
+
+                        </div>
+                    </Link>
                 </div>
 
                 {/* Image Cards */}
@@ -62,7 +65,7 @@ export const Order = () => {
                         </div>
                         <div className="flex justify-center mt-2">
                             <div
-                                className="border p-3 bg-[#FFF8E9] rounded-full inline-block cursor-pointer flex relative top-[25px]"
+                                className="border p-3 bg-[#FFF8E9] rounded-full inline-block cursor-pointer relative top-[25px]"
                                 aria-label="Add to cart"
                             >
                                 <Plus />

@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { Link } from "react-router"; // Corrected import
-import FooterTabme from "../../../assets/img/footerTable.png";
+import { Link } from "react-router"; 
+import FooterTabme from "../../../assets/img/footerTable.svg";
 import { Dinn, Facbook, Insta, Twit } from "../../../assets/assets";
 
 const AboutContent = [

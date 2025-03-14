@@ -37,7 +37,7 @@ export const FAQAccordion = memo(() => {
     return (
         <div className=" lg:px-4">
             <article>
-                <h2 className="font-bold text-center py-10 text-[31px] md:text-[38px] xl:text-[40px] 2xl:text-[55px]">
+                <h2 className="font-bold text-center py-10 text-[30px] md:text-[38px] xl:text-[40px] 2xl:text-[55px] ml-[33px] mr-[33px] lg:ml-auto lg:mr-auto">
                     Explore the Wonders:Unveiling Stellar <br className="hidden sm:block" />
                      Features of Decoration
                 </h2>

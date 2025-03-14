@@ -11,6 +11,10 @@ import { Validation } from "./components/auth/passValidation.tsx";
 import { LandingPage } from "./components/landing/landingPage/landingPage.tsx";
 import { EamilValidation } from "./components/auth/emailValidation.tsx";
 import { Auth } from "./components/auth/auth.tsx";
+import { SeeMore } from './components/seeMore/seeMore.tsx';
+import { NavBarSee } from './components/seeMore/navBar.See.tsx';
+import { ProductPage } from './components/product/productPage.tsx';
+import { Store } from './components/product/Store.tsx';
 
 
 
@@ -38,6 +42,18 @@ function App() {
   return (
     <>
       <Routes>
+        <Route
+          path='/ProductPage'
+          element={
+            <ProductPage/>
+          }
+        />
+        <Route
+          path='/Store'
+          element={
+            <Store />
+          }
+        />
         <Route
           path='/home'
           element={
@@ -107,9 +123,15 @@ function App() {
             <EamilValidation />
           }
         />
+        <Route
+          path="/Information"
+          element={
+            <SeeMore />
+          }
+        />
         <Route path='/*' element={<NotFound />} />
         <Route path='/NotFound' element={<NotFound />} />
-        
+
       </Routes>
       <Toaster />
 

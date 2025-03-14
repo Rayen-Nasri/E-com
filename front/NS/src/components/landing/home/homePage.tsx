@@ -1,7 +1,6 @@
 import { HomePageContent } from "./homePageContent"
 import { memo } from "react"
 import NavBar from "./navBar"
-import "./stylehome.css"
 
 const HomePage = memo(() => {
 

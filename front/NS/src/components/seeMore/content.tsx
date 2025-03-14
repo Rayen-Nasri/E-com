@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import contentSee from "../../assets/img/contentSee.png";
 import { useEffect } from 'react';
+import { Link } from 'react-router';
 // import "../landing/home/homeStyle.css"
 {
     document.body.style.backgroundColor = "#FFF8E9"
@@ -51,10 +52,13 @@ export const Content = () => {
                             Every Chapter of Life
                         </h1>
 
-                        <button className="z-1 flex items-center border border-[#876D49] text-[#876D49] hover:text-white px-6 py-1 lg:py-2 hover:bg-[#876D49] hover:text-[#876D49] transition-colors duration-300 group">
-                            <span className="mr-4 text-lg font-semibold">Shop Now</span>
-                            <ArrowRight width={30} />
-                        </button>
+                        <Link to={"/ProductPage"} className="z-1 inline-block flex  border border-[#876D49] text-[#876D49] hover:text-white px-6 py-2 hover:bg-[#876D49] hover:text-[#876D49] transition-colors duration-300 group">
+                            <div className='flex'>
+                                <span className="mr-4 text-lg font-semibold">Shop Now</span>
+                                <ArrowRight width={30} />
+
+                            </div>
+                        </Link>
                     </div>
 
                     <div className="flex 2xl:w-1/2 justify-end mr-10 xl:mr-30 z-1">

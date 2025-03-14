@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { Ns } from "../../../assets/assets";
+import { NsH  } from "../../../assets/assets";
 import { Link } from "react-router";
 import { useAuthStore } from "../../../global/authStore";
 import './homeStyle.css';
@@ -7,8 +7,9 @@ import { AlignCenter } from "lucide-react";
 
 const btns = ["Products", "Components", "Support", "Find store"];
 
+
 const NavBar = memo(() => {
-    const { isAuthenticated }: any = useAuthStore();
+    const { isAuthenticated, logout }: any = useAuthStore();
     const verify = isAuthenticated;
     const [showRectangle, setShowRectangle] = useState(false);
 
@@ -24,68 +25,87 @@ const NavBar = memo(() => {
         <nav className={navClassName}>
             <ul className={verify ? "flex space-x-20" : "flex space-x-14 2xl:space-x-17"}>
                 <span className={verify ? "inline-block mr-13 lg:mr-18 NavAnimm" : "inline-block lg:mr-13 NavAnimm"}>
-                    <Ns />
+                    <Link to={"/home"}><NsH /></Link>
                 </span>
                 {btns.map((btn, index) => (
-                    <li key={index} className="top-[14px] relative font-medium text-black hidden lg:block NavAnim">
+                    <Link to={`/${btn}`} key={index} className="top-[14px] relative font-medium text-black hidden lg:block NavAnim">
                         {btn}
-                    </li>
+                    </Link>
                 ))}
             </ul>
-            <div className="flex justify-end space-x-7 ml-auto lg:block NavAnim">
-                <div className={verify ? "relative block lg:hidden bottom-[27px] border-white text-white border-1 rounded-[6px] text-center bg-transparent" : "relative block lg:hidden bottom-[0px] border-white text-white border-1 rounded-[6px] text-center bg-transparent"}>
+
+            <div className={ verify ? "flex justify-end  ml-13 ml-auto lg:block NavAnim" : "flex justify-end space-x-8 ml-13 ml-auto lg:block NavAnim"}>
+                <div className={verify ? "relative block lg:hidden bottom-[27px] border-white text-white border-1 rounded-[6px] text-center bg-transparent" : "relative block lg:hidden bottom-[-14px] border-white text-white border-1 rounded-[6px] text-center bg-transparent"}>
                     <button onClick={toggleRectangle} className="p-2 ">
                         <AlignCenter />
                     </button>
                 </div>
-                {!verify && (
+                {!verify ? (
                     <>
                         <Link
-                            className="hidden lg:inline-block font-semibold w-[92px] h-[30px]
-                             top-[14px] relative rounded-[33px] text-center bg-black text-white "
+                            className="hidden lg:inline-block font-semibold py-1 px-7
+                             top-[10px] relative rounded-[20px] text-center bg-black text-white "
                             to="/authentication/logIn"
                         >
-                            <span className="relative top-1">login</span>
+                            <span>logIn</span>
                         </Link>
                         <Link
-                            className="hidden lg:inline-block font-semibold border-1
-                             w-[92px] text-black h-[30px] top-[14px] hidden lg:block  relative rounded-[20px] text-center bg-transparent"
+                            className="hidden lg:inline-block font-semibold py-1 px-7 border
+                             wtext-black top-[10px] hidden lg:block relative rounded-[20px] text-center bg-transparent"
                             to="/authentication/register"
                         >
-                            <span className="relative top-1">Sing up</span>
+                            <span>Sign up</span>
                         </Link>
                     </>
+                ) : (
+                    <button
+                        className="hidden font-semibold py-1 px-7 border bottom-7
+                             text-black hidden lg:block relative rounded-[20px] text-center bg-transparent"
+                        onClick={() => {
+                            logout();
+                        }}
+                    >
+                        <span>Logout</span>
+                    </button>
                 )}
             </div>
 
             {/* Rectangle Popover */}
             {showRectangle && (
-                <div className="absolute lg:hidden right-0 mt-14 mr-[33px] w-48 bg-[#FFF8E9] border border-gray-200 rounded-lg shadow-lg ">
-                    {!verify && (
+                <div className="absolute lg:hidden right-8 mt-14 w-48 bg-[#FFF8E9] border border-gray-200 rounded-lg shadow-lg ">
+                    {!verify ? (
                         <>
-                            <div className="p-4 hover:bg-gray-100">
+                            <div className="p-4 ">
                                 <Link className="" to="/authentication/logIn">logIn</Link>
                             </div>
-                            <div className="p-4 hover:bg-gray-100">
-                                <Link to="/authentication/register">register</Link>
+                            <div className="p-4 ">
+                                <Link to="/authentication/register">Sign up</Link>
                             </div>
                         </>
+                    ) : (
+                        <div className="p-4 ">
+                            <button
+                                onClick={() => {
+                                    logout();
+                                }}
+                            >
+                                <span>Logout</span>
+                            </button>
+                        </div>
                     )}
-                    <div className="p-4 hover:bg-gray-100">
+                    <div className="p-4">
                         <Link to="/products">Products</Link>
                     </div>
-                    <div className="p-4 hover:bg-gray-100">
+                    <div className="p-4">
                         <Link to="/components">Components</Link>
                     </div>
-                    <div className="p-4 hover:bg-gray-100">
+                    <div className="p-4">
                         <Link to="/support">Support</Link>
                     </div>
-                    <div className="p-4 hover:bg-gray-100">
+                    <div className="p-4">
                         <Link to="/find-store">Find Store</Link>
                     </div>
-                    <div className="p-4 hover:bg-gray-100">
-                        <Link to="/account">Account</Link>
-                    </div>
+
                 </div>
             )}
         </nav>
