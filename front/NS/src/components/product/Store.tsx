@@ -1,17 +1,25 @@
 import { Link, useLocation } from "react-router";
-import { ArrowLeft, Check, CircleUserRound, Minus, Plus } from "lucide-react"
-import { useEffect } from "react";
+import { ArrowLeft, Check, Minus, Plus } from "lucide-react"
+import { useEffect, useState } from "react";
 import { NavBarSee } from "../seeMore/navBar.See";
 import Stars2 from '../../assets/img/Stars2.svg'
 import verified from "../../assets/img/verified.svg"
 import account from "../../assets/img/Account.svg"
 import { Footer } from "../landing/benefits/footer";
+
+
 export const Store = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+    const [count, setCount] = useState(1);
     // Use the useLocation hook to access the state passed from the ProductPage
     const location = useLocation();
+    const checkCount = () => {
+        if (count <= 1) {
+            setCount(1);
+        }
+    }
     const { img, desc, price } = location.state || { img: "", desc: "", price: "" };
 
     return (
@@ -70,11 +78,11 @@ export const Store = () => {
                             {/* Quantity and add to cart */}
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center border border-[#876D49] rounded-md">
-                                    <button className="p-2 px-3 ">
+                                    <button className="p-2 px-3 " onClick={()=>{setCount(count-1); checkCount()}}>
                                         <Minus />
                                     </button>
-                                    <span className="px-4 text-xl">1</span>
-                                    <button className="p-2 px-3 ">
+                                    <span className="px-4 text-xl">{count}</span>
+                                    <button className="p-2 px-3 " onClick={()=>{setCount(count+1)}}>
                                         <Plus />
                                     </button>
 
@@ -95,7 +103,7 @@ export const Store = () => {
 
                                     <span className="font-medium">4.9</span>
                                     <span className="">out of 5</span>
-                                </div>
+                                </div> dsqdsqra
                                 <p className=" mb-4 text-[#000000]/70 ">10,000 global ratings</p>
                             </div>
 
@@ -156,7 +164,7 @@ export const Store = () => {
                                 <div key={index} className="pt-8 pb-8">
                                     <div className="flex justify-between items-start mb-2">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full  flex items-center justify-center">
+                                            <div className="w-10 h-10 rounded-full relative top-1  flex items-center justify-center">
                                                 <span><img src={account} alt="" /></span>
                                             </div>
                                             <div>

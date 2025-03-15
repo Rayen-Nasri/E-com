@@ -53,9 +53,8 @@ export const ProductPage = () => {
                                     <button
                                         key={category}
                                         onClick={() => setSelectedCategory(category === selectedCategory ? null : category)}
-                                        className={`w-full py-2 border border-[#876D49] rounded-full text-center hover:bg-[#876D49]/10 ${
-                                            category === selectedCategory ? "bg-[#876D49]/20" : ""
-                                        }`}
+                                        className={`w-full py-2 border border-[#876D49] rounded-full text-center hover:bg-[#876D49]/10 ${category === selectedCategory ? "bg-[#876D49]/20" : ""
+                                            }`}
                                     >
                                         {category}
                                     </button>
@@ -71,9 +70,8 @@ export const ProductPage = () => {
                                     <button
                                         key={material}
                                         onClick={() => setSelectedMaterial(material === selectedMaterial ? null : material)}
-                                        className={`w-full py-2 px-4 border border-[#876D49] rounded-full text-center hover:bg-[#876D49]/10 ${
-                                            material === selectedMaterial ? "bg-[#876D49]/20" : ""
-                                        }`}
+                                        className={`w-full py-2 px-4 border border-[#876D49] rounded-sm text-center hover:bg-[#876D49]/10 ${material === selectedMaterial ? "bg-[#876D49]/20" : ""
+                                            }`}
                                     >
                                         {material}
                                     </button>
@@ -90,7 +88,7 @@ export const ProductPage = () => {
                                     key={index}
                                     className="p-4 bg-[#F5EDDD] hover:shadow-md cursor-pointer"
                                     onClick={() => {
-                                        navigate("/Store", { state: { img: item.img, desc: item.desc , price : item.price } });
+                                        navigate("/Store", { state: { img: item.img, desc: item.desc, price: item.price } });
                                     }}
                                 >
                                     <div className="aspect-square relative">
