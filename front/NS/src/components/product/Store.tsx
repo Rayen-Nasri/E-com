@@ -7,6 +7,7 @@ import verified from "../../assets/img/verified.svg"
 import account from "../../assets/img/Account.svg"
 import { Footer } from "../landing/benefits/footer";
 import { toast } from 'react-hot-toast';
+import { useCartStore } from "../../global/cartStore";
 
 // Types for our data
 interface ProductDetails {
@@ -18,14 +19,13 @@ interface ProductDetails {
     material?: string;
 }
 
-interface CartItem extends ProductDetails {
-    quantity: number;
-}
+// Using the CartItem interface from the global store instead
+import { CartItem as GlobalCartItem } from "../../global/cartStore";
 
 export const Store = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [count, setCount] = useState(1);
-    const [cart, setCart] = useState<CartItem[]>([]);
+    const { addItem } = useCartStore();
     const location = useLocation();
     const product: ProductDetails = location.state || { 
         img: "", 
@@ -52,12 +52,18 @@ export const Store = () => {
     };
 
     const addToCart = () => {
-        const newItem: CartItem = {
-            ...product,
-            quantity: count
+        // Create a cart item with a consistent ID based on product description
+        const newItem: GlobalCartItem = {
+            id: `product-${product.desc.replace(/\s+/g, '-').toLowerCase()}`, // Consistent ID for stacking
+            name: product.desc,
+            price: discountedPrice, // Use the discounted price
+            quantity: count,
+            category: product.category || 'Furniture',
+            image: product.img
         };
-        setCart(prev => [...prev, newItem]);
-        toast.success('Added to cart successfully!');
+        
+        addItem(newItem);
+        toast.success(`${count} ${count > 1 ? 'items' : 'item'} added to cart!`);
     };
 
     // Dynamic star rating component

@@ -1,12 +1,12 @@
+import React, { useEffect } from 'react';
+import { Navigate, Route, Routes } from "react-router";
+import { Toaster } from "react-hot-toast";
+import { useAuthStore } from "./global/authStore.tsx";
 import { NotFound } from './components/notFound/notFound.tsx';
 import { Newpass } from './components/auth/newPass.tsx';
 import { Forgot } from './components/auth/forgot.tsx';
 import { EmailVerification } from './components/auth/verification.tsx';
-import { Navigate, Route, Routes } from "react-router";
-import { useAuthStore } from "./global/authStore.tsx";
-import { useEffect } from "react";
 import { Check } from "./components/auth/check.tsx";
-import { Toaster } from "react-hot-toast";
 import { Validation } from "./components/auth/passValidation.tsx";
 import { LandingPage } from "./components/landing/landingPage/landingPage.tsx";
 import { EamilValidation } from "./components/auth/emailValidation.tsx";
@@ -15,9 +15,9 @@ import { SeeMore } from './components/seeMore/seeMore.tsx';
 import { NavBarSee } from './components/seeMore/navBar.See.tsx';
 import { ProductPage } from './components/product/productPage.tsx';
 import { Store } from './components/product/Store.tsx';
-
-
-
+import ProductsPage from './pages/ProductsPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
 
 const RedirectAuthenticatedUser = ({ children }: any) => {
   const { isAuthenticated }: any = useAuthStore();
@@ -28,8 +28,6 @@ const RedirectAuthenticatedUser = ({ children }: any) => {
 
   return children;
 };
-
-
 
 function App() {
   const { checkAuth }: any = useAuthStore();
@@ -129,14 +127,16 @@ function App() {
             <SeeMore />
           }
         />
+        {/* Shopping Cart System Routes */}
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
+        
         <Route path='/*' element={<NotFound />} />
         <Route path='/NotFound' element={<NotFound />} />
-
       </Routes>
       <Toaster />
-
     </>
-
   )
 }
 
