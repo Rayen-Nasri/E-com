@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavBarSee } from '../components/seeMore/navBar.See';
 import { useNavigate } from 'react-router';
 import { CheckCircle } from 'lucide-react';
+import NavBar from '../components/landing/home/navBar';
 
 const OrderConfirmationPage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const OrderConfirmationPage: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-[#F5EDDD]">
-      <NavBarSee />
+      <NavBar />
       
       <div className="container mx-auto px-4 py-16 text-center">
         <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-sm">

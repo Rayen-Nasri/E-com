@@ -31,7 +31,7 @@ export const Order = () => {
                     <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl mt-2">
                         Every Day Classy
                     </h2>
-                    <Link to={"/ProductPage"}
+                    <Link to={"/Products"}
                         className="mt-6 flex items-center border border-[#876D49] text-[#876D49] hover:text-white px-6 py-2 hover:bg-[#876D49] transition-colors duration-300 group"
                         aria-label="Shop now"
                     >

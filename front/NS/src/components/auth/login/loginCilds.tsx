@@ -1,7 +1,7 @@
 import { memo } from "react"
 import login from "../../../assets/img/login.jpg"
 import { Link } from "react-router"
-import { Ns } from "../../../assets/assets"
+import { NsH } from "../../../assets/assets"
 
 const LoginHeader = memo(() => {
     return (
@@ -41,7 +41,7 @@ const LoginFormHeader = memo(() => {
             {/* Logo */}
             <div className="text-center ">
                 <div className="flex justify-center relative nN">
-                    <Ns />
+                    <NsH />
                 </div>
             </div>
 

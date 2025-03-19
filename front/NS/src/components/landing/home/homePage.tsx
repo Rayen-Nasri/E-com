@@ -5,11 +5,9 @@ import NavBar from "./navBar"
 const HomePage = memo(() => {
 
     return (
-        <main className="overflow-x-hidden z-1 bg-[#F5EDDD]  ">
+        <main className="overflow-x-hidden bg-[#F5EDDD]  ">
 
-            <div className="relative z-10 space-y-5 lg:space-y-0">
-                <NavBar />
-            </div>
+            <NavBar />
             <HomePageContent />
 
         </main>

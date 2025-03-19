@@ -2,14 +2,13 @@ import { memo } from "react";
 import { Link } from "react-router"
 import { ArrowRightt } from "../../../assets/assets";
 import homeTL from "../../../assets/img/homeTL.svg"
-import "./homeStyle.css"
 
 
 export const HomePageContent = memo(() => {
 
     return (
         <>
-            <section className="contentAnimation ">
+            <section className="contentAnimation z-1 ">
                 <article className="mt-30 ml-[33px] lg:mt-[120px] xl:mt-[100px] 2xl:mt-[140px]
                                     lg:ml-[66px] lg:grid lg:gap-6 mb-15 2xl:mr-[85px] 2xl:ml-[85px]">
                     <h1 className="
@@ -25,7 +24,7 @@ export const HomePageContent = memo(() => {
                         Enhance your space with our carefully curated collections.{" "}
                     </p>
                     <div className="mt-10 lg:mt-5 2xl:mt-9  ml- lg:ml-0 mr-4">
-                        <Link to={"/ProductPage"} className="
+                        <Link to={"/Products"} className="
                             inline-block p-[9px] bg-[#000000] font-semibold rounded-[90px] text-black border-solid 
                             border-[#030303] text-white border w-[158.73px] lg:w-[160.73px] h-[46.11px]">
                             <span className="relative left-3">Shop Now &#160; &#160; &#160; &#160;</span>
@@ -45,7 +44,7 @@ export const HomePageContent = memo(() => {
                     alt=""
                     loading="lazy"
                     className=" absolute hidden md:hidden 2xl:block xl:block
-                                w-auto h-auto max-w-full 
+                                w-auto h-auto max-w-full  
                                 lg:max-w-none bottom-2 2xl:top-[-70px] top-0 xl:top-[-80px] left-1/2 
                                 transform md:-translate-x-3/10
                                 xl:-translate-x-1/5 md:w-[790px] 2xl:-translate-x-2/7

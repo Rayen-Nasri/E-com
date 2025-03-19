@@ -52,7 +52,7 @@ export const Content = () => {
                             Every Chapter of Life
                         </h1>
 
-                        <Link to={"/ProductPage"} className="z-1 inline-block flex  border border-[#876D49] text-[#876D49] hover:text-white px-6 py-2 hover:bg-[#876D49] hover:text-[#876D49] transition-colors duration-300 group">
+                        <Link to={"/Products"} className="z-1 inline-block flex  border border-[#876D49] text-[#876D49] hover:text-white px-6 py-2 hover:bg-[#876D49] hover:text-[#876D49] transition-colors duration-300 group">
                             <div className='flex'>
                                 <span className="mr-4 text-lg font-semibold">Shop Now</span>
                                 <ArrowRight width={30} />

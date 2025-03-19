@@ -1,10 +1,10 @@
 import { memo, Suspense, useEffect } from "react";
-import { NavBarSee } from "./navBar.See";
 import { Content } from "./content";
 import { ContentCard } from "./ContentCard";
 import { Footer } from "../landing/benefits/footer";
 import { Quality } from "./qualitySection";
 import { Order } from "./order";
+import NavBar from "../landing/home/navBar";
 
 export const SeeMore = memo(() => {
     useEffect(() => {
@@ -13,7 +13,7 @@ export const SeeMore = memo(() => {
 
     return (
         <>
-            <NavBarSee />
+            <NavBar />
             <Content />
             
             <Suspense>

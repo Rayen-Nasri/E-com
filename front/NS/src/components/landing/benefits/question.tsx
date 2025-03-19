@@ -1,5 +1,6 @@
 import { memo, useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
     {
@@ -35,36 +36,62 @@ export const FAQAccordion = memo(() => {
     };
 
     return (
-        <div className=" lg:px-4">
-            <article>
-                <h2 className="font-bold text-center py-10 text-[30px] md:text-[38px] xl:text-[40px] 2xl:text-[55px] ml-[33px] mr-[33px] lg:ml-auto lg:mr-auto">
-                    Explore the Wonders:Unveiling Stellar <br className="hidden sm:block" />
-                     Features of Decoration
+        <div className="py-16 lg:px-4 max-w-7xl mx-auto">
+            <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+            >
+                <h2 className="font-bold text-center mb-16 text-[26px] md:text-[38px] xl:text-[40px] 2xl:text-[50px] px-6">
+                    Explore the Wonders: <span className="text-[#B4936D]">Unveiling</span> Stellar <br className="hidden sm:block" />
+                    Features of Decoration
                 </h2>
-            </article>
-            <figure className="space-y-4  max-w-5xl ml-[33px] mr-[33px] lg:ml-auto lg:mr-auto">
+            </motion.article>
+            
+            <figure className="space-y-6 max-w-4xl mx-auto px-6">
                 {faqs.map((faq, index) => (
-                    <div
+                    <motion.div
                         key={index}
-                        className="border border-[#B4936D] rounded-lg overflow-hidden"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="border border-[#B4936D] rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300"
                     >
                         <button
-                            className="
-                                    w-full flex justify-between items-center p-4
-                                    text-left  lg:text-[20px] bg-transparent hover:bg-transparent"
+                            className="w-full flex justify-between items-center p-6
+                                     text-left lg:text-[20px] bg-transparent hover:bg-[#F5EDDD]
+                                     transition-colors duration-300 font-medium"
                             onClick={() => toggleFAQ(index)}
                         >
                             {faq.question}
-                            {openIndex === index ? <ChevronUp /> : <ChevronDown />}
+                            <motion.span
+                                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-[#B4936D]"
+                            >
+                                <ChevronDown />
+                            </motion.span>
                         </button>
-                        {openIndex === index && (
-                            <div className="p-4 text-[15px] text-[#818181] border-t ">
-                                {faq.answer}
-                            </div>
-                        )}
-                    </div>
+                        <AnimatePresence>
+                            {openIndex === index && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="p-6 text-[16px] leading-relaxed text-[#666666] border-t border-[#B4936D]/30 bg-[#F5EDDD]/30">
+                                        {faq.answer}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
                 ))}
             </figure>
         </div>
     );
-})
+});

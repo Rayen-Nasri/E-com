@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { NavBarSee } from "../seeMore/navBar.See";
 import Star1 from "../../assets/img/Vector.svg";
 import p1img from "../../assets/img/p1img.svg";
 import p2img from "../../assets/img/p2img.svg";
@@ -11,8 +10,8 @@ import { Footer } from "../landing/benefits/footer";
 import { useNavigate } from "react-router";
 import { FiSearch, FiFilter } from 'react-icons/fi';
 import Slider from 'rc-slider';
-import type { SliderProps } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import NavBar from "../landing/home/navBar";
 
 // Product interface
 interface Product {
@@ -47,7 +46,7 @@ interface FilterState {
     minRating: number;
 }
 
-export const ProductPage = () => {
+export const Products = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
@@ -147,7 +146,7 @@ export const ProductPage = () => {
 
     return (
         <>
-            <NavBarSee />
+            <NavBar />
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-20">
                 {/* Header with search and filters */}
                 <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-center mb-8">
@@ -160,7 +159,7 @@ export const ProductPage = () => {
                                 placeholder="Search products..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 border border-[#876D49] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#876D49]"
+                                className="w-full pl-10 pr-4 py-2 border border-[#876D49] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#876D49]"
                             />
                             <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         </div>
@@ -169,7 +168,7 @@ export const ProductPage = () => {
                             <select
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                                className="flex-grow sm:flex-grow-0 px-4 py-2 border border-[#876D49] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#876D49] bg-white"
+                                className="flex-grow sm:flex-grow-0 px-4 py-2 border border-[#876D49] bg-[#FFF8E9] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#876D49]"
                             >
                                 <option value="price-asc">Price: Low to High</option>
                                 <option value="price-desc">Price: High to Low</option>

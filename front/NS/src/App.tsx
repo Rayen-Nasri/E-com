@@ -12,10 +12,8 @@ import { LandingPage } from "./components/landing/landingPage/landingPage.tsx";
 import { EamilValidation } from "./components/auth/emailValidation.tsx";
 import { Auth } from "./components/auth/auth.tsx";
 import { SeeMore } from './components/seeMore/seeMore.tsx';
-import { NavBarSee } from './components/seeMore/navBar.See.tsx';
-import { ProductPage } from './components/product/productPage.tsx';
+import { Products } from './components/product/productPage.tsx';
 import { Store } from './components/product/Store.tsx';
-import ProductsPage from './pages/ProductsPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
 
@@ -41,9 +39,9 @@ function App() {
     <>
       <Routes>
         <Route
-          path='/ProductPage'
+          path='/Products'
           element={
-            <ProductPage/>
+            <Products/>
           }
         />
         <Route
@@ -128,7 +126,6 @@ function App() {
           }
         />
         {/* Shopping Cart System Routes */}
-        <Route path="/products" element={<ProductsPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
         

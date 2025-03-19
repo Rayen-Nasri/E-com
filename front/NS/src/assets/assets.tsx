@@ -2,7 +2,7 @@
 const Arr = () => {
     return (
         <svg width="28" height="38" viewBox="0 0 28 28" fill="#FFFCF8" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5002 12.8334L5.8335 17.5M5.8335 17.5L10.5002 22.1667M5.8335 17.5H18.6668C19.9045 17.5 21.0915 17.0084 21.9667 16.1332C22.8418 15.258 23.3335 14.071 23.3335 12.8334C23.3335 11.5957 22.8418 10.4087 21.9667 9.53352C21.0915 8.65835 19.9045 8.16669 18.6668 8.16669H17.5002" stroke="black" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.5002 12.8334L5.8335 17.5M5.8335 17.5L10.5002 22.1667M5.8335 17.5H18.6668C19.9045 17.5 21.0915 17.0084 21.9667 16.1332C22.8418 15.258 23.3335 14.071 23.3335 12.8334C23.3335 11.5957 22.8418 10.4087 21.9667 9.53352C21.0915 8.65835 19.9045 8.16669 18.6668 8.16669H17.5002" stroke="black" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
 
     )
@@ -13,15 +13,16 @@ const Arr = () => {
 const NsH = () => {
 
     return (
-        <svg width="49" height="39" viewBox="0 0 49 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24.15 39H18.165L8.155 23.845V39H2.17V14.43H8.155L18.165 29.655V14.43H24.15V39Z" fill="black" />
-            <mask id="path-2-outside-1_389_4" maskUnits="userSpaceOnUse" x="22" y="13" width="27" height="25" fill="black">
-                <rect fill="white" x="22" y="13" width="27" height="25" />
-                <path d="M23 14.85V20.835L38.155 30.845L23 30.845L23 36.83H47.57V30.845L32.345 20.835H47.57V14.85L23 14.85Z" />
+        <svg width="49" height="26" viewBox="0 0 49 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.15 25H18.165L8.155 9.845V25H2.17V0.429999H8.155L18.165 15.655V0.429999H24.15V25Z" fill="black" />
+            <mask id="path-2-outside-1_658_16" maskUnits="userSpaceOnUse" x="22" y="0" width="27" height="25" fill="black">
+                <rect fill="white" x="22" width="27" height="25" />
+                <path d="M23 1.85V7.835L38.155 17.845L23 17.845V23.83L47.57 23.83V17.845L32.345 7.835L47.57 7.835L47.57 1.85L23 1.85Z" />
             </mask>
-            <path d="M23 14.85V20.835L38.155 30.845L23 30.845L23 36.83H47.57V30.845L32.345 20.835H47.57V14.85L23 14.85Z" fill="black" />
-            <path d="M23 14.85H22V13.85H23V14.85ZM23 20.835L22.4489 21.6694L22 21.3729V20.835H23ZM38.155 30.845L38.7061 30.0106L41.4834 31.845H38.155V30.845ZM23 30.845H22V29.845H23V30.845ZM23 36.83V37.83H22V36.83H23ZM47.57 36.83H48.57V37.83H47.57V36.83ZM47.57 30.845L48.1194 30.0094L48.57 30.3057V30.845H47.57ZM32.345 20.835L31.7956 21.6706L29.0038 19.835L32.345 19.835V20.835ZM47.57 20.835H48.57V21.835H47.57V20.835ZM47.57 14.85V13.85H48.57V14.85H47.57ZM24 14.85V20.835H22V14.85H24ZM23.5511 20.0006L38.7061 30.0106L37.6039 31.6794L22.4489 21.6694L23.5511 20.0006ZM38.155 31.845L23 31.845V29.845L38.155 29.845V31.845ZM24 30.845L24 36.83H22L22 30.845L24 30.845ZM23 35.83H47.57V37.83H23V35.83ZM46.57 36.83V30.845H48.57V36.83H46.57ZM47.0206 31.6806L31.7956 21.6706L32.8944 19.9994L48.1194 30.0094L47.0206 31.6806ZM32.345 19.835H47.57V21.835H32.345V19.835ZM46.57 20.835V14.85H48.57V20.835H46.57ZM47.57 15.85L23 15.85V13.85L47.57 13.85V15.85Z" fill="#F5EDDD" mask="url(#path-2-outside-1_389_4)" />
+            <path d="M23 1.85V7.835L38.155 17.845L23 17.845V23.83L47.57 23.83V17.845L32.345 7.835L47.57 7.835L47.57 1.85L23 1.85Z" fill="black" />
+            <path d="M23 1.85H22V0.849998H23V1.85ZM23 7.835L22.4489 8.66941L22 8.37293V7.835H23ZM38.155 17.845L38.7061 17.0106L41.4834 18.845H38.155V17.845ZM23 17.845H22V16.845H23V17.845ZM23 23.83V24.83H22V23.83H23ZM47.57 23.83H48.57V24.83H47.57V23.83ZM47.57 17.845L48.1194 17.0094L48.57 17.3057V17.845H47.57ZM32.345 7.835L31.7956 8.67058L29.0038 6.835H32.345V7.835ZM47.57 7.835H48.57V8.835H47.57V7.835ZM47.57 1.85V0.849998H48.57V1.85H47.57ZM24 1.85V7.835H22V1.85H24ZM23.5511 7.00058L38.7061 17.0106L37.6039 18.6794L22.4489 8.66941L23.5511 7.00058ZM38.155 18.845L23 18.845V16.845L38.155 16.845V18.845ZM24 17.845V23.83H22V17.845L24 17.845ZM23 22.83L47.57 22.83V24.83L23 24.83V22.83ZM46.57 23.83V17.845H48.57V23.83H46.57ZM47.0206 18.6806L31.7956 8.67058L32.8944 6.99942L48.1194 17.0094L47.0206 18.6806ZM32.345 6.835L47.57 6.835V8.835L32.345 8.835V6.835ZM46.57 7.835L46.57 1.85H48.57L48.57 7.835H46.57ZM47.57 2.85L23 2.85V0.849998L47.57 0.849998V2.85Z" fill="#F5EDDD" mask="url(#path-2-outside-1_658_16)" />
         </svg>
+
 
 
 
@@ -50,7 +51,7 @@ const Apple = () => {
 const ArrBack = () => {
     return (
         <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 5H15M1 5L5 9M1 5L5 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1 5H15M1 5L5 9M1 5L5 1" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     )
 
@@ -58,7 +59,7 @@ const ArrBack = () => {
 const ArrowRightt = () => {
     return (
         <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 5.00008L15 5.00008M15 5.00008L11 1.33341M15 5.00008L11 8.66675" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1 5.00008L15 5.00008M15 5.00008L11 1.33341M15 5.00008L11 8.66675" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     )
 
@@ -110,7 +111,7 @@ const ArrRight = () => {
     return (
         <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_400_51)">
-                <path d="M10.1865 11L23.9072 11M23.9072 11L19.987 7.03996M23.9072 11L19.987 14.96" stroke="#876D49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10.1865 11L23.9072 11M23.9072 11L19.987 7.03996M23.9072 11L19.987 14.96" stroke="#876D49" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </g>
             <defs>
                 <clipPath id="clip0_400_51">
@@ -122,4 +123,4 @@ const ArrRight = () => {
 
 
 }
-export { Arr, Apple, NsH , Google, ArrBack, ArrowRightt, ArrowRightCard, Twit, Insta, Facbook, Dinn, ArrRight }
+export { Arr, Apple, NsH, Google, ArrBack, ArrowRightt, ArrowRightCard, Twit, Insta, Facbook, Dinn, ArrRight }

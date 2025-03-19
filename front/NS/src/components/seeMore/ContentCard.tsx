@@ -24,7 +24,7 @@ export const ContentCard = () => {
                     <h1 className="text-[#876D49] text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-4">
                         Find Everything You Want
                     </h1>
-                    <Link to={"/ProductPage"}
+                    <Link to={"/Products"}
                         className="mt-10 inline-block flex items-center border border-[#876D49] text-[#876D49] hover:text-white px-6 py-2 hover:bg-[#876D49] transition-colors duration-300 group"
                         aria-label="Shop our collection"
                     >

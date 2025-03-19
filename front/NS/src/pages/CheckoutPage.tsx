@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { NavBarSee } from '../components/seeMore/navBar.See';
 import { useCartStore } from '../global/cartStore';
 import { useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
+import NavBar from '../components/landing/home/navBar';
 
 const CheckoutPage: React.FC = () => {
   const { items, getTotal, clearCart } = useCartStore();
@@ -42,7 +42,7 @@ const CheckoutPage: React.FC = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-[#F5EDDD]">
-        <NavBarSee />
+        <NavBar />
         <div className="container mx-auto px-4 py-16 text-center">
           <h1 className="text-2xl font-semibold mb-4">Your cart is empty</h1>
           <p className="mb-6">Add some products to your cart before checking out.</p>
@@ -59,7 +59,7 @@ const CheckoutPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F5EDDD]">
-      <NavBarSee />
+      <NavBar />
       
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6">Checkout</h1>

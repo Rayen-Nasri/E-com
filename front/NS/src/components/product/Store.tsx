@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router";
 import { ArrowLeft, Check, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
-import { NavBarSee } from "../seeMore/navBar.See";
 import Stars2 from '../../assets/img/startt.svg'
 import verified from "../../assets/img/verified.svg"
 import account from "../../assets/img/Account.svg"
@@ -21,6 +20,7 @@ interface ProductDetails {
 
 // Using the CartItem interface from the global store instead
 import { CartItem as GlobalCartItem } from "../../global/cartStore";
+import NavBar from "../landing/home/navBar";
 
 export const Store = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -94,7 +94,7 @@ export const Store = () => {
     if (isLoading) {
         return (
             <>
-                <NavBarSee />
+                <NavBar />
                 <div className="min-h-screen p-4 md:p-8 bg-[#FFF8E9]">
                     <div className="max-w-6xl mx-auto">
                         <div className="animate-pulse">
@@ -116,11 +116,11 @@ export const Store = () => {
 
     return (
         <>
-            <NavBarSee />
+            <NavBar />
             <div className="min-h-screen p-4 md:p-8 bg-[#FFF8E9] ">
                 <div className="max-w-6xl mx-auto">
                     {/* Back to product link */}
-                    <Link to={"/ProductPage"} className="flex items-center gap-2 text-primary mb-6 hover:underline">
+                    <Link to={"/Products"} className="flex items-center gap-2 text-primary mb-6 hover:underline">
                         <ArrowLeft className="h-4 w-4 text-[#876D49] " />
                         <span className="text-[#876D49] ">Back to product</span>
                     </Link>
