@@ -8,11 +8,11 @@ const OrderConfirmationPage: React.FC = () => {
   const orderNumber = Math.floor(100000 + Math.random() * 900000); // Generate random order number
   
   return (
-    <div className="min-h-screen bg-[#F5EDDD]">
+    <div className="min-h-screen bg-[#FFF8E9]">
       <NavBar />
       
       <div className="container mx-auto px-4 py-16 text-center">
-        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-sm">
+        <div className="max-w-md mx-auto bg-[#F5EDDD] p-8 rounded-lg shadow-sm">
           <div className="flex justify-center mb-4">
             <CheckCircle size={64} className="text-green-500" />
           </div>
@@ -20,9 +20,9 @@ const OrderConfirmationPage: React.FC = () => {
           <h1 className="text-2xl font-semibold mb-2">Order Confirmed!</h1>
           <p className="text-gray-600 mb-6">Thank you for your purchase</p>
           
-          <div className="bg-gray-50 p-4 rounded mb-6">
+          <div className="bg-[#F5EDDD] border border-black/40 p-4 rounded mb-6">
             <p className="text-sm text-gray-500">Order Number</p>
-            <p className="font-semibold"># {orderNumber}</p>
+            <p className="font-semibold "># {orderNumber}</p>
           </div>
           
           <p className="text-sm text-gray-600 mb-6">

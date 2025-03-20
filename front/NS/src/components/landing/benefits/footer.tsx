@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from "react";
+import { memo, useState } from "react";
 import { Link } from "react-router"; 
 import { Dinn, Facbook, Insta, Twit } from "../../../assets/assets";
 import { motion } from "framer-motion";
@@ -28,22 +28,8 @@ const ContactInfo = [
 export const Footer = memo(() => {
     const [email, setEmail] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const position = window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const docHeight = document.body.offsetHeight;
-            
-            if (position > docHeight - windowHeight - 300) {
-                setIsVisible(true);
-            }
-        };
-        
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    
+    // Removed isVisible state and useEffect for viewport detection
 
     const handleSubmit = (e:any) => {
         e.preventDefault();
@@ -54,27 +40,7 @@ export const Footer = memo(() => {
         }
     };
 
-    const containerVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: { 
-            opacity: 1, 
-            y: 0,
-            transition: { 
-                duration: 0.8,
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
-            y: 0,
-            transition: { duration: 0.5 }
-        }
-    };
-
+    // Simplified animation variants
     const socialVariants = {
         hover: { 
             scale: 1.15, 
@@ -91,41 +57,19 @@ export const Footer = memo(() => {
     };
 
     return (
-        <motion.footer 
-            className="bg-gradient-to-r from-[#F5EDDD] to-[#E8DBC9] pt-16 pb-8 overflow-hidden"
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={containerVariants}
-        >
+        <footer className="bg-gradient-to-r from-[#F5EDDD] to-[#E8DBC9] pt-16 pb-8 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
-                    variants={containerVariants}
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Brand Column */}
-                    <motion.div variants={itemVariants} className="space-y-6">
-                        <motion.h3 
-                            className="text-3xl font-serif text-[#876D49]"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2, duration: 0.6 }}
-                        >
+                    <div className="space-y-6">
+                        <h3 className="text-3xl font-serif text-[#876D49]">
                             Noble Nurturing
-                        </motion.h3>
-                        <motion.p 
-                            className="text-[#876D49] text-sm leading-relaxed"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.4, duration: 0.6 }}
-                        >
+                        </h3>
+                        <p className="text-[#876D49] text-sm leading-relaxed">
                             Elevating your living spaces with timeless elegance and sophisticated design. Our commitment to quality craftsmanship brings classic luxury to modern homes.
-                        </motion.p>
-                        <motion.div 
-                            className="flex space-x-5"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6, duration: 0.6 }}
-                        >
+                        </p>
+                        <div className="flex space-x-5">
+                            {/* ... existing social media icons with simplified animations ... */}
                             {[
                                 { 
                                     icon: <Twit />, 
@@ -174,11 +118,11 @@ export const Footer = memo(() => {
                                     />
                                 </motion.div>
                             ))}
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
 
-                    {/* Quick Links */}
-                    <motion.div variants={itemVariants} className="space-y-6">
+                    {/* Quick Links - removed animation variants */}
+                    <div className="space-y-6">
                         <h4 className="text-xl font-medium text-[#876D49]">About</h4>
                         <ul className="space-y-3">
                             {AboutContent.map((item, index) => (
@@ -203,10 +147,10 @@ export const Footer = memo(() => {
                                 </motion.li>
                             ))}
                         </ul>
-                    </motion.div>
+                    </div>
 
-                    {/* Services */}
-                    <motion.div variants={itemVariants} className="space-y-6">
+                    {/* Services - removed animation variants */}
+                    <div className="space-y-6">
                         <h4 className="text-xl font-medium text-[#876D49]">Services</h4>
                         <ul className="space-y-3">
                             {ServiceLinks.map((item, index) => (
@@ -257,10 +201,10 @@ export const Footer = memo(() => {
                                 ))}
                             </ul>
                         </div>
-                    </motion.div>
+                    </div>
 
-                    {/* Newsletter */}
-                    <motion.div variants={itemVariants} className="space-y-6">
+                    {/* Newsletter - removed animation variants */}
+                    <div className="space-y-6">
                         <h4 className="text-xl font-medium text-[#876D49]">Stay Classy</h4>
                         <p className="text-[#876D49] text-sm">
                             Join our newsletter for exclusive offers, design tips, and new collection announcements.
@@ -304,28 +248,15 @@ export const Footer = memo(() => {
                                 </motion.p>
                             )}
                         </form>
-                    </motion.div>
-                </motion.div>
+                    </div>
+                </div>
 
-                <motion.div 
-                    className="mt-16 pt-8 border-t border-[#876D49] border-opacity-20"
-                    variants={itemVariants}
-                >
+                <div className="mt-16 pt-8 border-t border-[#876D49] border-opacity-20">
                     <div className="flex flex-col md:flex-row justify-between items-center">
-                        <motion.p 
-                            className="text-[#876D49] text-sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8 }}
-                        >
+                        <p className="text-[#876D49] text-sm">
                             © {new Date().getFullYear()} Noble Nurturing. All rights reserved.
-                        </motion.p>
-                        <motion.div 
-                            className="flex space-x-6 mt-4 md:mt-0"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1 }}
-                        >
+                        </p>
+                        <div className="flex space-x-6 mt-4 md:mt-0">
                             {["Privacy Policy", "Terms of Service", "Cookies"].map((text, index) => (
                                 <motion.div
                                     key={index}
@@ -341,10 +272,10 @@ export const Footer = memo(() => {
                                     </Link>
                                 </motion.div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
-        </motion.footer>
+        </footer>
     );
 });

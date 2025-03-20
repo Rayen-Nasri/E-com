@@ -66,7 +66,7 @@ export const DiscountSection = () => {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                 >
-                    <Link to={"/Information"} className="
+                    <Link to={"/Features"} className="
                         inline-block p-[9px] mt-15 bg-black w-[180px] 
                         font-semibold rounded-[90px] text-white h-[44.11px]
                         transition-all duration-300 hover:bg-[#B4936D] relative

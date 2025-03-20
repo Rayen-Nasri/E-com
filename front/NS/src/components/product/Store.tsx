@@ -121,7 +121,7 @@ export const Store = () => {
             <div className="min-h-screen p-4 md:p-8 bg-[#FFF8E9] ">
                 <div className="max-w-6xl mx-auto">
                     {/* Back to product link */}
-                    <Link to={"/Products"} className="flex items-center gap-2 text-primary mb-6 hover:underline">
+                    <Link to={"/Products"} className="w-40 flex items-center gap-2 text-primary mb-6 hover:underline">
                         <ArrowLeft className="h-4 w-4 text-[#876D49] " />
                         <span className="text-[#876D49] ">Back to product</span>
                     </Link>

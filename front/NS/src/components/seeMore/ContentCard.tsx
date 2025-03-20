@@ -2,8 +2,9 @@ import { ArrowRight } from "lucide-react";
 import Cardmg from "../../assets/img/contentCard.svg";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { memo } from "react";
 
-export const ContentCard = () => {
+export const ContentCard = memo(() => {
     const springTransition = {
         type: "spring",
         stiffness: 50,
@@ -92,4 +93,4 @@ export const ContentCard = () => {
             </div>
         </motion.section>
     );
-};
+});

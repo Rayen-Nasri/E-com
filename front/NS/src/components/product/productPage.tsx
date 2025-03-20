@@ -148,10 +148,10 @@ export const Products = () => {
     return (
         <>
             <NavBar />
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-20">
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-8">
                 {/* Header with search and filters */}
-                <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-center mb-8">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Our Products</h1>
+                <div className="flex  space-y-4 sm:space-y-0 lg:flex-row flex-col sm:justify-between sm:items-center mb-8">
+                    <h1 className="text-2xl lg:mb-0 mb-5 sm:text-3xl font-bold text-gray-900">Our Products</h1>
                     <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                         {/* Search Bar */}
                         <div className="relative flex-grow sm:flex-grow-0 sm:w-64">

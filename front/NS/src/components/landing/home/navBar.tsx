@@ -6,44 +6,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import { useCartStore } from "../../../global/cartStore";
 import Cart from "../../cart/Cart";
-import { useLocation } from "react-router"; // Add this import at the top
+import { useLocation } from "react-router";
 
-const btns = ["Products", "Components", "Support", "Find store"];
+const btns = ["Home", "Products", "Features", "Find store"];
 
 const NavBar = memo(() => {
     const { isAuthenticated }: any = useAuthStore();
     const { toggleCart, getItemsCount } = useCartStore();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [activeSection, setActiveSection] = useState("home");
     const itemCount = getItemsCount();
     const verify = isAuthenticated;
+    const location = useLocation();
+
+    // Get current path and set active section based on it
+    const currentPath = location.pathname.substring(1) || "home";
+    const [activeSection, setActiveSection] = useState(currentPath);
+
+    // Update active section when location changes
+    useEffect(() => {
+        const path = location.pathname.substring(1).toLowerCase() || "home";
+
+        // Find the matching button or default to home
+        const matchingBtn = btns.find(btn => btn.toLowerCase() === path);
+        if (matchingBtn) {
+            setActiveSection(matchingBtn.toLowerCase());
+        } else if (path === "" || path === "/") {
+            setActiveSection("home");
+        }
+    }, [location.pathname]);
 
     // Handle scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 20) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const location = useLocation();
-    const isHomePage = location.pathname === "/home";
+    const isHomePage = location.pathname === "/home" || location.pathname === "/";
 
     // Update the navClassName logic
-    const navClassName = `flex items-center justify-between px-8 py-5 lg:px-8 relativetransition-all duration-300 ${
-        isHomePage 
-            ? scrolled 
-                ? 'bg-[#F5EDDD]/80 backdrop-blur-sm' 
-                : 'bg-transparent'
-            : 'bg-[#F5EDDD]'
-    }`;
+    const navClassName = `flex items-center justify-between px-8 py-5 lg:px-8 relative transition-all duration-300 ${isHomePage}`;
 
     const menuVariants = {
         closed: { x: "-100%", opacity: 0 },
@@ -53,7 +50,7 @@ const NavBar = memo(() => {
     return (
         <>
             <nav className={navClassName}>
-                <motion.div 
+                <motion.div
                     className="flex items-center "
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -70,33 +67,39 @@ const NavBar = memo(() => {
                     </Link>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                     className="hidden lg:flex items-center space-x-10"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                    {btns.map((btn, index) => (
-                        <motion.div
-                            key={index}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="relative group "
-                        >
-                            <Link 
-                                to={`/${btn}`} 
-                                className={`font-medium ${activeSection === btn.toLowerCase() ? 'text-[#A68A64]' : 'text-black '}  group-hover:text-[#A68A64] transition-colors duration-300 flex items-center`}
-                                onClick={() => setActiveSection(btn.toLowerCase())}
+                    {btns.map((btn, index) => {
+                        // Check if this button matches the current path
+                        const btnPath = btn.toLowerCase();
+                        const isActive = btnPath === activeSection ||
+                            (btnPath === "home" && (activeSection === "" || activeSection === "/"));
+
+                        return (
+                            <motion.div
+                                key={index}
+                                whileHover={{ scale: 1.05, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="relative group"
                             >
-                                {btn}
-                                <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#A68A64] transition-all duration-300 ${activeSection === btn.toLowerCase() ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                            </Link>
-                        
-                        </motion.div>
-                    ))}
+                                <Link
+                                    to={`/${btn}`}
+                                    className={`font-medium ${isActive ? 'text-[#A68A64]' : 'text-black'} group-hover:text-[#A68A64] transition-colors duration-300 flex items-center`}
+                                    onClick={() => setActiveSection(btnPath)}
+                                >
+                                    {btn}
+                                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#A68A64] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                                </Link>
+                            </motion.div>
+                        );
+                    })}
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                     className="flex items-center space-x-[-10px]  lg:space-x-5"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -109,7 +112,7 @@ const NavBar = memo(() => {
                     >
                         <Menu size={24} className="text-[#A68A64]" />
                     </motion.button>
-                    
+
                     {verify ? (
                         <>
                             <motion.div
@@ -128,7 +131,7 @@ const NavBar = memo(() => {
                                 <ShoppingCart size={20} className="hover:text-[#A68A64] transition-colors" />
                                 <AnimatePresence>
                                     {itemCount > 0 && (
-                                        <motion.span 
+                                        <motion.span
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
                                             exit={{ scale: 0 }}
@@ -177,14 +180,14 @@ const NavBar = memo(() => {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="fixed top-0 left-0 w-72 h-full bg-[#F9EBD6] backdrop-blur-lg backdrop-filter  lg:hidden overflow-auto"
+                        className="z-49 fixed top-0 left-0 w-72 h-full bg-[#F9EBD6] backdrop-blur-lg backdrop-filter  lg:hidden overflow-auto"
                         style={{
                             boxShadow: '0 4px 30px rgba(166, 138, 100, 0.1)',
                             border: '1px solid rgba(166, 138, 100, 0.2)'
                         }}
                     >
                         <div className="p-6">
-                            <motion.div 
+                            <motion.div
                                 className="flex justify-between items-center mb-8"
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -209,8 +212,8 @@ const NavBar = memo(() => {
                                     <X size={24} className="text-[#A68A64]" />
                                 </motion.button>
                             </motion.div>
-                        
-                            
+
+
                             <div className="flex flex-col space-y-6">
                                 {verify ? (
                                     <div className="flex flex-col space-y-4 mb-6 p-4 bg-[#A68A64]/10 rounded-lg">
@@ -257,38 +260,52 @@ const NavBar = memo(() => {
                                     </div>
                                 )}
                                 <div className="space-y-2">
-                                    {btns.map((btn, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, x: -50 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: index * 0.1 }}
-                                        >
-                                            <Link 
-                                                to={`/${btn}`} 
-                                                className="group font-medium text-[#A68A64] block py-3 px-4 transition-all duration-300 relative overflow-hidden border-b border-[#A68A64]/10 last:border-b-0"
-                                                onClick={() => setIsMenuOpen(false)}
+                                    {btns.map((btn, index) => {
+                                        const btnPath = btn.toLowerCase();
+                                        const isActive = btnPath === activeSection ||
+                                            (btnPath === "home" && (activeSection === "" || activeSection === "/"));
+
+                                        return (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ opacity: 0, x: -50 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: index * 0.1 }}
                                             >
-                                                <motion.div
-                                                    className="flex items-center gap-2"
-                                                    whileHover={{ x: 10, color: "#8a7353" }}
-                                                    whileTap={{ scale: 0.95 }}
-                                                    transition={{ duration: 0.2 }}
+                                                <Link
+                                                    to={`/${btn}`}
+                                                    className={`group font-medium ${isActive ? 'text-[#8a7353] font-semibold' : 'text-[#A68A64]'} block py-3 px-4 transition-all duration-300 relative overflow-hidden border-b border-[#A68A64]/10 last:border-b-0`}
+                                                    onClick={() => {
+                                                        setActiveSection(btnPath);
+                                                        setIsMenuOpen(false);
+                                                    }}
                                                 >
-                                                    <span className="relative">{btn}</span>
-         
-                                             
-                                                </motion.div>
-                                            </Link>
-                                        </motion.div>
-                                    ))}
+                                                    <motion.div
+                                                        className="flex items-center gap-2"
+                                                        whileHover={{ x: 10, color: "#8a7353" }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                        transition={{ duration: 0.2 }}
+                                                    >
+                                                        <span className="relative">{btn}</span>
+                                                        {activeSection === btn.toLowerCase() && (
+                                                            <motion.span
+                                                                initial={{ width: 0 }}
+                                                                animate={{ width: '100%' }}
+                                                                className="absolute bottom-0 left-0 h-0.5 bg-[#8a7353]"
+                                                            />
+                                                        )}
+                                                    </motion.div>
+                                                </Link>
+                                            </motion.div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-            <Cart />
+        <Cart/>
         </>
     );
 });

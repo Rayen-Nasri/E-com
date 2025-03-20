@@ -120,7 +120,7 @@ function App() {
           }
         />
         <Route
-          path="/Information"
+          path="/Features"
           element={
             <SeeMore />
           }

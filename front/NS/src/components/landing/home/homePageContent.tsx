@@ -1,4 +1,4 @@
-import { memo, useEffect, useState, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { Link } from "react-router"
 import { ArrowRightt } from "../../../assets/assets";
 import homeTL from "../../../assets/img/homeTL.svg"
@@ -7,7 +7,6 @@ import { motion, useAnimation } from "framer-motion";
 export const HomePageContent = memo(() => {
     const controls = useAnimation();
     const sectionRef = useRef(null);
-
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -30,14 +29,6 @@ export const HomePageContent = memo(() => {
         };
     }, [controls]);
 
-    const containerVariants = {
-        hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
 
     const itemVariants = {
         hidden: { y: 30, opacity: 0 },
@@ -47,22 +38,13 @@ export const HomePageContent = memo(() => {
             transition: { 
                 type: "spring", 
                 stiffness: 100, 
-                damping: 15 
+                damping: 15 ,
+                delay: 0.5
             }
         }
     };
 
-    const buttonHoverVariants = {
-        hover: { 
-            scale: 1.05,
-            transition: { 
-                type: "spring", 
-                stiffness: 400, 
-                damping: 10 
-            }
-        },
-        tap: { scale: 0.98 }
-    };
+
 
     return (
         <>
@@ -72,7 +54,6 @@ export const HomePageContent = memo(() => {
                                lg:ml-[66px] lg:grid lg:gap-6 mb-15 2xl:mr-[85px] 2xl:ml-[85px]"
                     initial="hidden"
                     animate={controls}
-                    variants={containerVariants}
                 >
                     <motion.h1 
                         className="text-[#000000] 2xl:text-[55px] 2xl:w-[650px] font-['Poppins-Bold',_sans-serif]
@@ -139,7 +120,7 @@ export const HomePageContent = memo(() => {
                             className="inline-block ml-2 lg:ml-8"
                         >
                             <Link 
-                                to={"/Information"} 
+                                to={"/Features"} 
                                 className="inline-block font-['Poppins-SemiBold',_sans-serif] 
                                           text-[17px] border p-2 h-[46.11px] w-[130px] 
                                           lg:w-[160.73px] rounded-full font-semibold

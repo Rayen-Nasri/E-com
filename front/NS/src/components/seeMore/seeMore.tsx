@@ -14,16 +14,14 @@ export const SeeMore = memo(() => {
     return (
         <>
             <NavBar />
-            <Content />
-            <br />
             <Suspense>
+                <Content />
                 <Order />
+                <ContentCard />
+                <Quality />
+                <Footer />
             </Suspense>
-            
-            <ContentCard />
-            <Quality />
-            <br />
-            <Footer/>
+
         </>
     );
 });
