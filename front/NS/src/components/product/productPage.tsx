@@ -59,9 +59,22 @@ export const Products = () => {
         material: null,
         style: null,
         color: null,
-        priceRange: [0, 1000],
+        priceRange: [0.00, 199.99], // Updated initial price range
         minRating: 0
     });
+
+    // Update clearFilters function to use 0.00 as minimum
+    const clearFilters = () => {
+        setFilters({
+            category: null,
+            material: null,
+            style: null,
+            color: null,
+            priceRange: [0.00, uniqueValues.priceRange.max], // Updated to start from 0.00
+            minRating: 0
+        });
+        setSearchQuery("");
+    };
 
     // Get unique values for filter options
     const uniqueValues = {
@@ -113,18 +126,6 @@ export const Products = () => {
     };
 
     const filteredProducts = getFilteredAndSortedProducts();
-
-    const clearFilters = () => {
-        setFilters({
-            category: null,
-            material: null,
-            style: null,
-            color: null,
-            priceRange: [uniqueValues.priceRange.min, uniqueValues.priceRange.max],
-            minRating: 0
-        });
-        setSearchQuery("");
-    };
 
     // Star rating component
     const StarRating = ({ rating }: { rating: number }) => {

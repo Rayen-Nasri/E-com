@@ -62,9 +62,9 @@ const Cart = () => {
 
             <div className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-[#A68A64] scrollbar-track-gray-100">
               {items.length === 0 ? (
-                <div className="text-center py-12 flex flex-col items-center">
-                  <ShoppingBag size={64} className="text-gray-300 mb-4" />
-                  <p className="text-gray-500 mb-2">Your shopping cart is empty</p>
+                <div className="text-center py-12  flex flex-col items-center">
+                  <ShoppingBag size={64} className="text-[#A68A64] mb-4" />
+                  <p className="text-[#A68A64] mb-2">Your shopping cart is empty</p>
                   <button
                     onClick={toggleCart}
                     className="mt-4 text-[#A68A64] hover:underline font-medium"

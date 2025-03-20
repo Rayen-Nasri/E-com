@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import { useCartStore } from "../../../global/cartStore";
 import Cart from "../../cart/Cart";
+import { useLocation } from "react-router"; // Add this import at the top
 
 const btns = ["Products", "Components", "Support", "Find store"];
 
@@ -32,9 +33,15 @@ const NavBar = memo(() => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navClassName = ` flex items-center justify-between px-4 py-5 lg:px-8 relative z-0 transition-all duration-300 ${
-        scrolled 
-            ? 'bg-[#F5EDDD]/95' 
+    const location = useLocation();
+    const isHomePage = location.pathname === "/home";
+
+    // Update the navClassName logic
+    const navClassName = `flex items-center justify-between px-8 py-5 lg:px-8 relativetransition-all duration-300 ${
+        isHomePage 
+            ? scrolled 
+                ? 'bg-[#F5EDDD]/80 backdrop-blur-sm' 
+                : 'bg-transparent'
             : 'bg-[#F5EDDD]'
     }`;
 
@@ -47,7 +54,7 @@ const NavBar = memo(() => {
         <>
             <nav className={navClassName}>
                 <motion.div 
-                    className="flex items-center"
+                    className="flex items-center "
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
@@ -74,11 +81,11 @@ const NavBar = memo(() => {
                             key={index}
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
-                            className="relative group"
+                            className="relative group "
                         >
                             <Link 
                                 to={`/${btn}`} 
-                                className={`font-medium ${activeSection === btn.toLowerCase() ? 'text-[#A68A64]' : 'text-black'} group-hover:text-[#A68A64] transition-colors duration-300 flex items-center`}
+                                className={`font-medium ${activeSection === btn.toLowerCase() ? 'text-[#A68A64]' : 'text-black '}  group-hover:text-[#A68A64] transition-colors duration-300 flex items-center`}
                                 onClick={() => setActiveSection(btn.toLowerCase())}
                             >
                                 {btn}
@@ -90,7 +97,7 @@ const NavBar = memo(() => {
                 </motion.div>
 
                 <motion.div 
-                    className="flex items-center space-x-5"
+                    className="flex items-center space-x-[-10px]  lg:space-x-5"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.2 }}
@@ -110,7 +117,7 @@ const NavBar = memo(() => {
                                 whileTap={{ scale: 0.9 }}
                                 className="relative cursor-pointer hidden lg:block"
                             >
-                                <User size={20} className="text-[#A68A64] transition-colors" />
+                                <User size={20} className="hover:text-[#A68A64] transition-colors" />
                             </motion.div>
                             <motion.div
                                 whileHover={{ scale: 1.1 }}
@@ -118,7 +125,7 @@ const NavBar = memo(() => {
                                 className="relative cursor-pointer hidden lg:block"
                                 onClick={toggleCart}
                             >
-                                <ShoppingCart size={20} className="text-[#A68A64] transition-colors" />
+                                <ShoppingCart size={20} className="hover:text-[#A68A64] transition-colors" />
                                 <AnimatePresence>
                                     {itemCount > 0 && (
                                         <motion.span 
@@ -170,7 +177,7 @@ const NavBar = memo(() => {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="fixed top-0 left-0 w-72 h-full bg-[#F9EBD6] backdrop-blur-lg backdrop-filter z-1 lg:hidden overflow-auto"
+                        className="fixed top-0 left-0 w-72 h-full bg-[#F9EBD6] backdrop-blur-lg backdrop-filter  lg:hidden overflow-auto"
                         style={{
                             boxShadow: '0 4px 30px rgba(166, 138, 100, 0.1)',
                             border: '1px solid rgba(166, 138, 100, 0.2)'
@@ -268,7 +275,7 @@ const NavBar = memo(() => {
                                                     whileTap={{ scale: 0.95 }}
                                                     transition={{ duration: 0.2 }}
                                                 >
-                                                    <span className="relative z-1">{btn}</span>
+                                                    <span className="relative">{btn}</span>
          
                                              
                                                 </motion.div>

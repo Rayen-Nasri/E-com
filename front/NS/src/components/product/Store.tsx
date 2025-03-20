@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router";
 import { ArrowLeft, Check, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Stars2 from '../../assets/img/startt.svg'
 import verified from "../../assets/img/verified.svg"
 import account from "../../assets/img/Account.svg"
@@ -128,17 +129,29 @@ export const Store = () => {
                     {/* Product details section */}
                     <div className="grid md:grid-cols-2 gap-15 mb-12">
                         {/* Product image */}
-                        <div className="border border-[#876D49] rounded-md overflow-hidden group">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="border border-[#876D49] rounded-md overflow-hidden group"
+                        >
                             <img
                                 src={product.img}
                                 alt={product.desc}
                                 className="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
                                 loading="lazy"
                             />
-                        </div>
+                        </motion.div>
 
                         {/* Product info */}
-                        <div className="space-y-6">
+                        <motion.div 
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="space-y-6"
+                        >
                             <div>
                                 <h1 className="text-3xl font-medium text-[#876D49] mb-2">{product.desc}</h1>
                                 <div className="flex items-center gap-2 text-sm text-[#876D49]/70">
@@ -176,34 +189,51 @@ export const Store = () => {
                             {/* Quantity and add to cart */}
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center border border-[#876D49] rounded-md">
-                                    <button 
-                                        className="p-2 px-3 hover:bg-[#876D49]/10 transition-colors" 
+                                    <motion.button 
+                                        whileTap={{ scale: 0.9 }}
+                                        className="p-[11px] px-3 hover:bg-[#876D49]/10 transition-colors" 
                                         onClick={() => handleQuantityChange(count - 1)}
                                     >
                                         <Minus className="h-4 w-4" />
-                                    </button>
-                                    <span className="px-6 text-xl font-medium min-w-[3rem] text-center">{count}</span>
-                                    <button 
+                                    </motion.button>
+                                    <motion.span
+                                        key={count}
+                                        initial={{ scale: 0.8, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        className="px-6 text-xl font-medium min-w-[3rem] text-center"
+                                    >
+                                        {count}
+                                    </motion.span>
+                                    <motion.button 
+                                        whileTap={{ scale: 0.9 }}
                                         className="p-2 px-3 hover:bg-[#876D49]/10 transition-colors" 
                                         onClick={() => handleQuantityChange(count + 1)}
                                     >
                                         <Plus className="h-4 w-4" />
-                                    </button>
+                                    </motion.button>
                                 </div>
-                                <button 
+                                <motion.button 
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
                                     onClick={addToCart}
                                     className="flex items-center gap-2 bg-[#876D49] text-white px-6 py-2 rounded-md hover:bg-[#876D49]/90 transition-colors"
                                 >
                                     <ShoppingCart className="h-5 w-5" />
                                     Add to Cart
-                                </button>
+                                </motion.button>
                             </div>
 
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Reviews section */}
-                    <div className="border border-[#876D49] rounded-md overflow-hidden bg-card mb-8 p-7">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="border border-[#876D49] rounded-md overflow-hidden bg-card mb-8 p-7"
+                    >
                         <div className="grid md:grid-cols-2 lg:divide-x divide-[#876D49]">
                             {/* Overall rating */}
                             <div className="p-6">
@@ -236,10 +266,16 @@ export const Store = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Customer testimonials */}
-                    <div className="border border-[#876D49] rounded-md overflow-hidden bg-card">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="border border-[#876D49] rounded-md overflow-hidden bg-card"
+                    >
                         <h2 className="text-2xl font-medium text-[#876D49] text-center p-6 border-b border-[#876D49]">
                             What Our Customers Say
                         </h2>
@@ -301,7 +337,7 @@ export const Store = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <Footer/>

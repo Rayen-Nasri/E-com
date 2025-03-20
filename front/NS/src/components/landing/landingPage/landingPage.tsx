@@ -21,14 +21,15 @@ export const LandingPage = () => {
   return (
     <>
       <HomePage />
-        <Benefits />
-        <Suspense fallback={<div>Loading...</div>}>
-          <CardSection />
-        </Suspense>
-        <DiscountSection />
-        <FAQAccordion />
-        <Footer/>
-    
+      <Benefits />
+      <Suspense>
+        <CardSection />
+      </Suspense>
+      <br />
+      <DiscountSection />
+      <FAQAccordion />
+      <Footer />
+
     </>
   );
 };
