@@ -37,11 +37,10 @@ const NavBar = memo(() => {
 
     // Handle scroll effect
 
-    const isHomePage = location.pathname === "/home" || location.pathname === "/";
+    const isHomePage = location.pathname === "/home" || location.pathname === "/Home" || location.pathname === "/";
 
     // Update the navClassName logic
-    const navClassName = `flex items-center justify-between px-8 py-5 lg:px-8 relative transition-all duration-300 ${isHomePage}`;
-
+    const navClassName = `flex items-center justify-between px-8 py-5 lg:px-8 relative transition-all duration-300 ${isHomePage ? 'bg-transparent' : 'bg-[#F5EDDD]'}`;
     const menuVariants = {
         closed: { x: "-100%", opacity: 0 },
         open: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 30 } }

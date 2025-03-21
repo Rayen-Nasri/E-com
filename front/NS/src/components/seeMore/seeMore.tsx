@@ -1,10 +1,12 @@
-import { memo, Suspense, useEffect } from "react";
+import { memo, Suspense, useEffect, lazy } from "react";
 import { Content } from "./content";
-import { ContentCard } from "./ContentCard";
-import { Footer } from "../landing/benefits/footer";
-import { Quality } from "./qualitySection";
-import { Order } from "./order";
 import NavBar from "../landing/home/navBar";
+
+// Lazy load components that aren't immediately visible
+const ContentCard = lazy(() => import("./ContentCard").then(module => ({ default: module.ContentCard })));
+const Quality = lazy(() => import("./qualitySection").then(module => ({ default: module.Quality })));
+const Order = lazy(() => import("./order").then(module => ({ default: module.Order })));
+const Footer = lazy(() => import("../landing/benefits/footer").then(module => ({ default: module.Footer })));
 
 export const SeeMore = memo(() => {
     useEffect(() => {
@@ -14,14 +16,13 @@ export const SeeMore = memo(() => {
     return (
         <>
             <NavBar />
-            <Suspense>
-                <Content />
-                <Order />
-                <ContentCard />
+            <Content />
+            <Order />
+            <ContentCard />
                 <Quality />
-                <Footer />
-            </Suspense>
-
+            <Footer />
         </>
     );
 });
+
+export default SeeMore;
