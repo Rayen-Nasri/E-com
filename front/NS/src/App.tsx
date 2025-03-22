@@ -16,6 +16,7 @@ import { Products } from './components/product/productPage.tsx';
 import { Store } from './components/product/Store.tsx';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import ProfilePage from './components/user/ProfilePage.refactored.tsx';
 
 const RedirectAuthenticatedUser = ({ children }: any) => {
   const { isAuthenticated }: any = useAuthStore();
@@ -38,6 +39,12 @@ function App() {
   return (
     <>
       <Routes>
+        <Route
+          path='/ProfilePage'
+          element={
+            <ProfilePage/>
+          }
+        />
         <Route
           path='/Products'
           element={

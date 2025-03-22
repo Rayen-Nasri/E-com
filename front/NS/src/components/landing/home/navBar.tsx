@@ -114,13 +114,15 @@ const NavBar = memo(() => {
 
                     {verify ? (
                         <>
-                            <motion.div
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="relative cursor-pointer hidden lg:block"
-                            >
-                                <User size={20} className="hover:text-[#A68A64] transition-colors" />
-                            </motion.div>
+                            <Link to="/ProfilePage">
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="relative cursor-pointer hidden lg:block"
+                                >
+                                    <User size={20} className="hover:text-[#A68A64] transition-colors" />
+                                </motion.div>
+                            </Link>
                             <motion.div
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -216,14 +218,16 @@ const NavBar = memo(() => {
                             <div className="flex flex-col space-y-6">
                                 {verify ? (
                                     <div className="flex flex-col space-y-4 mb-6 p-4 bg-[#A68A64]/10 rounded-lg">
-                                        <motion.div
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            className="flex items-center space-x-3 text-[#A68A64] p-2 rounded-lg hover:bg-[#A68A64]/20 transition-colors cursor-pointer"
-                                        >
-                                            <User size={20} />
-                                            <span className="font-medium">Profile</span>
-                                        </motion.div>
+                                        <Link to="/ProfilePage" onClick={() => setIsMenuOpen(false)}>
+                                            <motion.div
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
+                                                className="flex items-center space-x-3 text-[#A68A64] p-2 rounded-lg hover:bg-[#A68A64]/20 transition-colors cursor-pointer"
+                                            >
+                                                <User size={20} />
+                                                <span className="font-medium">Profile</span>
+                                            </motion.div>
+                                        </Link>
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
@@ -263,7 +267,6 @@ const NavBar = memo(() => {
                                         const btnPath = btn.toLowerCase();
                                         const isActive = btnPath === activeSection ||
                                             (btnPath === "home" && (activeSection === "" || activeSection === "/"));
-
                                         return (
                                             <motion.div
                                                 key={index}
@@ -286,13 +289,7 @@ const NavBar = memo(() => {
                                                         transition={{ duration: 0.2 }}
                                                     >
                                                         <span className="relative">{btn}</span>
-                                                        {activeSection === btn.toLowerCase() && (
-                                                            <motion.span
-                                                                initial={{ width: 0 }}
-                                                                animate={{ width: '100%' }}
-                                                                className="absolute bottom-0 left-0 h-0.5 bg-[#8a7353]"
-                                                            />
-                                                        )}
+
                                                     </motion.div>
                                                 </Link>
                                             </motion.div>
