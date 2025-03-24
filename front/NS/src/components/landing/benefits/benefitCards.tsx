@@ -151,13 +151,11 @@ export const CardSection = () => {
                         {categories.map((category, index) => (
                             <motion.div
                                 key={index}
-                                className="relative cursor-pointer mx-1 sm:mx-2"
+                                className="relative mx-1 sm:mx-2"
                                 variants={categoryItemVariants}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
                             >
                                 <div className={`
-                                    ${index === 0 ? "bg-[#b4936d] text-white" : "bg-transparent text-[#030303] hover:bg-[#b4936d] hover:text-white"} 
+                                    ${index === 0 ? "bg-[#b4936d] text-white" : "bg-transparent text-[#030303] h"} 
                                     px-3 sm:px-4 md:px-6 py-1 sm:py-2 rounded-full
                                     transition-all duration-300
                                 `}>

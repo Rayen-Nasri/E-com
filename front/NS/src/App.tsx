@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Children, useEffect } from 'react';
 import { Navigate, Route, Routes } from "react-router";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./global/authStore.tsx";
@@ -28,6 +28,24 @@ const RedirectAuthenticatedUser = ({ children }: any) => {
   return children;
 };
 
+const RedirectAuthenticatedUserFromProfile = ({ children }: any) => {
+  const { isAuthenticated }: any = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+  return children
+}
+
+const RedirectAuthenticatedUserFromPay = ({ children }: any) => {
+  const { isAuthenticated }: any = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/authentication/logIn" replace />;
+  }
+  return children
+}
+
 function App() {
   const { checkAuth }: any = useAuthStore();
 
@@ -42,13 +60,15 @@ function App() {
         <Route
           path='/ProfilePage'
           element={
-            <ProfilePage/>
+            <RedirectAuthenticatedUserFromProfile>
+              <ProfilePage />
+            </RedirectAuthenticatedUserFromProfile>
           }
         />
         <Route
           path='/Products'
           element={
-            <Products/>
+            <Products />
           }
         />
         <Route
@@ -133,9 +153,20 @@ function App() {
           }
         />
         {/* Shopping Cart System Routes */}
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
-        
+        <Route
+          path="/checkout"
+          element={
+            <RedirectAuthenticatedUserFromPay>
+              <CheckoutPage />
+            </RedirectAuthenticatedUserFromPay>
+          }
+        />
+        <Route path="/order-confirmation" element={
+          <RedirectAuthenticatedUserFromPay>
+            <OrderConfirmationPage />
+          </RedirectAuthenticatedUserFromPay>
+        } />
+
         <Route path='/*' element={<NotFound />} />
         <Route path='/NotFound' element={<NotFound />} />
       </Routes>

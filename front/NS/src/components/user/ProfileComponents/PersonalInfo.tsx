@@ -13,6 +13,7 @@ type PersonalInfoProps = {
 
 export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoading2, setIsLoading2] = useState(false);
     
     // Personal Info State
     const [name, setName] = useState('');
@@ -61,7 +62,7 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
             return;
         }
         
-        setIsLoading(true);
+        setIsLoading2(true);
         
         try {
             const response = await axios.post(`${API_URL}/profile/reset_userPassword`, {
@@ -79,7 +80,7 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Failed to change password');
         } finally {
-            setIsLoading(false);
+            setIsLoading2(false);
         }
     };
 
@@ -201,7 +202,7 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                     
                     <div className="pt-2">
                         <LoadingButton 
-                            isLoading={isLoading}
+                            isLoading={isLoading2}
                             text="Change Password"
                             loadingText="Updating..."
                         />

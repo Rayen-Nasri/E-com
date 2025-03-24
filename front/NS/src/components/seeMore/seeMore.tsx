@@ -17,9 +17,14 @@ export const SeeMore = memo(() => {
         <>
             <NavBar />
             <Content />
-            <Order />
+            <Suspense>
+                <Order />
+
+            </Suspense>
             <ContentCard />
+            <Suspense  >
                 <Quality />
+            </Suspense>
             <Footer />
         </>
     );

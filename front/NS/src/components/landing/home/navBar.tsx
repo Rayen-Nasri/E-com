@@ -8,7 +8,7 @@ import { useCartStore } from "../../../global/cartStore";
 import Cart from "../../cart/Cart";
 import { useLocation } from "react-router";
 
-const btns = ["Home", "Products", "Features", "Find store"];
+const btns = ["Home", "Products", "Features", "Support"];
 
 const NavBar = memo(() => {
     const { isAuthenticated }: any = useAuthStore();

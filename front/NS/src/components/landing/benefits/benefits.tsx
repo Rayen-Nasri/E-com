@@ -69,7 +69,6 @@ export const Benefits = memo(() => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 1.1 }}
                         viewport={{ amount: 0.7, once: true }}
-                        whileHover={{ scale: 1.03, y: -3 }}
                         whileTap={{ scale: 0.97 }}
                     >
                         <Link to={"/Products"} className="inline-block p-[9px] mb-4 mt-8 bg-[#000000] font-semibold rounded-[90px] text-white border-solid border-[#030303] border w-[160.73px] h-[46.11px] transition-all duration-500 hover:bg-[#B4936D] hover:border-[#B4936D]">

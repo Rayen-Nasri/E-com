@@ -4,7 +4,6 @@ import { memo, useMemo } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Pre-generate decorative dots with memoization to avoid recalculation on re-renders
 const useDecorativeDots = () => {
   return useMemo(() => 
     Array(19).fill(null).map(() => ({
@@ -17,7 +16,6 @@ const useDecorativeDots = () => {
   []);
 };
 
-// Memoize animations to prevent recreation on each render
 const animations = {
   fadeIn: {
     initial: { opacity: 0 },

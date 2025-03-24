@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useParams } from "react-router";
 import { useAuthStore } from "../../global/authStore";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeIn, formItemVariant, buttonVariant, inputVariant } from "./animations";
 
 const newPassSchema = z.object(
     {
@@ -49,58 +51,100 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
     }
 
     return (
-        <section className="space-y-3 p-6 grid place-content-center mt-[90px]">
-            <HeaderChilds
-                h3Content="Set new password?"
-                pContent={
-                    <>
-                        Your new password must be different to <br /> previously used passwords.
-                    </>
-                }
-                imgSrc={forgot}
-            />
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="p-2 space-y-3">
-                    <label htmlFor="" className="font-medium text-[17px] ">Password</label>
+        <motion.section 
+            className="space-y-3 p-6 grid place-content-center mt-[90px]"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={staggerContainer}
+        >
+            <motion.div variants={fadeIn}>
+                <HeaderChilds
+                    h3Content="Set new password?"
+                    pContent={
+                        <>
+                            Your new password must be different to <br /> previously used passwords.
+                        </>
+                    }
+                    imgSrc={forgot}
+                />
+            </motion.div>
+
+            <motion.form 
+                action="" 
+                onSubmit={handleSubmit(onSubmit)}
+                variants={formItemVariant}
+            >
+                <motion.div 
+                    className="p-2 space-y-3"
+                    variants={staggerContainer}
+                >
+                    <motion.label 
+                        htmlFor="password" 
+                        className="font-medium text-[17px]"
+                        variants={formItemVariant}
+                    >
+                        Password
+                    </motion.label>
                     <br />
-                    <input type="text
-                    " id="password"
+                    <motion.input 
+                        type="password"
+                        id="password"
                         placeholder="Enter your Password"
-                        className={`w-full px-3 py-1 border 
-                         rounded-md border-[#B2916C]
-                        
-                        ${errors.password ? "border-red-500" : "border-[#B2916C]"}
+                        className={`w-full px-3 py-1 border rounded-md transition-all duration-200
+                            ${errors.password ? "border-red-500" : "border-[#B2916C]"}
                         `}
+                        variants={inputVariant}
+                        initial="initial"
+                        whileFocus="focus"
+                        animate={errors.password ? "invalid" : "valid"}
                         {...register("password")}
                     />
 
-                    <label htmlFor="" className="font-medium text-[17px] ">Confirm Password</label>
+                    <motion.label 
+                        htmlFor="confirmPassword" 
+                        className="font-medium text-[17px]"
+                        variants={formItemVariant}
+                    >
+                        Confirm Password
+                    </motion.label>
                     <br />
-                    <input
-                        type="text"
+                    <motion.input
+                        type="password"
                         id="confirmPassword"
                         placeholder="Enter your Password"
-                        className={`w-full px-3 py-1 border 
-                         rounded-md border-[#B2916C]
-                        
-                        ${errors.password ? "border-red-500" : "border-[#B2916C]"}
+                        className={`w-full px-3 py-1 border rounded-md transition-all duration-200
+                            ${errors.confirmePassword ? "border-red-500" : "border-[#B2916C]"}
                         `}
+                        variants={inputVariant}
+                        initial="initial"
+                        whileFocus="focus"
+                        animate={errors.confirmePassword ? "invalid" : "valid"}
                         {...register("confirmePassword")}
                     />
+                </motion.div>
 
-                </div>
-
-                <div className="mt-2 p-2">
-                    <button type="submit"
-                        className="text-[15px] w-full flex justify-center py-2 px-4 border-[#B2916C] border bg-transparent rounded-md  text-sm font-medium hover:shadow-sm "
+                <motion.div 
+                    className="mt-2 p-2"
+                    variants={formItemVariant}
+                >
+                    <motion.button
+                        type="submit"
+                        className="text-[15px] w-full flex justify-center py-2 px-4 border-[#B2916C] border 
+                            bg-transparent rounded-md text-sm font-medium transition-all duration-200"
+                        variants={buttonVariant}
+                        whileHover="hover"
+                        whileTap="tap"
                     >
                         Reset password
-                    </button>
-                </div>
-            </form>
-            <FooterChilds buttonContent="Back to login" />
+                    </motion.button>
+                </motion.div>
+            </motion.form>
 
-        </section>
+            <motion.div variants={fadeIn}>
+                <FooterChilds buttonContent="Back to login" />
+            </motion.div>
+        </motion.section>
     )
 
 }

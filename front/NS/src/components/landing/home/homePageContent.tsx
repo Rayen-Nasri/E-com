@@ -82,7 +82,6 @@ export const HomePageContent = memo(() => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 1.1 }}
                             viewport={{ amount: 0.7, once: true }}
-                            whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                             className="inline-block"
                         >
@@ -115,7 +114,6 @@ export const HomePageContent = memo(() => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 1.1 }}
                             viewport={{ amount: 0.7, once: true }}
-                            whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                             className="inline-block ml-2 lg:ml-8"
                         >

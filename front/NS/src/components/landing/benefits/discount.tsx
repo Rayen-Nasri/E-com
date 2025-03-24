@@ -63,7 +63,6 @@ export const DiscountSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                 >
                     <Link to={"/Features"} className="
@@ -74,7 +73,6 @@ export const DiscountSection = () => {
                     >
                         <motion.span 
                             className="relative left-3 z-10"
-                            animate={{ x: [0, 2, 0] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
                             Explore Now 

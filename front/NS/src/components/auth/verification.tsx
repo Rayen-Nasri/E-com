@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuthStore } from "../../global/authStore";
 import toast from "react-hot-toast";
+import { motion, AnimatePresence } from "framer-motion";
+import { staggerContainer, fadeIn, verificationInputVariant, buttonVariant, formItemVariant } from "./animations";
 
 export const EmailVerification = () => {
     const inputRefs = useRef<HTMLInputElement[]>([]);
@@ -67,42 +69,72 @@ export const EmailVerification = () => {
     };
 
     return (
-        <section className="space-y-3 p-6 grid place-content-center mt-[120px]">
-            <HeaderChilds
-                h3Content="Confirmation code"
-                pContent="Enter your verification code"
-                imgSrc={Forgot}
-            />
+        <motion.section 
+            className="space-y-3 p-6 grid place-content-center mt-[120px]"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={staggerContainer}
+        >
+            <motion.div variants={fadeIn}>
+                <HeaderChilds
+                    h3Content="Confirmation code"
+                    pContent="Enter your verification code"
+                    imgSrc={Forgot}
+                />
+            </motion.div>
 
-            <div className="p-1 flex justify-center space-x-2">
+            <motion.div 
+                className="p-1 flex justify-center space-x-2"
+                variants={formItemVariant}
+            >
                 <form action="" onSubmit={onSubmit}>
-                    {[...Array(6)].map((_, index) => (
-                        <input
-                            key={index}
-                            type="text"
-                            maxLength={1}
-                            className="text-center h-12 w-12 m-1 rounded-[7px] border-1 border-[#B2916C]"
-                            ref={(el) => {
-                                if (el) inputRefs.current[index] = el;
-                            }}
-                            onInput={(e) => handleInput(index, e)}
-                            onKeyDown={(e) => handleKeyDown(index, e)}
-                            onPaste={index === 0 ? handlePaste : undefined} // Only allow paste on the first input
-                        />
-                    ))}
-                    <div className="mt-2 p-1">
-                        <button
+                    <motion.div 
+                        className="flex space-x-2"
+                        variants={staggerContainer}
+                    >
+                        {[...Array(6)].map((_, index) => (
+                            <motion.input
+                                key={index}
+                                type="text"
+                                maxLength={1}
+                                className="text-center h-12 w-12 m-1 rounded-[7px] border-1 border-[#B2916C] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#B2916C] focus:ring-opacity-50 hover:border-[#B2916C] hover:shadow-sm"
+                                ref={(el) => {
+                                    if (el) inputRefs.current[index] = el;
+                                }}
+                                onInput={(e) => handleInput(index, e)}
+                                onKeyDown={(e) => handleKeyDown(index, e)}
+                                onPaste={index === 0 ? handlePaste : undefined}
+                                variants={verificationInputVariant}
+                                initial="idle"
+                                animate={code[index] ? "filled" : "idle"}
+                                whileFocus="focus"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            />
+                        ))}
+                    </motion.div>
+                    <motion.div 
+                        className="mt-4 p-1"
+                        variants={formItemVariant}
+                    >
+                        <motion.button
                             type="submit"
                             className="text-[15px] w-full flex justify-center py-2 px-4 border border-[#B2916C]
-                            bg-transparent  rounded-md text-sm font-medium hover:shadow-sm"
+                            bg-transparent rounded-md text-sm font-medium transition-all duration-200"
+                            variants={buttonVariant}
+                            whileHover="hover"
+                            whileTap="tap"
                         >
                             Confirm the code
-                        </button>
-                    </div>
+                        </motion.button>
+                    </motion.div>
                 </form>
-            </div>
+            </motion.div>
 
-            <FooterChilds buttonContent="Back to login" />
-        </section>
+            <motion.div variants={fadeIn}>
+                <FooterChilds buttonContent="Back to login" />
+            </motion.div>
+        </motion.section>
     );
 };
