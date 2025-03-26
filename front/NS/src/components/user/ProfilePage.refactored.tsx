@@ -9,16 +9,14 @@ import { Settings } from './ProfileComponents/Settings';
 import { Billing } from './ProfileComponents/Billing';
 
 
+
 const ProfilePage = () => {
     const { user, logout }: any = useAuthStore();
     const [activeTab, setActiveTab] = useState('personal');
-    console.log(user);
     
     const handleLogout = async () => {
         try {
             await logout();
-            toast.success('Logged out successfully');
-            window.location.href = '/home';
         } catch (error) {
             toast.error('Failed to logout');
         }

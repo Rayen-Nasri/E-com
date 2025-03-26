@@ -9,7 +9,6 @@ import { Footer } from "../landing/benefits/footer";
 import { toast } from 'react-hot-toast';
 import { useCartStore } from "../../global/cartStore";
 
-// Types for our data
 interface ProductDetails {
     img: string;
     desc: string;
@@ -19,7 +18,6 @@ interface ProductDetails {
     material?: string;
 }
 
-// Using the CartItem interface from the global store instead
 import { CartItem as GlobalCartItem } from "../../global/cartStore";
 import NavBar from "../landing/home/navBar";
 
@@ -43,21 +41,20 @@ export const Store = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        // Simulate loading state
         const timer = setTimeout(() => setIsLoading(false), 1000);
         return () => clearTimeout(timer);
     }, []);
 
     const handleQuantityChange = (newCount: number) => {
-        setCount(Math.max(1, newCount)); // Ensure count doesn't go below 1
+        setCount(Math.max(1, newCount)); 
     };
 
     const addToCart = () => {
-        // Create a cart item with a consistent ID based on product description
+
         const newItem: GlobalCartItem = {
-            id: `product-${product.desc.replace(/\s+/g, '-').toLowerCase()}`, // Consistent ID for stacking
+            id: `product-${product.desc.replace(/\s+/g, '-').toLowerCase()}`,
             name: product.desc,
-            price: discountedPrice, // Use the discounted price
+            price: discountedPrice,
             quantity: count,
             category: product.category || 'Furniture',
             image: product.img

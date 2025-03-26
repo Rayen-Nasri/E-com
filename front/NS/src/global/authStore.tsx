@@ -52,7 +52,6 @@ export const useAuthStore = create((set) => ({
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
             return response.data
         } catch (error: any) {
-            console.log("Verification error:", error.response.data);
             set({ error: error.response.data.message || "Error sign up", isLoading: false });
             throw error;
         }

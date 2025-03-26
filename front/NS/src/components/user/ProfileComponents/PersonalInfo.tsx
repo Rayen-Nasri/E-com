@@ -14,11 +14,12 @@ type PersonalInfoProps = {
 export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading2, setIsLoading2] = useState(false);
-    
+
     // Personal Info State
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    
+    const [tel, setTel] = useState("")
+
     // Password Change State
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -26,51 +27,71 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    
+
     useEffect(() => {
         if (user) {
             setName(user.name || '');
-            setEmail(user.email || '');            
+            setEmail(user.email || '');
+            setTel(user.tel || '')
         }
     }, [user]);
-    
+
     const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        
+
         try {
-            const response = await axios.post(`${API_URL}/profile/reset_userName`, {
+            const response1 = await axios.post(`${API_URL}/profile/reset_userName`, {
                 email: user.email,
                 newUserName: name
             });
-            
-            if (response.data.success) {
-                toast.success('Profile updated successfully');
+
+            if (response1.data.success) {
             }
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Failed to update profile');
         } finally {
             setIsLoading(false);
         }
+
+        try {
+            if (isNaN(parseFloat(tel))) {
+                toast.error('tel is not a number')
+            } else {
+                await axios.post(`${API_URL}/profile/resetTel`, { email: user.email, tel })
+                toast.success('Profile updated successfully');
+            }
+
+        } catch (error: any) {
+            toast.error(error.response2?.data?.message || 'Failed to change Tel');
+
+        } finally {
+            setIsLoading(false)
+        }
     };
-    
+
+    //* Hndel Tel Change
+
+
+
+
     const handleChangePassword = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (newPassword !== confirmPassword) {
             toast.error('New passwords do not match');
             return;
         }
-        
+
         setIsLoading2(true);
-        
+
         try {
             const response = await axios.post(`${API_URL}/profile/reset_userPassword`, {
                 email: user.email,
                 currentPassword,
                 newPassword
             });
-            
+
             if (response.data.success) {
                 toast.success('Password changed successfully');
                 setCurrentPassword('');
@@ -85,17 +106,17 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
     };
 
     return (
-        <motion.div 
+        <motion.div
             variants={contentVariants}
             initial="hidden"
             animate="visible"
             className="space-y-6"
         >
-            <SectionHeader 
-                title="Personal Information" 
+            <SectionHeader
+                title="Personal Information"
                 description="Update your personal details and manage your account"
             />
-            
+
             <form onSubmit={handleUpdateProfile} className="space-y-4">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-[#5D4037] mb-1">Name</label>
@@ -108,7 +129,20 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                         required
                     />
                 </div>
-                
+
+                <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-[#5D4037] mb-1">Phone Number</label>
+                    <input
+                        type="string"
+                        id="tel"
+                        value={tel}
+                        onChange={(e) => setTel(e.target.value)}
+                        className="w-full px-4 py-2 border border-[#E6D7C3] rounded-lg focus:ring-[#A68A64] focus:border-[#A68A64] outline-none transition"
+                        required
+                        minLength={8}
+                    />
+                </div>
+
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-[#5D4037] mb-1">Email</label>
                     <input
@@ -121,19 +155,21 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                     />
                     <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
                 </div>
-                
+
+
+
                 <div className="pt-2">
-                    <LoadingButton 
+                    <LoadingButton
                         isLoading={isLoading}
                         text="Save Changes"
                         loadingText="Updating..."
                     />
                 </div>
             </form>
-            
+
             <div className="border-t border-[#E6D7C3] pt-6 mt-6">
                 <h3 className="text-lg font-semibold text-[#A68A64] mb-4">Change Password</h3>
-                
+
                 <form onSubmit={handleChangePassword} className="space-y-4">
                     <div className="relative">
                         <label htmlFor="currentPassword" className="block text-sm font-medium text-[#5D4037] mb-1">Current Password</label>
@@ -146,8 +182,8 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                                 className="w-full px-4 py-2 border border-[#E6D7C3] rounded-lg focus:ring-[#A68A64] focus:border-[#A68A64] outline-none transition pr-10"
                                 required
                             />
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                             >
@@ -155,7 +191,8 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                             </button>
                         </div>
                     </div>
-                    
+
+
                     <div>
                         <label htmlFor="newPassword" className="block text-sm font-medium text-[#5D4037] mb-1">New Password</label>
                         <div className="relative">
@@ -168,8 +205,8 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                                 required
                                 minLength={6}
                             />
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#5D4037] hover:text-gray-700"
                                 onClick={() => setShowNewPassword(!showNewPassword)}
                             >
@@ -177,7 +214,6 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                             </button>
                         </div>
                     </div>
-                    
                     <div>
                         <label htmlFor="confirmPassword" className="block text-sm font-medium text-[#5D4037] mb-1">Confirm New Password</label>
                         <div className="relative">
@@ -190,8 +226,8 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                                 required
                                 minLength={6}
                             />
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                             >
@@ -199,9 +235,11 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ user }) => {
                             </button>
                         </div>
                     </div>
-                    
+
+
+
                     <div className="pt-2">
-                        <LoadingButton 
+                        <LoadingButton
                             isLoading={isLoading2}
                             text="Change Password"
                             loadingText="Updating..."

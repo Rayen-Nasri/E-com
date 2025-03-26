@@ -48,7 +48,6 @@ interface FilterState {
 }
 
 export const Products = () => {
-    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [sortBy, setSortBy] = useState<SortOption>('price-asc');

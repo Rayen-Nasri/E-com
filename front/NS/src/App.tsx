@@ -1,4 +1,4 @@
-import { Children, useEffect } from 'react';
+import { Children, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from "react-router";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./global/authStore.tsx";
@@ -20,7 +20,22 @@ import ProfilePage from './components/user/ProfilePage.refactored.tsx';
 import Support from './components/support/Support.tsx';
 
 const RedirectAuthenticatedUser = ({ children }: any) => {
-  const { isAuthenticated }: any = useAuthStore();
+  const { isAuthenticated, checkAuth }: any = useAuthStore();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const verifyAuth = async () => {
+      await checkAuth();
+      setIsLoading(false);
+    };
+    
+    verifyAuth();
+  }, [checkAuth]);
+
+  if (isLoading) {
+    return ;
+  }
+  
 
   if (isAuthenticated) {
     return <Navigate to='/home' replace />;
@@ -29,22 +44,29 @@ const RedirectAuthenticatedUser = ({ children }: any) => {
   return children;
 };
 
-const RedirectAuthenticatedUserFromProfile = ({ children }: any) => {
-  const { isAuthenticated }: any = useAuthStore();
+
+const RedirectAuthenticatedUserFromPay = ({ children }: any) => {
+  const { isAuthenticated, checkAuth }: any = useAuthStore();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const verifyAuth = async () => {
+      await checkAuth();
+      setIsLoading(false);
+    };
+    
+    verifyAuth();
+  }, [checkAuth]);
+
+  if (isLoading) {
+    return ;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/home" replace />;
   }
-  return children
-}
-
-const RedirectAuthenticatedUserFromPay = ({ children }: any) => {
-  const { isAuthenticated }: any = useAuthStore();
-
-  if (!isAuthenticated) {
-    return <Navigate to="/authentication/logIn" replace />;
-  }
-  return children
+  
+  return children;
 }
 
 function App() {
@@ -61,9 +83,9 @@ function App() {
         <Route
           path='/ProfilePage'
           element={
-            <RedirectAuthenticatedUserFromProfile>
+            <RedirectAuthenticatedUserFromPay>
               <ProfilePage />
-            </RedirectAuthenticatedUserFromProfile>
+            </RedirectAuthenticatedUserFromPay>
           }
         />
         <Route

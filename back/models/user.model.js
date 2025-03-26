@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
         type : Boolean,
         default : false
     },
+    tel : {
+        type : String,
+        default : "",
+        length : 8
+    },
     resetPasswordToken : String,
     resetPasswordExpiresAt : Date,
     verificationToken : String,

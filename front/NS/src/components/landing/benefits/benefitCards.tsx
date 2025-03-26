@@ -227,7 +227,7 @@ export const CardSection = () => {
                             whileTap="tap"
                             className="inline-flex items-center justify-center py-3 px-8 
                             bg-black hover:bg-[#b4936d] font-semibold rounded-[90px] text-white 
-                            w-[190.73px] h-[46.11px] 2xl:w-[220px] 
+                            w-[220.73px] h-[46.11px] 2xl:w-[220px] 
                             transition-colors duration-300 shadow-lg"                    >
                             <span>View all products</span>
                         </motion.button>

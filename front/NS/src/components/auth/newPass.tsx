@@ -97,11 +97,10 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
                         variants={inputVariant}
                         initial="initial"
                         whileFocus="focus"
-                        animate={errors.password ? "invalid" : "valid"}
-                        {...register("password")}
+
                     />
 
-                    <motion.label 
+                    <motion.label px-3 py-1
                         htmlFor="confirmPassword" 
                         className="font-medium text-[17px]"
                         variants={formItemVariant}
@@ -119,8 +118,6 @@ const onSubmit: SubmitHandler<setNewPassForm> = async(data:any) => {
                         variants={inputVariant}
                         initial="initial"
                         whileFocus="focus"
-                        animate={errors.confirmePassword ? "invalid" : "valid"}
-                        {...register("confirmePassword")}
                     />
                 </motion.div>
 
