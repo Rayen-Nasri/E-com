@@ -6,7 +6,6 @@ import p4img from "../../assets/img/p4img.svg";
 import p5img from "../../assets/img/p5img.svg";
 import p6img from "../../assets/img/p6img.svg";
 import { Footer } from "../landing/benefits/footer";
-import { useNavigate } from "react-router";
 import NavBar from "../landing/home/navBar";
 
 // Import our new components
