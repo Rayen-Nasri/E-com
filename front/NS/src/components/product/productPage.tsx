@@ -159,7 +159,7 @@ export const Products = () => {
 
                     {/* Product Grid */}
                     <div className="flex-1">
-                        <ProductGrid 
+                        <ProductGrid
                             products={filteredProducts}
                             isLoading={isLoading}
                             clearFilters={clearFilters}

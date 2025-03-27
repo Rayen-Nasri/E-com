@@ -2,7 +2,7 @@ import { create } from "zustand"
 import axios from "axios"
 
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = import.meta.env.VITE_API_URL + "/auth";
 axios.defaults.withCredentials = true;
 export const useAuthStore = create((set) => ({
     user: null,
@@ -60,15 +60,15 @@ export const useAuthStore = create((set) => ({
     checkAuth: async () => {
         set({ isCheckingAuth: true, error: null })
         try {
-            //! if i need the user Data
             const response = await axios.get(`${API_URL}/check_auth`);
             set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
 
             await axios.get(`${API_URL}/check_auth`);
             set({ isAuthenticated: true, isCheckingAuth: false });
-
+            
         } catch (error) {
             set({ error: null, isCheckingAuth: false, isAuthenticated: false })
+            
         }
     },
 

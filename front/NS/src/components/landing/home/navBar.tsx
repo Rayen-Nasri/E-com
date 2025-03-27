@@ -181,7 +181,7 @@ const NavBar = memo(() => {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="z-49 fixed top-0 left-0 w-72 h-full bg-[#F9EBD6] backdrop-blur-lg backdrop-filter  lg:hidden overflow-auto"
+                        className="z-49 fixed top-0 left-0 w-72 h-full bg-[#F9EBD6]  lg:hidden overflow-auto"
                         style={{
                             boxShadow: '0 4px 30px rgba(166, 138, 100, 0.1)',
                             border: '1px solid rgba(166, 138, 100, 0.2)'

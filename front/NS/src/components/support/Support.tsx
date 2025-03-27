@@ -38,10 +38,15 @@ const Support = () => {
     }, [chatHistory]);
 
     const toggleFAQ = (index: string) => {
-        setIsExpanded(prev => ({
-            ...prev,
-            [index]: !prev[index]
-        }));
+        setIsExpanded(prev => {
+            const newState: { [key: string]: boolean } = {};
+                        if (prev[index]) {
+                return newState; 
+            } else {
+                newState[index] = true;
+                return newState; 
+            }
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -99,7 +104,7 @@ const Support = () => {
                     <motion.div 
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="bg-white rounded-lg shadow-md p-6 border border-[#A68A64]/20"
+                        className="bg-white/30  rounded-lg shadow-md p-6 border border-[#A68A64]/20"
                     >
                         <div className="flex items-center gap-2 mb-6">
                             <Bot className="text-[#A68A64]" />
@@ -173,20 +178,20 @@ const Support = () => {
                     <motion.div 
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="bg-white rounded-lg shadow-md p-6 border border-[#A68A64]/20"
+                        className="bg-white/30 rounded-lg shadow-md p-6 border border-[#A68A64]/20"
                     >
-                        <h2 className="text-2xl font-semibold text-[#A68A64] mb-6">Frequently Asked Questions</h2>
+                        <h2 className="text-2xl  font-semibold text-[#A68A64] mb-6">Frequently Asked Questions</h2>
                         <div className="space-y-4">
                             {faqs.map((faq, index) => (
                                 <motion.div 
                                     key={index}
                                     initial={false}
-                                    animate={{ backgroundColor: isExpanded[index.toString()] ? '#F5EDDD' : 'white' }}
-                                    className="border border-[#A68A64]/20 rounded-lg overflow-hidden"
+                                    animate={{ backgroundColor: isExpanded[index.toString()] ? '#F5EDDD' : '#F5EDDD' }}
+                                    className="bg-[#F5EDDD] border border-[#A68A64]/20 rounded-lg  overflow-hidden"
                                 >
                                     <button
                                         onClick={() => toggleFAQ(index.toString())}
-                                        className="w-full p-4 text-left flex justify-between items-center hover:bg-[#F5EDDD] transition-colors"
+                                        className="w-full p-4 text-left flex justify-between bg-[#F5EDDD]/10 items-center hover:bg-[#F5EDDD] transition-colors"
                                     >
                                         <span className="font-medium text-[#876D49]">{faq.question}</span>
                                         {isExpanded[index.toString()] ? (
