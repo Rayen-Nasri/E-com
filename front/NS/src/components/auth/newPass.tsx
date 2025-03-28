@@ -21,7 +21,7 @@ type setNewPassForm = z.infer<typeof newPassSchema>;
 
 export const Newpass = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<setNewPassForm>({
+    const { handleSubmit, formState: { errors } } = useForm<setNewPassForm>({
         resolver: zodResolver(newPassSchema)
     })
     const Navigate = useNavigate();
