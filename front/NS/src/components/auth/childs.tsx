@@ -2,7 +2,7 @@ import { memo } from "react";
 import { ArrBack } from "../../assets/assets";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
-import { formItemVariant, buttonVariant } from "./animations";
+import { formItemVariant } from "./animations";
 
 const HeaderChilds = memo(({ h3Content, pContent, imgSrc }: any) => {
     return (

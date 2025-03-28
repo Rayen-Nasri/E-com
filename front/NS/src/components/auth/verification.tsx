@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuthStore } from "../../global/authStore";
 import toast from "react-hot-toast";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { staggerContainer, fadeIn, verificationInputVariant, buttonVariant, formItemVariant } from "./animations";
 
 export const EmailVerification = () => {

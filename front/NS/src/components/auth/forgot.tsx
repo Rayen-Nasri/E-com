@@ -7,8 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
 import { useAuthStore } from "../../global/authStore";
 import { toast } from "react-hot-toast"
-import { motion, AnimatePresence } from "framer-motion";
-import { fadeIn, staggerContainer, formItemVariant, buttonVariant } from "./animations";
 
 
 const forgotSchema = z.object({
