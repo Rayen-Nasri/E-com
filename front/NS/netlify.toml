@@ -4,6 +4,16 @@
     Content-Type = "text/javascript"
 
 [[headers]]
+  for = "/*.mjs"
+  [headers.values]
+    Content-Type = "text/javascript"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Content-Type = "text/javascript"
+
+[[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
