@@ -1,6 +1,8 @@
 import { memo, Suspense, useEffect, lazy, useState, useRef } from "react";
 import { Content } from "./content";
 import NavBar from "../landing/home/navBar";
+import { LoadingOverlay } from "./LoadingOverlay";
+import { AnimatePresence } from "framer-motion";
 
 const ContentCard = lazy(() => import("./ContentCard").then(module => ({ default: module.ContentCard })));
 const Quality = lazy(() => import("./qualitySection").then(module => ({ default: module.Quality })));
@@ -8,9 +10,21 @@ const Order = lazy(() => import("./order").then(module => ({ default: module.Ord
 const Footer = lazy(() => import("../landing/benefits/footer").then(module => ({ default: module.Footer })));
 
 export const SeeMore = memo(() => {
+    const [isLoading, setIsLoading] = useState(() => {
+        const hasShownLoading = sessionStorage.getItem('hasShownLoading');
+        return !hasShownLoading;
+    });
+
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+        if (isLoading) {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+                sessionStorage.setItem('hasShownLoading', 'true');
+            }, 10000);
+            return () => clearTimeout(timer);
+        }
+    }, [isLoading]);
 
     const [isContentCardVisible, setIsContentCardVisible] = useState(false);
     const [isQualityVisible, setIsQualityVisible] = useState(false);
@@ -69,9 +83,12 @@ export const SeeMore = memo(() => {
 
     return (
         <>
+            <AnimatePresence>
+                {isLoading && <LoadingOverlay />}
+            </AnimatePresence>
             <NavBar />
             <Content />
-            <Suspense>
+            <Suspense fallback={<div></div>}>
                 <Order />
             </Suspense>
             
