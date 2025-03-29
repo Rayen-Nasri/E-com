@@ -23,11 +23,16 @@ export const LandingPage = () => {
     document.body.style.backgroundColor = '#FFF8E9';
     
     if (isLoading) {
+      document.body.style.overflow = 'hidden';
       const timer = setTimeout(() => {
         setIsLoading(false);
         sessionStorage.setItem('hasShownLoading1', 'true');
+        document.body.style.overflow = 'auto';
       }, 10000);
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+        document.body.style.overflow = 'auto';
+      };
     }
   }, [isLoading]);
 

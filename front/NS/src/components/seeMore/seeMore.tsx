@@ -18,11 +18,16 @@ export const SeeMore = memo(() => {
     useEffect(() => {
         window.scrollTo(0, 0);
         if (isLoading) {
+            document.body.style.overflow = 'hidden';
             const timer = setTimeout(() => {
                 setIsLoading(false);
                 sessionStorage.setItem('hasShownLoading', 'true');
+                document.body.style.overflow = 'auto';
             }, 10000);
-            return () => clearTimeout(timer);
+            return () => {
+                clearTimeout(timer);
+                document.body.style.overflow = 'auto';
+            };
         }
     }, [isLoading]);
 

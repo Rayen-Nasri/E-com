@@ -8,6 +8,8 @@ import account from "../../assets/img/Account.svg"
 import { Footer } from "../landing/benefits/footer";
 import { toast } from 'react-hot-toast';
 import { useCartStore } from "../../global/cartStore";
+import { useAuthStore } from "../../global/authStore";
+
 
 interface ProductDetails {
     img: string;
@@ -26,9 +28,10 @@ export const Store = () => {
     const [count, setCount] = useState(1);
     const { addItem } = useCartStore();
     const location = useLocation();
-    const product: ProductDetails = location.state || { 
-        img: "", 
-        desc: "", 
+    const { checkAuth }: any = useAuthStore()
+    const product: ProductDetails = location.state || {
+        img: "",
+        desc: "",
         price: 0,
         rating: 4.9,
         category: "Chair",
@@ -46,7 +49,7 @@ export const Store = () => {
     }, []);
 
     const handleQuantityChange = (newCount: number) => {
-        setCount(Math.max(1, newCount)); 
+        setCount(Math.max(1, newCount));
     };
 
     const addToCart = () => {
@@ -59,9 +62,23 @@ export const Store = () => {
             category: product.category || 'Furniture',
             image: product.img
         };
-        
+
         addItem(newItem);
-        toast.success(`${count} ${count > 1 ? 'items' : 'item'} added to cart!`);
+        try {
+            const check = async () => {
+                const check = await checkAuth()
+            }
+            if (!check) {
+                toast.error("you need to login first")
+            } else {
+                toast.success(`${count} ${count > 1 ? 'items' : 'item'} added to cart!`);
+
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+
     };
 
     // Dynamic star rating component
@@ -126,7 +143,7 @@ export const Store = () => {
                     {/* Product details section */}
                     <div className="grid md:grid-cols-2 gap-15 mb-12">
                         {/* Product image */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -142,7 +159,7 @@ export const Store = () => {
                         </motion.div>
 
                         {/* Product info */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -159,8 +176,8 @@ export const Store = () => {
                             </div>
 
                             <p className="text-black/60">
-                                Experience unparalleled comfort and style with our meticulously crafted furniture. 
-                                Each piece is designed to bring both functionality and aesthetic appeal to your space, 
+                                Experience unparalleled comfort and style with our meticulously crafted furniture.
+                                Each piece is designed to bring both functionality and aesthetic appeal to your space,
                                 ensuring a perfect blend of form and function.
                             </p>
 
@@ -186,9 +203,9 @@ export const Store = () => {
                             {/* Quantity and add to cart */}
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center border border-[#876D49] rounded-md">
-                                    <motion.button 
+                                    <motion.button
                                         whileTap={{ scale: 0.9 }}
-                                        className="p-[11px] px-3 hover:bg-[#876D49]/10 transition-colors" 
+                                        className="p-[11px] px-3 hover:bg-[#876D49]/10 transition-colors"
                                         onClick={() => handleQuantityChange(count - 1)}
                                     >
                                         <Minus className="h-4 w-4" />
@@ -201,15 +218,15 @@ export const Store = () => {
                                     >
                                         {count}
                                     </motion.span>
-                                    <motion.button 
+                                    <motion.button
                                         whileTap={{ scale: 0.9 }}
-                                        className="p-2 px-3 hover:bg-[#876D49]/10 transition-colors" 
+                                        className="p-2 px-3 hover:bg-[#876D49]/10 transition-colors"
                                         onClick={() => handleQuantityChange(count + 1)}
                                     >
                                         <Plus className="h-4 w-4" />
                                     </motion.button>
                                 </div>
-                                <motion.button 
+                                <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={addToCart}
@@ -224,7 +241,7 @@ export const Store = () => {
                     </div>
 
                     {/* Reviews section */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -252,8 +269,8 @@ export const Store = () => {
                                         <div key={rating.stars} className="flex items-center gap-2">
                                             <span className="w-12 text-sm">{rating.stars} Star</span>
                                             <div className="h-2 flex-1 rounded-full overflow-hidden bg-[#D9D9D9]">
-                                                <div 
-                                                    className="h-full bg-[#FFCC00] rounded-full transition-all duration-500" 
+                                                <div
+                                                    className="h-full bg-[#FFCC00] rounded-full transition-all duration-500"
                                                     style={{ width: `${rating.percentage}%` }}
                                                 />
                                             </div>
@@ -266,7 +283,7 @@ export const Store = () => {
                     </motion.div>
 
                     {/* Customer testimonials */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -318,7 +335,7 @@ export const Store = () => {
                                                 <div className="font-medium text-[17px] text-[#000000]/80">{review.name}</div>
                                                 {review.verified && (
                                                     <div className="text-xs text-[#508B6B] flex items-center gap-1">
-                                                        <img src={verified} alt="verified" className="w-4 h-4" loading="lazy"/>
+                                                        <img src={verified} alt="verified" className="w-4 h-4" loading="lazy" />
                                                         <span>Verified Purchase</span>
                                                     </div>
                                                 )}
@@ -337,7 +354,7 @@ export const Store = () => {
                     </motion.div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 };
