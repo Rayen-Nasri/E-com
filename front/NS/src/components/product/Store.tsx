@@ -65,10 +65,11 @@ export const Store = () => {
 
         addItem(newItem);
         try {
+            let check2= null
             const check = async () => {
-                const check = await checkAuth()
+                let check2 = await checkAuth();
             }
-            if (!check) {
+            if (!check2) {
                 toast.error("you need to login first")
             } else {
                 toast.success(`${count} ${count > 1 ? 'items' : 'item'} added to cart!`);
