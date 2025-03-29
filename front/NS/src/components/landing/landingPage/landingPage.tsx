@@ -26,7 +26,7 @@ export const LandingPage = () => {
       const timer = setTimeout(() => {
         setIsLoading(false);
         sessionStorage.setItem('hasShownLoading1', 'true');
-      }, 90000);
+      }, 9000);
       return () => clearTimeout(timer);
     }
   }, [isLoading]);
