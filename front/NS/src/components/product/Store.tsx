@@ -52,7 +52,7 @@ export const Store = () => {
         setCount(Math.max(1, newCount));
     };
 
-    const addToCart = () => {
+    const addToCart = async() => {
 
         const newItem: GlobalCartItem = {
             id: `product-${product.desc.replace(/\s+/g, '-').toLowerCase()}`,
@@ -62,22 +62,19 @@ export const Store = () => {
             category: product.category || 'Furniture',
             image: product.img
         };
-
-        addItem(newItem);
         try {
-            let check2= null
-            const check = async () => {
-                let check2 = await checkAuth();
+            const isAuthenticated = await checkAuth();
+            
+            if (!isAuthenticated) {
+                toast.error("You need to login first");
+                return;
             }
-            if (!check2) {
-                toast.error("you need to login first")
-            } else {
-                toast.success(`${count} ${count > 1 ? 'items' : 'item'} added to cart!`);
 
-            }
+            addItem(newItem);
+            toast.success(`${count} ${count > 1 ? 'items' : 'item'} added to cart!`);
         } catch (error) {
-            console.log(error);
-
+            console.error("Error checking authentication:", error);
+            toast.error("Something went wrong. Please try again.");
         }
 
     };
