@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import Cardmg from "../../assets/img/contentCard.svg";
+import Cardmg from "../../assets/img/contentCard.png";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { memo } from "react";

@@ -1,8 +1,8 @@
 import { memo, useMemo } from "react";
-import benefits1 from "../../assets/img/benefits.svg";
-import benefits2 from "../../assets/img/benefits2.svg";
-import benefits3 from "../../assets/img/benefits3.svg";
-import benefits4 from "../../assets/img/benefits4.svg";
+import benefits1 from "../../assets/img/benefits.jpg";
+import benefits2 from "../../assets/img/benefits2.jpg";
+import benefits3 from "../../assets/img/benefits3.jpg";
+import benefits4 from "../../assets/img/benefits4.jpg";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
 
 // Define the type for benefit items
@@ -74,7 +74,6 @@ const BenefitCard = memo(({ item, index }: { item: BenefitItem; index: number })
                 loading="lazy"
                 width={300}
                 height={200}
-                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 className="w-full border-b-3 border-b-[#CBB494]"
             />
