@@ -14,6 +14,7 @@ export interface CartItem {
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
+  subcategory: string; // Fixed subcategory type definition
   addItem: (item: CartItem) => void;
   removeItem: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
@@ -27,6 +28,7 @@ export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
+      subcategory: '',
       isOpen: false,
 
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
@@ -42,14 +44,15 @@ export const useCartStore = create<CartStore>()(
                 i.id === item.id
                   ? { ...i, quantity: i.quantity + 1 }
                   : i
-              )
-
+              ),
+              isOpen: true,
             };
           }
           
           return {
             ...state,
-            items: [...state.items, { ...item, quantity: 1 }]
+            items: [...state.items, { ...item, quantity: 1 }],
+            isOpen: true,
           };
         });
       },

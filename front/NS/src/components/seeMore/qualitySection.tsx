@@ -5,7 +5,6 @@ import benefits3 from "../../assets/img/benefits3.jpg";
 import benefits4 from "../../assets/img/benefits4.jpg";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
 
-// Define the type for benefit items
 type BenefitItem = {
     img: string;
     desc: string;
@@ -13,7 +12,6 @@ type BenefitItem = {
     tag: string;
 };
 
-// Memoize benefits data to prevent unnecessary re-creation
 const useBenefitsData = (): BenefitItem[] => {
     return useMemo(() => [
         { img: benefits1, desc: "Ornate table", price: "$190", tag: "Best Seller" },
@@ -23,7 +21,6 @@ const useBenefitsData = (): BenefitItem[] => {
     ], []);
 };
 
-// Enhanced animation variants
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -61,7 +58,6 @@ const headerVariants = {
     }
 };
 
-// Optimized benefit card with reduced animations
 const BenefitCard = memo(({ item, index }: { item: BenefitItem; index: number }) => (
     <motion.div
         variants={itemVariants}

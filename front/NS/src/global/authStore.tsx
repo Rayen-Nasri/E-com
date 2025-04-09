@@ -1,9 +1,10 @@
 import { create } from "zustand"
 import axios from "axios"
+import { mockAuthService, setMockLoggedIn } from "../services/mockApiService"
 
-
-const API_URL = import.meta.env.VITE_API_URL + "/auth";
-axios.defaults.withCredentials = true;
+// Backend API URL (commented out as we're using mock service)
+// const API_URL = import.meta.env.VITE_API_URL + "/auth";
+// axios.defaults.withCredentials = true;
 export const useAuthStore = create((set) => ({
     user: null,
     isAuthenticated: false,
@@ -13,21 +14,24 @@ export const useAuthStore = create((set) => ({
     logout: async () => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/logout`)
-            set({ user: response.data.user, isAuthenticated: false, isLoading: false })
+            // Using mock service instead of actual API call
+            const response = await mockAuthService.logout();
+            setMockLoggedIn(false);
+            set({ user: null, isAuthenticated: false, isLoading: false })
 
         } catch (error: any) {
-            set({ error: error.response.data.message || "Error Lougout", isLoading: false })
+            set({ error: error.message || "Error Logout", isLoading: false })
             throw error;
         }
     },
     signup: async (email: string, password: string, name: string) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/signup`, { email, password, name })
-            set({ user: response.data.user, isAuthenticated: true, isLoading: false })
+            // Using mock service instead of actual API call
+            const response = await mockAuthService.signup(email, password, name);
+            set({ user: response.user, isAuthenticated: true, isLoading: false })
         } catch (error: any) {
-            set({ error: error.response.data.message || "Error sign up", isLoading: false })
+            set({ error: error.message || "Error sign up", isLoading: false })
             throw error;
 
         }
@@ -38,88 +42,42 @@ export const useAuthStore = create((set) => ({
     verifyEamil: async (code: any) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/verify_email`, { code });
-            set({ user: response.data.user, isAuthenticated: true, isLoading: false });
-            return response.data
+            // Using mock service instead of actual API call
+            const response = await mockAuthService.verifyEmail(code);
+            set({ user: response.user, isAuthenticated: true, isLoading: false });
+            setMockLoggedIn(true);
+            return response;
         } catch (error: any) {
-            set({ error: error.response.data.message || "Error sign up", isLoading: false });
+            set({ error: error.message || "Error verifying email", isLoading: false });
             throw error;
         }
     },
 
     checkAuth: async () => {
-        set({ isCheckingAuth: true, error: null })
+        set({ isCheckingAuth: true, error: null })        
         try {
-            const response = await axios.get(`${API_URL}/check_auth`);
-            set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
-        } catch (error: any) {
-            set({ 
-                error: error.response?.data?.message || "Authentication check failed", 
-                isCheckingAuth: false, 
-                isAuthenticated: false,
-                user: null
-            })
+            // Using mock service instead of actual API call
+            const { user, isAuthenticated } = await mockAuthService.checkAuth();
+            set({ user, isAuthenticated, isCheckingAuth: false })            
+            setMockLoggedIn(isAuthenticated);
+            return { user, isAuthenticated };
+
+        } catch (error) {
+            set({ user: null, isAuthenticated: false, isCheckingAuth: false })
         }
     },
-
+    
     login: async (email: string, password: string) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/login`, { email, password });
-            set({ 
-                user: response.data.user, 
-                isAuthenticated: true, 
-                isLoading: false,
-                isCheckingAuth: false,
-                error: null
-            });
-            return response.data;
+            // Using mock service instead of actual API call
+            const response = await mockAuthService.login(email, password);
+            set({ user: response.user, isAuthenticated: true, isLoading: false });
+            setMockLoggedIn(true);
+            return response;
         } catch (error: any) {
-            set({ 
-                error: error.response?.data?.message || "Login failed",
-                isLoading: false,
-                isAuthenticated: false,
-                isCheckingAuth: false,
-                user: null
-            });
+            set({ error: error.message || "Error logging in", isLoading: false });
             throw error;
         }
     },
-
-    forgotPassword: async (email: string) => {
-        set({ isLoading: true, error: null });
-        try {
-            const response = await axios.post(`${API_URL}/forgot_password`, { email });
-            set({ 
-                isLoading: false,
-                error: null,
-                message: response.data.message
-            });
-            return response.data;
-        } catch (error: any) {
-            set({ 
-                error: error.response?.data?.message || "Failed to process password reset",
-                isLoading: false
-            });
-            throw error;
-        }
-    },
-
-    setNewPassword: async (newPassword: string, token: string) => {
-        set({ isLoading: true, error: null });
-        try {
-            const response = await axios.post(`${API_URL}/reset_password/${token}`, { newPassword });
-            set({ message: response.data.message, isLoading: false });
-        } catch (error: any) {
-            set({ error: error.response.data.message || "Error setting new password", isLoading: false });
-            throw error;
-        }
-    }
-
-
-
 }))
-
-
-
-

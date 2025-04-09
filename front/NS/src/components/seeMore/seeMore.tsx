@@ -17,18 +17,18 @@ export const SeeMore = memo(() => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (isLoading) {
-            document.body.style.overflow = 'hidden';
-            const timer = setTimeout(() => {
-                setIsLoading(false);
-                sessionStorage.setItem('hasShownLoading', 'true');
-                document.body.style.overflow = 'auto';
-            }, 10000);
-            return () => {
-                clearTimeout(timer);
-                document.body.style.overflow = 'auto';
-            };
-        }
+        // if (isLoading) {
+        //     document.body.style.overflow = 'hidden';
+        //     const timer = setTimeout(() => {
+        //         setIsLoading(false);
+        //         sessionStorage.setItem('hasShownLoading', 'true');
+        //         document.body.style.overflow = 'auto';
+        //     }, 10000);
+        //     return () => {
+        //         clearTimeout(timer);
+        //         document.body.style.overflow = 'auto';
+        //     };
+        // }
     }, [isLoading]);
 
     const [isContentCardVisible, setIsContentCardVisible] = useState(false);
@@ -88,9 +88,9 @@ export const SeeMore = memo(() => {
 
     return (
         <>
-            <AnimatePresence>
+            {/* <AnimatePresence>
                 {isLoading && <LoadingOverlay />}
-            </AnimatePresence>
+            </AnimatePresence> */}
             <NavBar />
             <Content />
             <Suspense fallback={<div></div>}>

@@ -5,8 +5,7 @@ import { Benefits } from '../benefits/benefits';
 import { DiscountSection } from '../benefits/discount';
 import { FAQAccordion } from '../benefits/question';
 import { Footer } from '../benefits/footer';
-import { AnimatePresence } from 'framer-motion';
-import { LoadingOverlay } from '../../seeMore/LoadingOverlay';
+import Loader from './loading';
 
 const CardSection = React.lazy(() =>
   import('../benefits/benefitCards').then((module) => ({ default: module.CardSection }))
@@ -21,7 +20,7 @@ export const LandingPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.style.backgroundColor = '#FFF8E9';
-    
+
     if (isLoading) {
       document.body.style.overflow = 'hidden';
       const timer = setTimeout(() => {
@@ -38,19 +37,19 @@ export const LandingPage = () => {
 
   return (
     <>
-      <AnimatePresence>
-        {isLoading && <LoadingOverlay />}
-      </AnimatePresence>
 
-      <HomePage />
-      <Benefits />
-      <Suspense>
-        <CardSection />
-      </Suspense>
-      <br />
-      <DiscountSection />
-      <FAQAccordion />
-      <Footer />
+      <Loader isLoading={isLoading}>
+        <HomePage />
+        <Benefits />
+        <Suspense>
+          <CardSection />
+        </Suspense>
+        <br />
+        <DiscountSection />
+        <FAQAccordion />
+        <Footer />
+
+      </Loader>
 
     </>
   );

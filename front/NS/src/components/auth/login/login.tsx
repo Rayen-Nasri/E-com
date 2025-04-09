@@ -1,4 +1,4 @@
-import {  useState } from "react"
+import { useEffect, useState } from "react"
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,13 +9,25 @@ import { Eye, EyeOff } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(9)
+  password: z.string().min(8)
 });
 
 type loginForme = z.infer<typeof loginSchema>;
 
 
 const Login = () => {
+  useEffect(() => {
+    const toast1 = toast.success(
+      <div>
+        <div>email : demo@gmail.com</div>
+        <div>password : password</div>
+      </div>,
+      { duration: 5000 }
+    );
+    return ()=>{
+      toast.remove(toast1)
+    }
+  }, []);
 
   const { register, handleSubmit, formState: { errors } } = useForm<loginForme>({
     resolver: zodResolver(loginSchema)
@@ -37,9 +49,6 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  {
-    document.body.style.backgroundColor = "FFFCF8";
-  }
 
   return (
     <>
